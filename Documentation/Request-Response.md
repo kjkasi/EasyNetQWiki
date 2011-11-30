@@ -2,7 +2,7 @@ EasyNetQ also supports a Request/Response messaging pattern. This makes it easy 
 
 Also, unlike traditional RPC mechanisms, including most web service toolkits, EasyNetQ’s request/response pattern is based on messaging, so it is asynchronous out-of-the-box.
 
-Making a request, and handling the response
+## Making a request, and handling the response
 
 To make a request with EasyNetQ, simply do the following:
 
@@ -11,7 +11,7 @@ To make a request with EasyNetQ, simply do the following:
 
 Here we create a new request of type MyMessage and then call the IBus.Request method with it as the first argument. When the response returns, at some later time, on some later thread, the response message’s Text property is output to the console.
 
-Beware of closures!
+## Beware of closures!
 
 It’s a common pattern to subscribe to some message, and then during the processing of that message make a request/response call.
 
