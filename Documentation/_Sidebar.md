@@ -1,8 +1,8 @@
 [[Introduction]]
 
-[[Installing_EasyNetQ]]
+[[Installing EasyNetQ]]
 
-[[Connecting_to_RabbitMQ]]
+[[Connecting to RabbitMQ]]
 
 [[Publish]]
 
@@ -10,10 +10,10 @@
 
 [[Request Response]]
 
-[[Scheduling_Events_with_Future_Publish]]
+[[Scheduling Events with Future Publish]]
 
-[[Error_Conditions]]
+[[Error Conditions]]
 
-[[Long_Running_Business_Processes_With_Sagas]]
+[[Long Running Business Processes With Sagas]]
 
 [[Re-Submitting Error Messages With EasyNetQ.Hosepipe]]
