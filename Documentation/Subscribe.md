@@ -8,7 +8,7 @@ Now every time that an instance of MyMessage is published, EasyNetQ will call ou
 
 The subscription id that you pass to Subscribe is important. EasyNetQ will create a unique queue on the RabbitMQ broker for each unique combination of message type and subscription id. The general rule you should follow is that each call to subscribe should have its own id. Indeed, this is a case where you shouldn’t follow normal good practice and where a hard-coded string is probably the best option.
 
-Considerations when writing the subscribe callback delegate
+## Considerations when writing the subscribe callback delegate
 
 As messages are received from queues subscribed to via EasyNetQ, they are placed on an in-memory queue. A single thread sits in a loop taking messages from the queue and calling their Action<TMessage> delegates. Since the delegates are processed one at a time on a single thread, you should avoid long-running synchronous IO operations. Return control from the delegate as soon as possible.
 
@@ -18,7 +18,7 @@ SubscribeAsync allows your subscriber delegate to return a Task immediately and 
 
     Needs a code example here
 
-Distributed processing out-of-the-box
+## Distributed processing out-of-the-box
 
 EasyNetQ and RabbitMQ provide distributed processing out-of-the-box. Say we have written a windows service with a single call to subscribe just like the one above. We deploy it on a server and start it up. When the Subscribe call is run EasyNetQ creates a queue called something like ‘my_subscription_id_some_namespace_mymessage_blah_blah’ on the RabbitMQ broker. As instances of MyMessage are published they are routed to this queue and our windows service gets a copy of every message. This is exactly what we want.
 
