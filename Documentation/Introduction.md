@@ -1,4 +1,4 @@
-EasyNetQ is a simple to use, opinionated, .NET API for RabbitMQ.
+EasyNetQ is a simple to use, opinionated, .NET API for [[RabbitMQ|http://www.rabbitmq.com/]].
 
 Doesn’t RabbitMQ already have a .NET client? Yes it does. You can download the .NET AMQP client library [[here|http://www.rabbitmq.com/dotnet.html]].
 
