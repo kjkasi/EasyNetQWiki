@@ -5,6 +5,7 @@ Usage:
     EasyNetQ.Hosepipe.exe <command> [<option:value> ..]
 
 Commands
+
     dump    Dump all the messages in a queue to the given directory
     insert  Insert all the messages in a directory in the given queue
     err     Dump all the EasyNetQ error messages to the given directory
@@ -12,6 +13,7 @@ Commands
     ?       Output this usage message
 
 Options
+
     s       the RabbitMQ broker (server) to connect to. Default is 'localhost'
     v       the virtual host. Default is '/'
     u       the username to connect with. Default is 'guest'
