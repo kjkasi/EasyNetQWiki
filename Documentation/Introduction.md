@@ -1,6 +1,6 @@
 EasyNetQ is a simple to use, opinionated, .NET API for RabbitMQ.
 
-Doesn’t RabbitMQ already have a .NET client? Yes it does. You can download the .NET AMQP client library here.
+Doesn’t RabbitMQ already have a .NET client? Yes it does. You can download the .NET AMQP client library [[here|http://www.rabbitmq.com/dotnet.html]].
 
 So why do I need EasyNetQ? The RabbitMQ .NET client implements the client side of the AMQP protocol (and RabbitMQ implements the server side). AMQP is intended as the HTTP of messaging. It is designed to be cross platform and language agnostic. It is also designed to flexibly support a wide range of messaging patterns based on the Exchange/Binding/Queue model. 
 
