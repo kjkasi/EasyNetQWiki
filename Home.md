@@ -1,3 +1,3 @@
-Welcome to the EasyNetQ wiki!
+Welcome to the EasyNetQ wiki
 
-[[Introduction]]
+**[[Documentation|Introduction]]**
