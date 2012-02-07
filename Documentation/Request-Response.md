@@ -38,4 +38,31 @@ Respond takes a single argument, a Func<TRequest, TResponse>, that takes a reque
 
 EasyNetQ also provides a RespondAsync method that takes a Func<TRequest, Task<TResponse>> delegate. This allows you to execute long-running IO-bound operations without blocking the EasyNetQ subscription handling loop.
 
-    needs an example using RespondAsync
+    static void Main(string[] args)
+        {
+            // create a group of worker objects
+            var workers = new BlockingCollection<MyWorker>();
+            for (int i = 0; i < 10; i++)
+            {
+                workers.Add(new MyWorker());
+            }
+            // create the bus
+            var bus = RabbitHutch.CreateBus("host=localhost");
+            // respond to requests
+            bus.RespondAsync<RequestServerTime, ResponseServerTime>(request =>
+                Task.Factory.StartNew(() =>
+                {
+                    var worker = workers.Take();
+                    try
+                    {
+                        return worker.Execute(request);
+                    }
+                    finally
+                    {
+                        workers.Add(worker);
+                    }
+                }));
+            while (true)
+            {
+            }
+        }
