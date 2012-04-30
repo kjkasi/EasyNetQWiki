@@ -25,23 +25,23 @@ Examples
 
 1. To output all the messages in a queue called 'my_queue' as text files to a directory 'C:\temp\messages':
 
-    EasyNetQ.Hosepipe.exe dump s:localhost u:guest p:guest q:my_queue o:C:\temp\messages
+    `EasyNetQ.Hosepipe.exe dump s:localhost u:guest p:guest q:my_queue o:C:\temp\messages`
 
 2. To insert all the messages in directory 'C:\temp\messages' into queue
    'my_queue':
 
-    EasyNetQ.Hosepipe.exe insert s:localhost u:guest p:guest q:my_queue o:C:\temp\messages
+    `EasyNetQ.Hosepipe.exe insert s:localhost u:guest p:guest q:my_queue o:C:\temp\messages`
 
 3. Dump all the EasyNetQ messages queued in the broker localhost to a directory
    'C:\temp\messages'
 
-    EasyNetQ.Hosepipe.exe err s:localhost o:C:\temp\messages
+    `EasyNetQ.Hosepipe.exe err s:localhost o:C:\temp\messages`
 
 4. An EasyNetQ error message contains all the information required to republish the
    errored message.
    To re-publish all error messages in directory 'C:\temp\messages':
 
-    EasyNetQ.Hosepipe.exe retry s:localhost u:guest p:guest o:C:\temp\messages
+    `EasyNetQ.Hosepipe.exe retry s:localhost u:guest p:guest o:C:\temp\messages`
 
 Notes
 
