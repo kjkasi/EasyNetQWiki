@@ -14,7 +14,7 @@ So a message that is published with the topic "X.A.2" would match "\#", "X.\#", 
 
     bus.Subscribe("my_id", "X.*", handler);
   
-A warning. Two separate subscriptions with the same subscriberId but different topic strings probably will not have the effect you are expecting. A subscriberId effectively identifies an individual AMQP queue. Two subscribers with the same subscriptionId will both connect to the same queue and both will add their own topic. So, for example, if you do this:
+**A warning**. Two separate subscriptions with the same subscriberId but different topic strings probably will not have the effect you are expecting. A subscriberId effectively identifies an individual AMQP queue. Two subscribers with the same subscriptionId will both connect to the same queue and both will add their own topic. So, for example, if you do this:
 
     bus.Subscribe("my_id", "X.*", handler);
     bus.Subscribe("my_id", "*.B", handler);
