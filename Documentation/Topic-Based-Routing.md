@@ -1,4 +1,4 @@
-RabbitMQ has a very cool feature, [http://www.rabbitmq.com/tutorials/tutorial-five-python.html|topic based routing], that allows a subscriber to filter messages based on multiple criteria. A topic is a list of words delimited by dots that are published along with the message. Examples would be, "stock.usd.nyse" or "book.uk.london" or "a.b.c", the words can be anything you like, but would usually be some attributes of the message. The topic string has a limit of 255 characters.
+RabbitMQ has a very cool feature, [topic based routing](http://www.rabbitmq.com/tutorials/tutorial-five-python.html), that allows a subscriber to filter messages based on multiple criteria. A topic is a list of words delimited by dots that are published along with the message. Examples would be, "stock.usd.nyse" or "book.uk.london" or "a.b.c", the words can be anything you like, but would usually be some attributes of the message. The topic string has a limit of 255 characters.
 
 To publish with a topic, simply use the overloaded Publish method:
 
