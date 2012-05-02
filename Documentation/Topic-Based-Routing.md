@@ -10,7 +10,7 @@ Subscribers can filter messages by specifying a topic to match to. These can inc
 
 \# (hash) to match to zero or more words.
 
-So a message that is published with the topic "X.A.2" would match "#", "X.#", "*.A.*" but not "X.B.*" or "A". To subscribe with a topic, use the overloaded Subscribe method:
+So a message that is published with the topic "X.A.2" would match "\#", "X.\#", "\*.A.\*" but not "X.B.\*" or "A". To subscribe with a topic, use the overloaded Subscribe method:
 
     bus.Subscribe("my_id", "X.*", handler);
   
