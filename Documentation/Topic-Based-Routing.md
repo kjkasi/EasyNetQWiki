@@ -21,6 +21,8 @@ So a message that is published with the topic "X.A.2" would match "\#", "X.\#", 
   
 Each handler will be round-robbined with any messages that match "x.\*" or "\*.B".
 
-Now, if you want to match on multiple topics ("X.\*" OR "\*.B") you can use another override of the Subscribe method that takes multiple topics, like this:
+Now, if you want to match on multiple topics ("X.\*" OR "\*.B") you can use another overload of the Subscribe method that takes multiple topics, like this:
 
     bus.Subscribe("my_id", new[]{"X.*", "*.B"}, handler);
+
+There are topic overloads for the SubscribeAsync method that work in exactly the same way.
