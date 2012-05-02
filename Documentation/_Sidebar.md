@@ -10,6 +10,8 @@
 
 [[Request Response]]
 
+[[Topic Based Routing]]
+
 [[Scheduling Events with Future Publish]]
 
 [[Error Conditions]]
