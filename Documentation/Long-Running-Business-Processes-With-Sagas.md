@@ -19,14 +19,21 @@ The Saga itself is a class that implements and exports (With the System.Componen
                 {                 
                     Console.WriteLine("StartMessage: {0}", startMessage.Text);                 
                     var firstProcessedMessage = startMessage.Text + " - initial process ";                 
-                    var request = new TestRequestMessage { Text = firstProcessedMessage };                 
-                    bus.Request<TestRequestMessage, TestResponseMessage>(request, response =>                 
-                    {                     
-                        Console.WriteLine("TestResponseMessage: {0}", response.Text);                     
-                        var secondProcessedMessage = response.Text + " - final process ";                     
-                        var endMessage = new EndMessage { Text = secondProcessedMessage };                     
-                        bus.Publish(endMessage);                 
-                    });             
+                    var request = new TestRequestMessage { Text = firstProcessedMessage };   
+                    
+                    using (var publishChannel = bus.OpenPublishChannel())
+                    {
+                        publishChannel.Request<TestRequestMessage, TestResponseMessage>(request, response =>                 
+                        {                     
+                            Console.WriteLine("TestResponseMessage: {0}", response.Text);                     
+                            var secondProcessedMessage = response.Text + " - final process ";                     
+                            var endMessage = new EndMessage { Text = secondProcessedMessage };                     
+                            using (var publishChannel2 = bus.OpenPublishChannel())
+                            {
+                                publishChannel2.Publish(endMessage);                 
+                            }
+                        });             
+                    }
                 });         
             }     
         } 

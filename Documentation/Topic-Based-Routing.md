@@ -2,7 +2,10 @@ RabbitMQ has a very cool feature, [topic based routing](http://www.rabbitmq.com/
 
 To publish with a topic, simply use the overloaded Publish method:
 
-    bus.Publish("X.A", message);
+    using (var publishChannel = bus.OpenPublishChannel())
+    {
+        publishChannel.Publish("X.A", message);
+    }
   
 Subscribers can filter messages by specifying a topic to match to. These can include the wildcard characters:
 

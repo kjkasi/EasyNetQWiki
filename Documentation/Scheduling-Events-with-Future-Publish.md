@@ -1,7 +1,11 @@
 Many business processes require that events be scheduled for some future date. For example, after an initial sales contact with a customer, we may want to schedule a follow up call at some time in the future. EasyNetQ can help you implement this functionality with its Future Publish feature. For example, here we are using FuturePublish to schedule a follow-up sales call for a month in the future. Note that FuturePublish uses UTC time.
 
     var followUpCallMessage = new FollowUpCallMessage( .. );
-    bus.FuturePublish(DateTime.UtcNow.AddMonths(3), followUpCallMessage);
+
+    using (var publishChannel = bus.OpenPublishChannel())
+    {
+        publishChannel.FuturePublish(DateTime.UtcNow.AddMonths(3), followUpCallMessage);
+    }
 
 One month from now the message will be published by EasyNetQ and any subscribers of FollowUpCallMessage will receive a copy of the original message.
 
