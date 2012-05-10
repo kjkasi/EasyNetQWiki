@@ -14,9 +14,14 @@ As messages are received from queues subscribed to via EasyNetQ, they are placed
 
 ## Use SubscribeAsync
 
-SubscribeAsync allows your subscriber delegate to return a Task immediately and then asynchronously execute long-running IO operations. Once the long-running subscription is complete, simply complete the Task.
+SubscribeAsync allows your subscriber delegate to return a Task immediately and then asynchronously execute long-running IO operations. Once the long-running subscription is complete, simply complete the Task. In the example below we are making a request to a web service using an asynchronous IO operation (DownloadStringTask). When the task completes, we write a line to the console.
 
-    Needs a code example here
+    bus.SubscribeAsync<MyMessage>("subscribe_async_test", message => 
+        new WebClient().DownloadStringTask(new Uri("http://localhost:1338/?timeout=500"))
+            .ContinueWith(task => 
+                Console.WriteLine("Received: '{0}', Downloaded: '{1}'", 
+                    message.Text, 
+                    task.Result)));
 
 ## Distributed processing out-of-the-box
 
