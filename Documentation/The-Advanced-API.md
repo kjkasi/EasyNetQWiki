@@ -1,0 +1,1 @@
+EasyNetQ's mission is to provide the simplest possible API for RabbitMQ based messaging. The IBus API purposefully avoids exposing the core AMQP concepts, exchanges, bindings, and queues, instead it implements a default exchange-binding-queue topology based on message type. If you want to define your own exchange-binding-queue topology, EasyNetQ provides an advanced API.
