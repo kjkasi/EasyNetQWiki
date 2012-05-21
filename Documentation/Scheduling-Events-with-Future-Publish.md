@@ -1,4 +1,4 @@
-Many business processes require that events be scheduled for some future date. For example, after an initial sales contact with a customer, we may want to schedule a follow up call at some time in the future. EasyNetQ can help you implement this functionality with its Future Publish feature. For example, here we are using FuturePublish to schedule a follow-up sales call for a month in the future. Note that FuturePublish uses UTC time.
+Many business processes require that events be scheduled for some future date. For example, after an initial sales contact with a customer, we may want to schedule a follow up call at some time in the future. EasyNetQ can help you implement this functionality with its Future Publish feature. For example, here we are using the FuturePublish extension method to schedule a follow-up sales call for a month in the future. Note that FuturePublish uses UTC time.
 
     var followUpCallMessage = new FollowUpCallMessage( .. );
 
