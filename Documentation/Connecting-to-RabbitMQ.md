@@ -8,7 +8,7 @@ var bus = RabbitHutch.CreateBus("myServer”, "1234", ”myVHost", "myUsername",
 ```
 Alternatively, EasyNetQ supports ADO.NET style connection strings in the format:
 
-    host=MyServer;virtualHost=MyVirtualHost;username=MyUsername;password=MyPassword
+    host=MyServer;port=ThePortToConnectWith;virtualHost=MyVirtualHost;username=MyUsername;password=MyPassword
 
 For example:
 ```c#
