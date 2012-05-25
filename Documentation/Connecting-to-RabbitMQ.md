@@ -2,6 +2,8 @@ If you are used to handling connections to a relational database like SQL Server
 
 Talking to a message broker such as RabbitMQ is a little different because the connection tends to last the lifetime of the application. Typically you will open a connection, create a subscription and then wait for any messages to arrive on the open connection. EasyNetQ does not assume that the broker will be available at all times. Instead it employs a lazy connection approach, polling the given endpoint on a background thread until it can connect. If the server disconnects for any reason (maybe a network fault, maybe the RabbitMQ server itself has been bounced), EasyNetQ will revert to polling the endpoint until it can reconnect.
 
+**Standard practice is to create a single IBus instance for the lifetime of your application. Dispose it when your application closes.**
+
 A lazy connection to a RabbitMQ server is represented by an IBus interface. Most EasyNetQ operations are methods on IBus. You create an IBus instance like this:
 ```c#
 var bus = RabbitHutch.CreateBus("myServer”, "1234", ”myVHost", "myUsername", "myPassword");
