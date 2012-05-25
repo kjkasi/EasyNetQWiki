@@ -2,7 +2,7 @@ EasyNetQ's mission is to provide the simplest possible API for RabbitMQ based me
 
 For some scenarios it's useful to be able to configure your own exchange-binding-queue topology; the advanced EasyNetQ API allows you to do that. The advanced API assumes a good understanding of AMQP.
 
-The advanced API is implemented with the IAdvancedBus interface. An instance of this interface can be accessed via the Advanced property of IBus:
+The advanced API is implemented with the [IAdvancedBus](https://github.com/mikehadlow/EasyNetQ/blob/master/Source/EasyNetQ/IAdvancedBus.cs) interface. An instance of this interface can be accessed via the Advanced property of IBus:
 
     var advancedBus = RabbitHutch.CreateBus("host=localhost").Advanced;
 
@@ -69,7 +69,7 @@ Next create your message. The advanced API requires that your message is wrapped
     var myMessage = new MyMessage {Text = "Hello from the publisher"};
     var message = new Message<MyMessage>(myMessage);
 
-The Message<T> class gives you access to the AMQP basic properties, for example:
+The [Message<T>](https://github.com/mikehadlow/EasyNetQ/blob/master/Source/EasyNetQ/IMessage.cs) class gives you access to the AMQP basic properties, for example:
 
     message.Properties.AppId = "my_app_id";
     message.Properties.ReplyTo = "my_reply_queue";
@@ -95,7 +95,7 @@ The subscription handler has the following type:
 
     Func<IMessage<T>, MessageRecievedInfo, Task>
 
-It takes a Message<T>, as described above in the publish section; a MessageReceivedInfo, which contains information about the subscription and the message received; and returns a Task, which allows you to write non-blocking asynchronous handlers.
+It takes a Message<T>, as described above in the publish section; a [MessageReceivedInfo](https://github.com/mikehadlow/EasyNetQ/blob/master/Source/EasyNetQ/MessageReceivedInfo.cs), which contains information about the subscription and the message received; and returns a Task, which allows you to write non-blocking asynchronous handlers.
 
 Subscribe by supplying the queue and the subscription handler:
 
