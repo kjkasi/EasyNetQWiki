@@ -6,6 +6,8 @@ The advanced API is implemented with the IAdvancedBus interface. An instance of 
 
     var advancedBus = RabbitHutch.CreateBus("host=localhost").Advanced;
 
+## Creating Exchanges, Bindings, and Queues
+
 You can configure your Exchanges, Bindings and Queues using the classes in the EasyNetQ.Topology namespace. To declare an exchange use one of the static methods of the Exchange class like this:
 
     // create a direct exchange
