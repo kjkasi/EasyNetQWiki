@@ -55,3 +55,57 @@ You can also bind exchanges to exchanges in a chain:
 
     destinationExchange.BindTo(sourceExchange, routingKey);
     queue.BindTo(destinationExchange, routingKey);
+
+## Publishing
+
+The advanced Publish method allows you to specify the exchange you want to publish your message to. It also allows access to the message's AMQP basic properties.
+
+To publish you must first create an exchange (as explained above):
+
+    var exchange = Exchange.DeclareDirect("advanced_test_exchange");
+
+Next create your message. The advanced API requires that your message is wrapped in a Message<T>:
+
+    var myMessage = new MyMessage {Text = "Hello from the publisher"};
+    var message = new Message<MyMessage>(myMessage);
+
+The Message<T> class gives you access to the AMQP basic properties, for example:
+
+    message.Properties.AppId = "my_app_id";
+    message.Properties.ReplyTo = "my_reply_queue";
+
+Finally, open a new channel and publish your message:
+
+    using (var channel = advancedBus.OpenPublishChannel())
+    {
+        channel.Publish(exchange, routingKey, message);
+    }
+
+## Subscribing
+
+The advanced subscribe method allows you to specify the queue you wish to subscribe to and its exchange binding. It also gives you access to the AMQP basic properties and additional information about the subscription.
+
+Before subscribing, declare the queue you wish to subscribe to and bind it to an exchange:
+
+    var exchange = Exchange.DeclareDirect("advanced_test_exchange");
+    var queue = Queue.DeclareDurable("advanced_test_queue");
+    queue.BindTo(exchange, routingKey);
+
+The subscription handler has the following type:
+
+    Func<IMessage<T>, MessageRecievedInfo, Task>
+
+It takes a Message<T>, as described above in the publish section; a MessageReceivedInfo, which contains information about the subscription and the message received; and returns a Task, which allows you to write non-blocking asynchronous handlers.
+
+Subscribe by supplying the queue and the subscription handler:
+
+    advancedBus.Subscribe<MyMessage>(queue, (msg, messageReceivedInfo) => 
+        Task.Factory.StartNew(() =>
+        {
+            Console.WriteLine("Got Message: {0}", msg.Body.Text);
+            Console.WriteLine("ConsumerTag: {0}", messageReceivedInfo.ConsumerTag);
+            Console.WriteLine("DeliverTag: {0}", messageReceivedInfo.DeliverTag);
+            Console.WriteLine("Redelivered: {0}", messageReceivedInfo.Redelivered);
+            Console.WriteLine("Exchange: {0}", messageReceivedInfo.Exchange);
+            Console.WriteLine("RoutingKey: {0}", messageReceivedInfo.RoutingKey);
+        }));
