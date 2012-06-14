@@ -9,7 +9,7 @@ Many business processes require that events be scheduled for some future date. F
 
 One month from now the message will be published by EasyNetQ and any subscribers of FollowUpCallMessage will receive a copy of the original message.
 
-FuturePublish requires that the EasyNetQ.Scheduler service is running.
+FuturePublish requires that the **EasyNetQ.Scheduler** service is running.
 
 ## How Does It Work?
 
