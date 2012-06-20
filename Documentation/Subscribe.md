@@ -2,7 +2,7 @@ An EasyNetQ subscriber subscribes to a message type (the .NET type of the messag
 
 To subscribe to a message we need to give EasyNetQ an action to perform whenever a message arrives. We do this by passing subscribe a delegate:
 
-    bus.Subscribe<MyMessage>(“my_subscription_id”, msg => Console.Writeline(msg.Text));
+    bus.Subscribe<MyMessage>("my_subscription_id", msg => Console.WriteLine(msg.Text));
 
 Now every time that an instance of MyMessage is published, EasyNetQ will call our delegate and print the message’s Text property to the console.
 
