@@ -18,6 +18,9 @@
 
 [[Long Running Business Processes With Sagas]]
 
-[[Re-Submitting Error Messages With EasyNetQ.Hosepipe]]
+[[Re Submitting Error Messages With EasyNetQ.Hosepipe]]
 
 [[The Advanced API]]
+
+[[Wiring up EasyNetQ with TopShelf and Windsor]]
+
