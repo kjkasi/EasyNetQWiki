@@ -2,7 +2,7 @@ EasyNetQ is a library composed of small components. When you write:
 
     var bus = RabbitHutch.CreateBus("host=localhost");
 
-... the static method CreateBus assembles these components using a tiny internal IoC container. An overload of the CreateBus method allows you to access the component registration so that you can provide your own versions of any of the EasyNetQ dependencies. The signature looks like this:
+... the static method CreateBus assembles these components using a [tiny internal IoC container](../blob/master/Source/EasyNetQ/DefaultServiceProvider.cs). An overload of the CreateBus method allows you to access the component registration so that you can provide your own versions of any of the EasyNetQ dependencies. The signature looks like this:
 
     public static IBus CreateBus(string connectionString, Action<IServiceRegister> registerServices)
 
