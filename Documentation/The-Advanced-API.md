@@ -14,7 +14,7 @@ You can configure your Exchanges, Bindings and Queues using the classes in the E
     var myDirectExchange = Exchange.DeclareDirect("my.direct.exchange");
     
     // create a topic exchange
-    var myTopicExchange = Exchange.DeclareTopic("my.topic.exchagne");
+    var myTopicExchange = Exchange.DeclareTopic("my.topic.exchange");
     
     // create a fanout exchange
     var myFanoutExchange = Exchange.DeclareFanout("my.fanout.exchange");
