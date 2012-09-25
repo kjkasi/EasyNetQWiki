@@ -6,17 +6,16 @@ Talking to a message broker such as RabbitMQ is a little different because the c
 
 A lazy connection to a RabbitMQ server is represented by an IBus interface. Most EasyNetQ operations are methods on IBus. You create an IBus instance like this:
 
-    var bus = RabbitHutch.CreateBus("myServer”, "1234", ”myVHost", "myUsername", "myPassword");
+    var bus = RabbitHutch.CreateBus(“host=myServer;virtualHost=myVirtualHost;username=mike;password=topsecret”);
 
-Alternatively, EasyNetQ supports ADO.NET style connection strings in the format:
+The only required field is 'host'. The possible connection string values are:
 
-    host=MyServer;port=ThePortToConnectWith;virtualHost=MyVirtualHost;username=MyUsername;password=MyPassword
-
-For example:
-
-    var bus = RabbitHutch.CreateBus(“host=a;port=1234;virtualHost=b;username=c;password=d”);
-
-The only required field is 'host'. If you leave out the port, EasyNetQ will connect with the default port, 5672. If you leave out the virtualHost and simply give a server name, such as ‘localhost’, EasyNetQ will use the default RabbitMQ vHost ‘/’. You can also omit the username and password, in which case EasyNetQ will use the default guest account to connect.
+    host (e.g. host=localhost or host=192.168.2.56 or host=myhost.mydomain.com) this field is required.
+    port (e.g. port=1234) default is the standard AMQP port 5672
+    virtualHost (e.g. virtualHost=myVirtualHost) default is the default virtual host '/'
+    username (e.g. username=mike) default is 'guest'
+    password (e.g. password=mysecret) default is 'guest'
+    requestedHeartbeat (e.g. requestedHeartbeat=10) default is zero for no heartbeat.
 
 To close the connection, simply dispose the bus like this:
 
@@ -34,7 +33,7 @@ EasyNetQ provides a logger interface IEasyNetQLogger:
        void ErrorWrite(Exception exception);
     }
 
-By default EasyNetQ logs to the console, which is probably not what you want in a production system. You should provide your own implementation of IEasyNetQLogger. The RabbitHutch.CreateBus method provides overloads that take an IEasyNetQLogger which you can use to provide your custom logger to the bus. For example:
+By default EasyNetQ logs to the console, which is probably not what you want in a production system. You should provide your own implementation of IEasyNetQLogger. The RabbitHutch.CreateBus method provides overloads that allow you to replace any of the EasyNetQ components. You can use this to provide your custom logger to the bus. For example:
 
     var logger = new MyLogger() // implements IEasyNetQLogger
-    var bus = RabbitHutch.CreateBus(“my connection string”, logger);
+    var bus = RabbitHutch.CreateBus(“my connection string”, x => x.Register<IEasyNetQLogger>(_ => logger));
