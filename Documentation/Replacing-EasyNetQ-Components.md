@@ -19,7 +19,7 @@ So to register your own logger, based on IEasyNetQLogger, you'd write this code:
     var bus = RabbitHutch.CreateBus(connectionString, 
         serviceRegister => serviceRegister.Register(serviceProvider => logger));
 
-The Register method's argument, Func<IServiceProvider, TService>, is a function that's run when CreateBus pulls together the components to make an IBus instance. IServiceProvider looks like this:
+The Register method's argument, Func&lt;IServiceProvider, TService&gt;, is a function that's run when CreateBus pulls together the components to make an IBus instance. IServiceProvider looks like this:
 
     public interface IServiceProvider
     {
