@@ -38,4 +38,4 @@ By default EasyNetQ logs to the console, which is probably not what you want in 
     var logger = new MyLogger() // implements IEasyNetQLogger
     var bus = RabbitHutch.CreateBus(“my connection string”, x => x.Register<IEasyNetQLogger>(_ => logger));
 
-For more detail on replacing EasyNetQ components with your own versions, see [Replacing EasyNetQ Components].
+For more detail on replacing EasyNetQ components with your own versions, see [[Replacing EasyNetQ Components]].
