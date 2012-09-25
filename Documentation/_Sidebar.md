@@ -24,3 +24,4 @@
 
 [[Wiring up EasyNetQ with TopShelf and Windsor]]
 
+[[Replacing EasyNetQ Components]]
