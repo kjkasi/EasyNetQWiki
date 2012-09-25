@@ -8,7 +8,7 @@ A lazy connection to a RabbitMQ server is represented by an IBus interface. Most
 
     var bus = RabbitHutch.CreateBus(“host=myServer;virtualHost=myVirtualHost;username=mike;password=topsecret”);
 
-The only required field is 'host'. The possible connection string values are:
+The connection string is made up key/value pairs in the format key=value, each one separated by a semicolon (;). The only required field is 'host'. The possible connection string values are:
 
     host (e.g. host=localhost or host=192.168.2.56 or host=myhost.mydomain.com) this field is required.
     port (e.g. port=1234) default is the standard AMQP port 5672
