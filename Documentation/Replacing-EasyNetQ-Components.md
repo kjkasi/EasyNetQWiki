@@ -15,7 +15,7 @@ The IServiceRegister interface provides a single method:
 
 So to register your own logger, based on IEasyNetQLogger, you'd write this code:
 
-    var logger = new MyLogger(); // MyLogger implements IEasyNetQLogger
+    IEasyNewQLogger logger = new MyLogger(); // note the use of IEasyNetQLogger not var.
     var bus = RabbitHutch.CreateBus(connectionString, 
         serviceRegister => serviceRegister.Register(serviceProvider => logger));
 
