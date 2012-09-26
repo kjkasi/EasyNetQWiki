@@ -14,6 +14,8 @@
 
 [[Scheduling Events with Future Publish]]
 
+[[Auto Subscriber]]
+
 [[Error Conditions]]
 
 [[Long Running Business Processes With Sagas]]
