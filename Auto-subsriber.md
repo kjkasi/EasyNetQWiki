@@ -59,7 +59,7 @@ Lets say, the consumer above should have a fixed `SubscriptionId` for the consum
 public void Consume(MessageB message) { }
 ```
 
-## Taking control of the SubscriptionId
+## Taking control of the SubscriptionId generation
 You could of course also take control of the actual `SubscriptionId` generation. Just replace the `AutoSubscriber.GenerateSubscriptionId : Func<ConsumerInfo, string>`.
 
 ```c#
