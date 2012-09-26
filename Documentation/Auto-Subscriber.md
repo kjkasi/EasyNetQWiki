@@ -18,7 +18,7 @@ var subscriber = new AutoSubscriber(bus);
 subscriber.Subscribe(Assembly.GetExecutingAssembly());
 ```
 
-## Hook in your IoC-container
+## Hook In Your IoC-Container
 By default the `AutoSubscriber` requires you to have a default, parameter less constructor. You probably want to hook in your IoC-container instead, to let it control how the actual instances of your consumers are created; in our case, the `MyConsumer`.
 
 If we would introduce a constructor dependency in `MyConsumer`, the `AutoSubscriber` would fail.
@@ -49,7 +49,7 @@ var subscriber = new AutoSubscriber(bus)
 subscriber.Subscribe(Assembly.GetExecutingAssembly());
 ```
 
-## Specify a specific SubscriptionId
+## Specify A Specific SubscriptionId
 By default the `AutoSubscriber` will generate a unique `SubscriptionId`. If you would like it to be fixed, you can decorate the `Consume` method with the `ConsumerAttribute`. Why you would make it fixed, is something you can [read up about here](subscribe).
 
 Lets say, the consumer above should have a fixed `SubscriptionId` for the consumer method of `MessageB`. Just decorated it and define a value for `SubscriptionId`.
@@ -59,7 +59,7 @@ Lets say, the consumer above should have a fixed `SubscriptionId` for the consum
 public void Consume(MessageB message) { }
 ```
 
-## Taking control of the SubscriptionId generation
+## Taking Control Of The SubscriptionId Generation
 You could of course also take control of the actual `SubscriptionId` generation. Just replace the `AutoSubscriber.GenerateSubscriptionId : Func<ConsumerInfo, string>`.
 
 ```c#
