@@ -10,12 +10,12 @@ A lazy connection to a RabbitMQ server is represented by an IBus interface. Most
 
 The connection string is made up key/value pairs in the format key=value, each one separated by a semicolon (;). The only required field is 'host'. The possible connection string values are:
 
-    host (e.g. host=localhost or host=192.168.2.56 or host=myhost.mydomain.com) this field is required.
-    port (e.g. port=1234) default is the standard AMQP port 5672
-    virtualHost (e.g. virtualHost=myVirtualHost) default is the default virtual host '/'
-    username (e.g. username=mike) default is 'guest'
-    password (e.g. password=mysecret) default is 'guest'
-    requestedHeartbeat (e.g. requestedHeartbeat=10) default is zero for no heartbeat.
+* host (e.g. host=localhost or host=192.168.2.56 or host=myhost.mydomain.com) this field is required.
+* port (e.g. port=1234) default is the standard AMQP port 5672
+* virtualHost (e.g. virtualHost=myVirtualHost) default is the default virtual host '/'
+* username (e.g. username=mike) default is 'guest'
+* password (e.g. password=mysecret) default is 'guest'
+* requestedHeartbeat (e.g. requestedHeartbeat=10) default is zero for no heartbeat.
 
 To close the connection, simply dispose the bus like this:
 
