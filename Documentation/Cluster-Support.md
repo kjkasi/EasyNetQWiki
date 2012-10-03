@@ -11,6 +11,14 @@ In this example we have a cluster set up on a single machine, 'ubuntu', with nod
     DEBUG: OnConnected event fired
     INFO: Connected to RabbitMQ. Broker: 'ubuntu', Port: 5674, VHost: '/'
 
-If the node that EasyNetQ is connected to fails, EasyNetQ will attempt to connect to the next listed node. Once connected, it will re-declare all the exchanges and queues and re-start all the consumers. You get automatic fail-over out of the box.
+If the node that EasyNetQ is connected to fails, EasyNetQ will attempt to connect to the next listed node. Once connected, it will re-declare all the exchanges and queues and re-start all the consumers. Here's an example log record showing one node failing then EasyNetQ connecting to the other node and recreating the subscribers:
+
+    INFO: Disconnected from RabbitMQ Broker
+    DEBUG: Trying to connect
+    DEBUG: OnConnected event fired
+    DEBUG: Re-creating subscribers
+    INFO: Connected to RabbitMQ. Broker: 'ubuntu', Port: 5674, VHost: '/'
+
+You get automatic fail-over out of the box.
 
 If you have multiple services using EasyNetQ to connect to a RabbitMQ cluster, they will all initially connect to the first listed node in their respective connection strings. For this reason the EasyNetQ cluster support is not really suitable for load balancing high throughput systems. We recommend that you use a dedicated hardware or software load balancer instead.
