@@ -10,8 +10,7 @@ A lazy connection to a RabbitMQ server is represented by an IBus interface. Most
 
 The connection string is made up key/value pairs in the format key=value, each one separated by a semicolon (;). The only required field is 'host'. The possible connection string values are:
 
-* **host** (e.g. host=localhost or host=192.168.2.56 or host=myhost.mydomain.com) this field is required.
-* **port** (e.g. port=1234) default is the standard AMQP port 5672
+* **host** (e.g. host=localhost or host=192.168.2.56 or host=myhost.mydomain.com) this field is required. To specify the port you want to connect to, you can use the standard format host:port (e.g. host=myhost.com:5673). If you omit the port number, the default AMQP port is used (5672). To connect to a RabbitMQ cluster, specify each cluster node separated by commas (e.g. host=myhost1.com,myhost2.com,myhost3.com). See [[Cluster Support]] for more details.
 * **virtualHost** (e.g. virtualHost=myVirtualHost) default is the default virtual host '/'
 * **username** (e.g. username=mike) default is 'guest'
 * **password** (e.g. password=mysecret) default is 'guest'
