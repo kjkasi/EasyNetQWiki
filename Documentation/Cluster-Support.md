@@ -4,7 +4,12 @@ Simply list the nodes of the cluster in the connection string ...
 
     var bus = RabbitHutch.CreateBus("host=ubuntu:5672,ubuntu:5673");
 
-In this example we have a cluster set up on a single machine, 'ubuntu', with node 1 on port 5672 and node 2 on port 5673. When the CreateBus statement executes, EasyNetQ will attempt to connect to the first host listed (ubuntu:5672), if it fails to connect it will attempt to connect to the second host listed (ubuntu:5673). If neither node is available it will sit in a re-try loop attempting to connect to both servers every five seconds.
+In this example we have a cluster set up on a single machine, 'ubuntu', with node 1 on port 5672 and node 2 on port 5673. When the CreateBus statement executes, EasyNetQ will attempt to connect to the first host listed (ubuntu:5672). If it fails to connect it will attempt to connect to the second host listed (ubuntu:5673). If neither node is available it will sit in a re-try loop attempting to connect to both servers every five seconds. It logs all this activity to the registered IEasyNetQLogger. You might see something like this if the first node was unavailable:
+
+    DEBUG: Trying to connect
+    ERROR: Failed to connect to Broker: 'ubuntu', Port: 5672 VHost: '/'. ExceptionMessage: 'None of the specified endpoints were reachable'
+    DEBUG: OnConnected event fired
+    INFO: Connected to RabbitMQ. Broker: 'ubuntu', Port: 5674, VHost: '/'
 
 If the node that EasyNetQ is connected to fails, EasyNetQ will attempt to connect to the next listed node. Once connected, it will re-declare all the exchanges and queues and re-start all the consumers. You get automatic fail-over out of the box.
 
