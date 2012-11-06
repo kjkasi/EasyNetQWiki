@@ -22,3 +22,5 @@ Here's the code...
     }
 
 Note that we have wrapped the call to Publish in a try-catch block. As explained in the previous section, EasyNetQ employs a lazy connection approach so that it can automatically recover from connection failure, this means that a connection might not be available when you call publish. You should handle the EasyNetQException appropriately.
+
+For guaranteed message delivery use [[Publisher Confirms]].
