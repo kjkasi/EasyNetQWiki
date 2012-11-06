@@ -25,3 +25,36 @@ Next you must specify success and failure callbacks when you publish your messag
         }));
 
 Be careful not to dispose the publish channel before your callbacks have had a chance to execute.
+
+Here's an example of a simple test. We're publishing 10,000 messages and then waiting for them all to be acknowledged before disposing the channel. There's a timeout, so if the batch takes longer than 10 seconds we abort with an exception.
+
+    const int batchSize = 10000;
+    var callbackCount = 0;
+    var stopwatch = new Stopwatch();
+    stopwatch.Start();
+
+    using (var channel = bus.OpenPublishChannel(x => x.WithPublisherConfirms()))
+    {
+        for (int i = 0; i < batchSize; i++)
+        {
+            var message = new MyMessage {Text = string.Format("Hello Message {0}", i)};
+            channel.Publish(message, x => 
+                x.OnSuccess(() => {
+                    callbackCount++;
+                })
+                .OnFailure(() =>
+                {
+                    callbackCount++;
+                }));
+        }
+
+        // wait until all the publications have been acknowleged.
+        while (callbackCount < batchSize)
+        {
+            if (stopwatch.Elapsed.Seconds > 10)
+            {
+                throw new ApplicationException("Aborted batch with timeout");
+            }
+            Thread.Sleep(10);
+        }
+    }
