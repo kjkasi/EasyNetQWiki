@@ -12,6 +12,8 @@
 
 [[Topic Based Routing]]
 
+[[Publisher Confirms]]
+
 [[Scheduling Events with Future Publish]]
 
 [[Auto Subscriber]]
