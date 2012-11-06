@@ -1,6 +1,6 @@
 The default AMQP publish is not transactional and doesn't guarantee that your message will actually reach the broker. AMQP does specify a transactional publish, but with RabbitMQ it is extremely slow and we haven't supported it via the EasyNetQ API. For high-performance guaranteed delivery it's recommended that you use 'Publisher Confirms'. Simply speaking, this an extension to AMQP that provides a callback when your message has been successfully received by the broker.
 
-What does 'successfully received mean? It depends ...
+What does 'successfully received' mean? It depends ...
 
 * A transient message is confirmed the moment it is enqueued.
 * A persistent message is confirmed as soon as it is persisted to disk, or when it is consumed on every queue.
