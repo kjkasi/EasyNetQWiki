@@ -6,4 +6,4 @@ Welcome to the EasyNetQ wiki
 
 ***
 
-**[[EasyNetQ Management API Documentation|Management-API-Introduction]]
+**[[EasyNetQ Management API Documentation|Management-API-Introduction]]**
