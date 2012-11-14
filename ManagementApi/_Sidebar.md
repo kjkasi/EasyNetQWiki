@@ -1,6 +1,6 @@
 [[Home]] > [[Introduction|Management-API-Introduction]]
 
-[[Connecting To RabbitMQ]]
+[[Connecting]]
 
 [[Overview]]
 
