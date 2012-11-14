@@ -1,4 +1,4 @@
-[[Introduction]]
+[[Home]] > [[Introduction]]
 
 [[Installing EasyNetQ]]
 
