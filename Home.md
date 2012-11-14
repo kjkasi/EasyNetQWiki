@@ -1,5 +1,9 @@
 Welcome to the EasyNetQ wiki
 
-**[[Documentation|Introduction]]** (English)
+**[[EasyNetQ Documentation|Introduction]]** (English)
 
-**[Documentation](https://github.com/zanfranceschi/EasyNetQ.Docs.Portuguese/wiki)** (Portuguese)
+**[EasyNetQ Documentation](https://github.com/zanfranceschi/EasyNetQ.Docs.Portuguese/wiki)** (Portuguese)
+
+***
+
+**[[EasyNetQ Management API Documentation|Management-API-Introduction]]
