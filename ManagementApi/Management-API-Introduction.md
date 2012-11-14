@@ -1,4 +1,4 @@
-The **EasyNetQ.Client.Management** API is a thin C# client for the [RabbitMQ Management HTTP API](http://hg.rabbitmq.com/rabbitmq-management/raw-file/3646dee55e02/priv/www-api/help.html). Before you can use it, you have to enable the [RabbitMQ Management Plugin](http://www.rabbitmq.com/management.html).
+**EasyNetQ.Client.Management** is a thin C# client for the [RabbitMQ Management HTTP API](http://hg.rabbitmq.com/rabbitmq-management/raw-file/3646dee55e02/priv/www-api/help.html). Before you can use it, you have to enable the [RabbitMQ Management Plugin](http://www.rabbitmq.com/management.html).
 
 Using the management API it's possible to automate various management, monitoring and set-up tasks including:
 
