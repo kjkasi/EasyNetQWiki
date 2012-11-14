@@ -50,6 +50,7 @@ The **GetMessagesCriteria** constructor takes two arguments:
 
 * **requeue** determines whether the messages will be removed from the queue. If requeue is true they will be requeued - but their position in the queue may change and their redelivered flag will be set.
 
+
     var criteria = new GetMessagesCriteria(1, true);
     var messages = managementClient.GetMessagesFromQueue(queue, criteria);
 
