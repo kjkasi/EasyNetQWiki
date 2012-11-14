@@ -35,6 +35,8 @@ Will output something like this:
 
 A permission is a set of access values between a user and a virtual host. RabbitMQ distinguishes between _configure_, _write_ and _read_ operations on exchanges and queues. The exchanges or queues that a permission applies to is expressed by a regular expression. So, for example '^$', matching nothing but an empty string denies access to any exchange or queue. '.*', matching any string, gives access to all exchanges and queues. 'mike\..*' would give access to any exchange or queue beginning with 'mike.'.
 
+For more information on access control, see [the RabbitMQ documentation](http://www.rabbitmq.com/access-control.html)
+
 The **PermissionInfo** class represents a single permission. The default permission gives access to everything:
 
     user = new User {name = "mikey"};
@@ -73,4 +75,3 @@ Once you've created a **PermissionInfo** object, you can create the permission l
     }
 
     managementClient.DeletePermission(permission);
-
