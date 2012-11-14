@@ -1,4 +1,4 @@
-The GetOverview method returns an Overview object that has a number of properties describing various aspects of the RabbitMQ broker you are connecting to. For example:
+The **GetOverview()** method returns an Overview object that has a number of properties describing various aspects of the RabbitMQ broker you are connecting to. For example:
 
     var overview = managementClient.GetOverview();
 
