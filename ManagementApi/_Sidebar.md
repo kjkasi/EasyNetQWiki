@@ -4,6 +4,12 @@
 
 [[Overview]]
 
+[[Virtual Hosts]]
+
+[[Users]]
+
+[[Permissions]]
+
 [[Connections]]
 
 [[Channels]]
@@ -13,9 +19,3 @@
 [[Queues]]
 
 [[Bindings]]
-
-[[Virtual Hosts]]
-
-[[Users]]
-
-[[Permissions]]
