@@ -1,4 +1,4 @@
-To connect the management API, create a new instance of EasyNetQ.Management.Client.ManagementClient:
+Create a new instance of **EasyNetQ.Management.Client.ManagementClient**:
 
     IManagementClient managementClient = new ManagementClient("http://localhost", "my_user_name", "my_password");
 
