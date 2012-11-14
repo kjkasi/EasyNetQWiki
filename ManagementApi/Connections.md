@@ -1,4 +1,4 @@
-GetConnections() will return a list of currently open connections to the broker. For example:
+**GetConnections()** will return a list of currently open connections to the broker. For example:
 
     var connections = managementClient.GetConnections();
 
@@ -24,3 +24,9 @@ Outputs the following on a system with a single consumer:
     connected:	14/11/2012 15:06:19
     easynetq_version:	0.9.0.0
     machine_name:	THOMAS
+
+**CloseConnections()** will close a connection. For example, this code closes the first connection found by the GetConnections() method:
+
+    var connections = managementClient.GetConnections();
+    managementClient.CloseConnection(connections.First());
+
