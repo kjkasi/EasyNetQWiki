@@ -10,7 +10,7 @@ To install **EasyNetQ.Client.Management** use NuGet:
 
     PM> Install-Package EasyNetQ.Management.Client
 
-To give an overview of the sort of things you can do with **EasyNetQ.Client.Management**, have a look at this code which walks through a scenario, creating a new virtual host, user, some permissions and then creating an exchange, a queue, and binding them together. Finally it publishes a test message to the exchange and checks that it has arrived on the queue:
+To give an overview of the sort of things you can do with **EasyNetQ.Client.Management**, have a look at this code which walks through a scenario creating a new virtual host, user, some permissions and then creating an exchange, a queue, and binding them together. Finally it publishes a test message to the exchange and checks that it has arrived on the queue:
 
     var initial = new ManagementClient("http://localhost", "guest", "guest");
 
