@@ -25,7 +25,7 @@ Outputs the following on a system with a single consumer:
     easynetq_version:	0.9.0.0
     machine_name:	THOMAS
 
-**CloseConnections()** will close a connection. For example, this code closes the first connection found by the GetConnections() method:
+**CloseConnection()** will close a connection. For example, this code closes the first connection found by the GetConnections() method:
 
     var connections = managementClient.GetConnections();
     managementClient.CloseConnection(connections.First());
