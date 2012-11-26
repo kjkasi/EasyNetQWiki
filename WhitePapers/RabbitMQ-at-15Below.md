@@ -1,4 +1,4 @@
-==RabbitMQ at 15Below==
+# RabbitMQ at 15Below
 
 By Mike Hadlow, Chief Architect at 15Below.
 
@@ -22,7 +22,7 @@ As a Microsoft shop, our development platform is .NET. Although VMWare provide a
 
 ![Architecture Diagram](https://github.com/mikehadlow/EasyNetQ/wiki/WhitePapers/rabbit_based_architecture.png)
 
-The green boxes are our core product systems, the blue boxes represent custom code that we write for each customer. A ‘customer saga' is code that models a long-running business process and includes all the workflow logic for a particular customer's flight information requirements. A ‘core product service' is an independent service that implements a feature of our product. An example would be the service that takes flight information and combines it with a customer defined template to create an email to be sent to a passenger. Constructing services as independently deployable and runnable applications gives us great flexibility and scalability. If we need to scale up a particular component, we simply install more copies. RabbitMQ's automatic work sharing feature means that we can do this without any reconfiguration of existing components. This architecture also makes it easy to test each application service in isolation since it's simply a question of firing messages at the service and watching its response.
+The green boxes are our core product systems, the blue boxes represent custom code that we write for each customer. A 'customer saga' is code that models a long-running business process and includes all the workflow logic for a particular customer's flight information requirements. A 'core product service' is an independent service that implements a feature of our product. An example would be the service that takes flight information and combines it with a customer defined template to create an email to be sent to a passenger. Constructing services as independently deployable and runnable applications gives us great flexibility and scalability. If we need to scale up a particular component, we simply install more copies. RabbitMQ's automatic work sharing feature means that we can do this without any reconfiguration of existing components. This architecture also makes it easy to test each application service in isolation since it's simply a question of firing messages at the service and watching its response.
 
 In conclusion, RabbitMQ has provided a rock solid piece of infrastructure with the features to allow us to significantly reduce the architectural complexity of our systems. We can now build fantastic software for our clients faster and more reliably. It scales to higher loads than our previous relational-database based systems and is more flexible in the face of changing customer requirements.
 
