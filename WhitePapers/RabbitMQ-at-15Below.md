@@ -2,7 +2,7 @@
 
 By Mike Hadlow, Chief Architect at 15Below.
 
-15Below is a company based in Brighton, UK. We provide messaging and integration services for the travel industry. Our clients include Ryan Air, Qantas, JetBlue, Thomas Cook and around 30 other airline and rail customers. We send hundreds of millions of transactional notifications each year to our customer's passengers.
+[15Below](http://www.15below.com) is a company based in Brighton, UK. We provide messaging and integration services for the travel industry. Our clients include Ryan Air, Qantas, JetBlue, Thomas Cook and around 30 other airline and rail customers. We send hundreds of millions of transactional notifications each year to our customer's passengers.
 
 RabbitMQ has helped us to significantly simplify and stabilise our software. It's one of those black boxes that you install, configure, and then really don't have to worry about. In over a year of production we've found it to be extremely stable without a single production issue. 
 
