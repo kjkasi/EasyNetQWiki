@@ -3,6 +3,7 @@ Some ideas about a V2 Advanced API proposal. The intention is that the V2 API sh
 * A simple consumer loop, so that users don't have to worry about implementing it.
 * A persistent connection that automatically reconnects.
 * A default error handling strategy.
+* A serializer.
 
 Here's an example of the API in use ...
 
