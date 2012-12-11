@@ -14,10 +14,11 @@ Here's an example of the API in use ...
     channel.PrefetchCount = 10;
     channel.ConfirmsSelect();
 
-    IExchange exchange = Exchange.Direct("my_exchange");
+    IExchange exchange = Exchange.Direct("my_exchange", exchangeSettings);
+    IExchange exchange = Exchange.Custom("my_exchange", "exchange_type", exchangeSettings); 
     IExchange exchange = Exchange.Default();
 
-    IQueue queue = Queue.Create("my_queue").Shared().;
+    IQueue queue = Queue.Create("my_queue", queueSettings);
 
     channel.Declare(exchange);
     channel.Declare(queue);
@@ -31,14 +32,16 @@ Here's an example of the API in use ...
     channel.Publish(exchange, "my_routing_key", properties, message);
 
     // or typed message publication
-    channel.Publish<MyMessage>(exchange, "my_routing_key", properties, new MyMessage());
+    var message = new Message<MyMessage>(new MyMessage(), properties);
+    var publishSettings = new PublishSettings(exchange, "my_routing_key");
+    channel.Publish<MyMessage>(message, publishSettings);
 
-    IConsumer consumer = new Consumer(connection.ConsumerQueue);
+    IConsumer consumer = new Consumer(connection.ComsumptionLoop, consumerSettings);
+    IConsumer consumer = new ResolvingConsumer(connection.ConsumptionLoop, consumerSettings, windsorResolver);
 
-    IHandler<MyMessage> handler = new MyHandler(); // implements IHandler<MyMessage>
+    IHandler<MyMessage> handler = new MyHandler(); // implements IHandler<MyMessage> { void Handle(Message<MyMessage>); }
 
     consumer.AddHandler(handler); // consumer can have multiple handlers switched on message type.
 
     IConsumerHandle consumerHandle = channel.StartConsuming(queue, consumer);
-
-    consumerHandle.StopConsuming();
+    consumerHandle.Dispose();
