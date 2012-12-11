@@ -4,6 +4,7 @@ Some ideas about a V2 Advanced API proposal. The intention is that the V2 API sh
 * A persistent connection that automatically reconnects.
 * A default error handling strategy.
 
+
     IConnectionFactory connectionFactory = new RabbitMQConnectionFactory();
 
     IPersistentConnection connection = connectionFactory.OpenConnection("host=localhost"); // is IDisposable
