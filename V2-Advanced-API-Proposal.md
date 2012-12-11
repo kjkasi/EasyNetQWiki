@@ -1,4 +1,8 @@
-Some ideas about a V2 Advanced API proposal.
+Some ideas about a V2 Advanced API proposal. The intention is that the V2 API should be much closer to AMQP. But still with useful features such as:
+
+* A simple consumer loop, so that users don't have to worry about implementing it.
+* A persistent connection that automatically reconnects.
+* A default error handling strategy.
 
     IConnectionFactory connectionFactory = new RabbitMQConnectionFactory();
 
