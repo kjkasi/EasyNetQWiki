@@ -11,9 +11,13 @@ Here's an example of the API in use ...
 
     IPersistentConnection connection = connectionFactory.OpenConnection("host=localhost"); // is IDisposable
 
-    IChannel channel = connection.OpenChannel(); // is IDisposable
-    channel.PrefetchCount = 10;
-    channel.ConfirmsSelect();
+    var channelSettings = new ChannelSettings
+    {
+        PrefetchCount = 10,
+        ConfirmsSelect = true
+    };
+
+    IChannel channel = connection.OpenChannel(channelSettings); // is IDisposable
 
     IExchange exchange = Exchange.Direct("my_exchange", exchangeSettings);
     IExchange exchange = Exchange.Custom("my_exchange", "exchange_type", exchangeSettings); 
