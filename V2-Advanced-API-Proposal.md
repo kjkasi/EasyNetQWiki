@@ -38,7 +38,8 @@ Here's an example of the API in use ...
 
     // or typed message publication
     var message = new Message<MyMessage>(new MyMessage(), properties);
-    var publishSettings = new PublishSettings(exchange, "my_routing_key");
+    var contentType = "application/json"; // EasyNetQ looks up the correct serializer for the content type
+    var publishSettings = new PublishSettings(exchange, "my_routing_key", contentType);
     channel.Publish<MyMessage>(message, publishSettings);
 
     IConsumer consumer = new Consumer(connection.ComsumptionLoop, consumerSettings);
