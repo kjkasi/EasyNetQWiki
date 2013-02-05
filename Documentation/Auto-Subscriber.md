@@ -11,10 +11,12 @@ public class MyConsumer : IConsume<MessageA>, IConsume<MessageB>
 }
 ```
 
+First create a new instance of AutoSubscriber, passing your IBus instance and a subscriptionId prefix to the constructor. The subscriptionId prefix is prefixed to all auto-generated subscriptionIds, but not to custom subscriptionIds (see below).
+
 To register this, _and all other consumers in the same Assembly_, we just need to pass the assembly to: `AutoSubscriber.Subscribe(assembly)`. **Note!** This is something you only should do **ONCE**. Preferably where you configure your runtime, e.g. where you bootstrap your IoC-container.
 
 ```c#
-var subscriber = new AutoSubscriber(bus);
+var subscriber = new AutoSubscriber(bus, "my_applications_subscriptionId_prefix");
 subscriber.Subscribe(Assembly.GetExecutingAssembly());
 ```
 
