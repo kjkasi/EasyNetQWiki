@@ -20,37 +20,6 @@ var subscriber = new AutoSubscriber(bus, "my_applications_subscriptionId_prefix"
 subscriber.Subscribe(Assembly.GetExecutingAssembly());
 ```
 
-## Hook In Your IoC-Container
-By default the `AutoSubscriber` requires you to have a default, parameter less constructor. You probably want to hook in your IoC-container instead, to let it control how the actual instances of your consumers are created; in our case, the `MyConsumer`.
-
-If we would introduce a constructor dependency in `MyConsumer`, the `AutoSubscriber` would fail.
-
-```c#
-public class MyConsumer : IConsume<MessageA>, IConsume<MessageB>
-{
-    private readonly IDataStore _dataStore;
-
-    public MyConsumer(IDataStore dataStore)
-    {
-        _dataStore = dataStore;
-    }
-
-    public void Consume(MessageA message) { }
-
-    public void Consume(MessageB message) { }
-}
-```
-
-To solve this, lets put the IoC-container or service locator in charge of resolving the consumers. Just replace the `AutoSubscriber.CreateConsumer : Func<Type, object>`
-
-```c#
-var subscriber = new AutoSubscriber(bus)
-{
-    CreateConsumer = t => objectResolver.Resolve(t)
-};
-subscriber.Subscribe(Assembly.GetExecutingAssembly());
-```
-
 ## Specify A Specific SubscriptionId
 By default the `AutoSubscriber` will generate a unique `SubscriptionId`. If you would like it to be fixed, you can decorate the `Consume` method with the `ConsumerAttribute`. Why you would make it fixed, is something you can [read up about here](subscribe).
 
