@@ -74,3 +74,27 @@ public class WindsorMessageDispatcher : IMessageDispatcher
     }
 }
 ```
+
+Now we need to register our consumer with our IoC container:
+
+```c#
+var container = new WindsorContainer();
+container.Register(
+    Component.For<MyConsumer>().ImplementedBy<MyConsumer>()
+    );
+
+```
+
+Next setup the AutoSubscriber with our custom IMessageDispatcher:
+
+```c#
+var bus = RabbitHutch.CreateBus("host=localhost");
+
+var autoSubscriber = new AutoSubscriber(bus, "My_subscription_id_prefix")
+{
+    MessageDispatcher = new WindsorMessageDispatcher(container)
+};
+autoSubscriber.Subscribe(GetType().Assembly);
+```
+
+Now each time a message arrives a new instance of our consumer will be resolved from our container.
