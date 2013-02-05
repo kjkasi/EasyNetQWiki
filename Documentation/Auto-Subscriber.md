@@ -43,3 +43,13 @@ subscriber.Subscribe(Assembly.GetExecutingAssembly());
 ```
 
 **Note!** Just a sample implementation. Ensure you have [read and understood](subscribe) the importance of the `SubscriptionId` value.
+
+##Using an IoC container with AutoSubscriber
+
+AutoSubscriber has a property, MessageDispatcher, which allows you to plug in your own message dispatching code. This allows you to resolve your consumers from an IoC container or do other custom dispatch time tasks.
+
+Let's write a custom IMessageDispatcher to resolve consumers from the [Windsor IoC container](http://docs.castleproject.org/Windsor.MainPage.ashx)
+
+```C#
+
+```
