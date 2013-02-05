@@ -51,5 +51,26 @@ AutoSubscriber has a property, MessageDispatcher, which allows you to plug in yo
 Let's write a custom IMessageDispatcher to resolve consumers from the [Windsor IoC container](http://docs.castleproject.org/Windsor.MainPage.ashx)
 
 ```C#
+public class WindsorMessageDispatcher : IMessageDispatcher
+{
+    private readonly IWindsorContainer container;
 
+    public WindsorMessageDispatcher(IWindsorContainer container)
+    {
+        this.container = container;
+    }
+
+    public void Dispatch<TMessage, TConsumer>(TMessage message) where TMessage : class where TConsumer : IConsume<TMessage>
+    {
+        var consumer = (IConsume<TMessage>)container.Resolve<TConsumer>();
+        try
+        {
+            consumer.Consume(message);
+        }
+        finally
+        {
+            container.Release(consumer);
+        }
+    }
+}
 ```
