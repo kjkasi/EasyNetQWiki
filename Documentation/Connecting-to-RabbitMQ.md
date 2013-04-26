@@ -15,11 +15,19 @@ The connection string is made up of key/value pairs in the format key=value, eac
 * **username** (e.g. username=mike) default is 'guest'
 * **password** (e.g. password=mysecret) default is 'guest'
 * **requestedHeartbeat** (e.g. requestedHeartbeat=10) default is zero for no heartbeat.
-* **prefetchcount** (e.g. prefetchcount=1) default is 50. This is the number of messages that will be delivered by RabbitMQ before an ack is sent by EasyNetQ. Set to 0 for infinite prefetch (not recommended). Set to 1 for fair work balancing among a farm of consumers.
+* **prefetchcount** (e.g. prefetchcount=1) default is 50. This is the number of messages that will be 
+delivered by RabbitMQ before an ack is sent by EasyNetQ. Set to 0 for infinite prefetch (not recommended). Set to 1 for fair work balancing among a farm of consumers.
+* **amqp** (e.g. amqp=amqp://myServer) Specify connection properties by following [AMQP URI Specification](http://www.rabbitmq.com/uri-spec.html), useful if you need to use secure for connecting to rabbit (amqps://myServer) if used with cluster this will add a seperate host as specified by the uri.
 
 To close the connection, simply dispose the bus like this:
 
     bus.Dispose();
+
+## AMQP URI
+Alternatively you can create a bus by specifying a [AMQP Uri](http://www.rabbitmq.com/uri-spec.html) , like so:
+
+    var bus = RabbitHutch.CreateBus(“amqp://mike:topsecret@myServer/myVirtualHost”);
+
 
 ## Logging
 
