@@ -39,11 +39,11 @@ To write a server that responds to requests, simply use the IBus.Respond method 
 
     bus.Respond<MyRequest, MyResponse>(request => new MyResponse { Text = “Responding to “ + request.Text});
 
-Respond takes a single argument, a Func<TRequest, TResponse>, that takes a request and returns a response. The same advice that applies to Subscription callbacks also applies to responders. Do not block on long-running IO operations. If you want to do long-running IO, use RespondAsync instead.
+Respond takes a single argument, a `Func<TRequest, TResponse>`, that takes a request and returns a response. The same advice that applies to Subscription callbacks also applies to responders. Do not block on long-running IO operations. If you want to do long-running IO, use RespondAsync instead.
 
 ## Responding Asynchronously
 
-EasyNetQ also provides a RespondAsync method that takes a Func<TRequest, Task<TResponse>> delegate. This allows you to execute long-running IO-bound operations without blocking the EasyNetQ subscription handling loop.
+EasyNetQ also provides a RespondAsync method that takes a `Func<TRequest, Task<TResponse>>` delegate. This allows you to execute long-running IO-bound operations without blocking the EasyNetQ subscription handling loop.
 
     static void Main(string[] args)
         {
