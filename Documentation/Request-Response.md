@@ -19,7 +19,7 @@ Here we create a new request of type MyMessage and then create a new IPublishCha
 
 It’s a common pattern to subscribe to some message, and then during the processing of that message make a request/response call.
 
-    bus.Subscribe<MyInitialMessage>(“myid”,  msg => 
+    bus.Subscribe<MyInitialMessage>(“myid”,  **msg** => 
     {
         var myRequest = new MyRequest { Text = “blah” };
         using (var publishChannel = bus.OpenPublishChannel())
