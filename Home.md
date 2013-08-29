@@ -11,3 +11,7 @@ Welcome to the EasyNetQ wiki
 ***
 
 **Case study: [[RabbitMQ at 15Below]]**
+
+***
+
+**Roadmap: [[Roadmap]]**
