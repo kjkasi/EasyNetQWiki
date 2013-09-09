@@ -121,11 +121,7 @@ You can also bind exchanges to exchanges in a chain:
 
 The advanced Publish method allows you to specify the exchange you want to publish your message to. It also allows access to the message's AMQP basic properties.
 
-To publish you must first create an exchange (as explained above):
-
-    var exchange = Exchange.DeclareDirect("advanced_test_exchange");
-
-Next create your message. The advanced API requires that your message is wrapped in a Message<T>:
+Create your message. The advanced API requires that your message is wrapped in a Message<T>:
 
     var myMessage = new MyMessage {Text = "Hello from the publisher"};
     var message = new Message<MyMessage>(myMessage);
@@ -135,11 +131,20 @@ The [Message<T>](https://github.com/mikehadlow/EasyNetQ/blob/master/Source/EasyN
     message.Properties.AppId = "my_app_id";
     message.Properties.ReplyTo = "my_reply_queue";
 
-Finally, open a new channel and publish your message:
+Finally, open a new channel and publish your message. Here we are publishing to the default exchange:
 
     using (var channel = advancedBus.OpenPublishChannel())
     {
-        channel.Publish(exchange, routingKey, message);
+        channel.Publish(Exchange.GetDefault, queueName, message);
+    }
+
+An overload of Publish allows you to bypass EasyNetQ's message serialization and create your own byte array messages:
+
+    using (var channel = advancedBus.OpenPublishChannel())
+    {
+        var properties = new MessageProperties();
+        var body = Encoding.UTF8.GetBytes("Hello World!");
+        channel.Publish(Exchange.GetDefault, queueName, properties, body);
     }
 
 ## Subscribing
