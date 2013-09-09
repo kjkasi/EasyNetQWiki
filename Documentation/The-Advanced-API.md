@@ -8,16 +8,44 @@ The advanced API is implemented with the [IAdvancedBus](https://github.com/mikeh
 
 ## Creating Exchanges, Bindings, and Queues
 
-You can configure your Exchanges, Bindings and Queues using the classes in the EasyNetQ.Topology namespace. To declare an exchange use one of the static methods of the Exchange class like this:
+You can configure your Exchanges, Bindings and Queues by calling methods on IAdvancedBus:
+
+To declare an exchange use the ExchangeDeclare method:
+
+    IExchange ExchangeDeclare(
+        string name, 
+        string type, 
+        bool passive = false, 
+        bool durable = true, 
+        bool autoDelete = false, 
+        bool @internal = false);
+
+What the parameters mean:
+
+    name: The name of the exchange you want to create
+    type: The type of the exchange. It must be a valid AMQP exchange type. Use the static
+        properties of the ExchangeType class to safely declare exchanges.
+    passive: Do not create an exchange. If the named exchange doesn't exist, throw an exception.
+        (default false)
+    durable: Survive server restarts. If this parameter is false, the exchange will be removed
+        when the server restarts.
+        (default true)
+    autoDelete: Delete this exchange when the last queue is unbound.
+        (default false)
+    internal: This exchange can not be directly used by publishers, but only used by exchange to
+        exchange bindings.
+        (default false)
+
+Some examples:
 
     // create a direct exchange
-    var myDirectExchange = Exchange.DeclareDirect("my.direct.exchange");
+    var exchange = advancedBus.ExchangeDeclare("my_exchange", ExchangeType.Direct);
     
     // create a topic exchange
-    var myTopicExchange = Exchange.DeclareTopic("my.topic.exchange");
+    var exchange = advancedBus.ExchangeDeclare("my_exchange", ExchangeType.Topic);
     
     // create a fanout exchange
-    var myFanoutExchange = Exchange.DeclareFanout("my.fanout.exchange");
+    var exchange = advancedBus.ExchangeDeclare("my_exchange", ExchangeType.Fanout);
 
 To get the RabbitMQ default exchange do this:
 
