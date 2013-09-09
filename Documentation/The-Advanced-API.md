@@ -49,17 +49,51 @@ To get the RabbitMQ default exchange do this:
 
     var exchange = Exchange.GetDefault();
 
-Queues are created in a similar way. To declare a durable queue do this:
+##Declaring Queues
 
-    var queue = Queue.DeclareDurable(queueName);
+To declare a queue use the IAdvancedBus's QueueDeclare method:
 
-To declare a transient queue do this:
+    IQueue QueueDeclare(
+        string name,
+        bool passive = false,
+        bool durable = true,
+        bool exclusive = false,
+        bool autoDelete = false,
+        uint perQueueTtl = uint.MaxValue,
+        uint expires = uint.MaxValue);
 
-    var queue = Queue.DeclareTransient(queueName);
+What the parameters mean:
 
-To declare an 'unnamed' transient queue, where RabbitMQ provides the queue name, simply leave out the queue name:
+    name:		The name of the queue	
+    passive:	Do not create the queue if it doesn't exist, instead, throw an exception.
+    	(default false)
+    durable:	Can survive a server restart. If this is false the queue will be deleted when
+    			the server restarts.
+		(default true)
+    exclusive:	Can only be accessed by the current connection.
+    	(default false)
+    autoDelete:	Delete the queue once all consumers have disconnected.
+    	(default false)
+    perQueueTtl: How long in milliseconds a message should remain on the queue before it is discarded.
+    	(default not set)
+    expires:	How long in milliseconds the queue should remain unused before it is automatically deleted.
+    	(default not set)
 
-    var queue = Queue.DeclareTransient();
+Some examples:
+
+    // declare a durable queue
+    var queue = advancedBus.QueueDeclare("my_queue");
+
+    // declare a queue with message TTL of 10 seconds:
+    var queue = advancedBus.QueueDeclare("my_queue", perQueueTtl:10000);
+
+To declare an 'unnamed' exclusive queue, where RabbitMQ provides the queue name, use the QueueDeclare overload with no parameters:
+
+    var queue = advancedBus.QueueDeclare();
+
+Note that EasyNetQ's automatic consumer reconnection logic is turned off for exclusive queues.
+
+##Bindings
 
 You bind a queue to an exchange like this:
 
