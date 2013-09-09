@@ -147,33 +147,38 @@ An overload of Publish allows you to bypass EasyNetQ's message serialization and
         channel.Publish(Exchange.GetDefault, queueName, properties, body);
     }
 
-## Subscribing
+## Consuming
 
-The advanced subscribe method allows you to specify the queue you wish to subscribe to and its exchange binding. It also gives you access to the AMQP basic properties and additional information about the subscription.
+Use the IAdvancedBus's Consume method to consume messages from a queue.
 
-Before subscribing, declare the queue you wish to subscribe to and bind it to an exchange:
+    void Consume<T>(IQueue queue, Func<IMessage<T>, MessageReceivedInfo, Task> onMessage);
 
-    var exchange = Exchange.DeclareDirect("advanced_test_exchange");
-    var queue = Queue.DeclareDurable("advanced_test_queue");
-    queue.BindTo(exchange, routingKey);
+The onMessage delegate is the handler you provide for message delivery. Its parameters are as follows:
 
-The subscription handler has the following type:
+As described in the publish section above, IMessage<T> gives you access to the message and its MessageProperties. MessageRecivedInfo gives you extra information about the context in which the message was consumed:
 
-    Func<IMessage<T>, MessageRecievedInfo, Task>
+    public class MessageReceivedInfo
+    {
+        public string ConsumerTag { get; set; }
+        public ulong DeliverTag { get; set; }
+        public bool Redelivered { get; set; }
+        public string Exchange { get; set; }
+        public string RoutingKey { get; set; }         
+    }
 
-It takes a Message<T>, as described above in the publish section; a [MessageReceivedInfo](https://github.com/mikehadlow/EasyNetQ/blob/master/Source/EasyNetQ/MessageReceivedInfo.cs), which contains information about the subscription and the message received; and returns a Task, which allows you to write non-blocking asynchronous handlers.
+You return a Task which allows you to write a non-blocking asynchronous handler.
 
-Subscribe by supplying the queue and the subscription handler:
+To bypass EasyNetQ's message serializer, use the consume overload that provides the raw byte array message:
 
-    advancedBus.Subscribe<MyMessage>(queue, (msg, messageReceivedInfo) => 
-        Task.Factory.StartNew(() =>
+    void Consume(IQueue queue, Func<Byte[], MessageProperties, MessageReceivedInfo, Task> onMessage);
+
+In this example we are consuming the raw message bytes from the queue 'my_queue':
+
+    var queue = advancedBus.QueueDeclare("my_queue");
+    advancedBus.Consume(queue, (body, properties, info) => Task.Factory.StartNew(() =>
         {
-            Console.WriteLine("Got Message: {0}", msg.Body.Text);
-            Console.WriteLine("ConsumerTag: {0}", messageReceivedInfo.ConsumerTag);
-            Console.WriteLine("DeliverTag: {0}", messageReceivedInfo.DeliverTag);
-            Console.WriteLine("Redelivered: {0}", messageReceivedInfo.Redelivered);
-            Console.WriteLine("Exchange: {0}", messageReceivedInfo.Exchange);
-            Console.WriteLine("RoutingKey: {0}", messageReceivedInfo.RoutingKey);
+            var message = Encoding.UTF8.GetString(body);
+            Console.WriteLine("Got message: '{0}'", message);
         }));
 
 ## Message types must match
