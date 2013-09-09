@@ -6,11 +6,9 @@ The advanced API is implemented with the [IAdvancedBus](https://github.com/mikeh
 
     var advancedBus = RabbitHutch.CreateBus("host=localhost").Advanced;
 
-## Creating Exchanges, Bindings, and Queues
+## Declaring Exchanges
 
-You can configure your Exchanges, Bindings and Queues by calling methods on IAdvancedBus:
-
-To declare an exchange use the ExchangeDeclare method:
+To declare an exchange use the IAdvancedBus's ExchangeDeclare method:
 
     IExchange ExchangeDeclare(
         string name, 
