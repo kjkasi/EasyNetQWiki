@@ -97,24 +97,25 @@ Note that EasyNetQ's automatic consumer reconnection logic is turned off for exc
 
 You bind a queue to an exchange like this:
 
-    var queue = Queue.DeclareDurable("my.queue.name");
-    var exchange = Exchange.DeclareDirect("my.exchange.name");
-    queue.BindTo(exchange, "my.routing.key");
+    var queue = advancedBus.QueueDeclare("my.queue");
+    var exchange = advancedBus.ExchangeDeclare("my.exchange", ExchangeType.Topic);
+    var binding = advancedBus.Bind(exchange, queue, "A.*");
 
-To specify multiple bindings between a queue and an exchange, simply provide multiple routing keys:
+To specify multiple bindings between a queue and an exchange, simply make multiple bind calls:
 
-    var queue = Queue.DeclareDurable(queueName);
-    var exchange = Exchange.DeclareDirect(exchangeName);
-    queue.BindTo(exchange, "a", "b", "c");
+    var queue = advancedBus.QueueDeclare("my.queue");
+    var exchange = advancedBus.ExchangeDeclare("my.exchange", ExchangeType.Topic);
+    advancedBus.Bind(exchange, queue, "A.B");
+    advancedBus.Bind(exchange, queue, "A.C");
 
 You can also bind exchanges to exchanges in a chain:
 
-    var sourceExchange = Exchange.DeclareDirect("source");
-    var destinationExchange = Exchange.DeclareDirect("destination");
-    var queue = Queue.DeclareDurable(queueName);
+    var sourceExchange = advancedBus.ExchangeDeclare("my.exchange.1", ExchangeType.Topic);
+    var destinationExchange = advancedBus.ExchangeDeclare("my.exchange.2", ExchangeType.Topic);
+    var queue = advancedBus.QueueDeclare("my.queue");
 
-    destinationExchange.BindTo(sourceExchange, routingKey);
-    queue.BindTo(destinationExchange, routingKey);
+    advancedBus.Bind(sourceExchange, destinationExchange, "A.*");
+    advancedBus.Bind(destinationExchange, queue, "A.C");
 
 ## Publishing
 
