@@ -7,3 +7,4 @@ A list of changes to be done for EasyNetQ version 1. **Warning**: most are break
 * Timeouts! Including for publisher confirms, request response.
 * Make publisher confirms the default for IBus.Publish.
 * Send/Receive pattern.
+* Subscriber cancellation.
