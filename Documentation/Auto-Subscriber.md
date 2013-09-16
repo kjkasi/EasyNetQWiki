@@ -1,5 +1,9 @@
 From v0.7.1.30 EasyNetQ comes with a simple `AutoSubscriber`. You can use it to easily scan a specific assembly for classes that implements the interface `IConsume<T>`, and then let the auto subscriber subscribe these consumers to your bus. You can of course let your consumers handle multiple messages. Lets have a look at some samples.
 
+Note: From version 0.13.0 all the AutoSubscriber classes are in the EasyNetQ.AutoSubscribe namespace, so please add the following using statement:
+
+    using EasyNetQ.AutoSubscribe;
+
 Lets define a simple consumer, handling two messages: `MessageA` and `MessageB`.
 
 ```c#
