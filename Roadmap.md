@@ -8,3 +8,4 @@ A list of changes to be done for EasyNetQ version 1. **Warning**: most are break
 * [3] Make publisher confirms the default for IBus.Publish.
 * [3] Send/Receive pattern.
 * [3] Subscriber cancellation.
+* [3] Producer/Consumer pipeline interceptors (to plug in logging/compression/encryption)
