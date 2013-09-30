@@ -21,6 +21,7 @@ When you call bus.FuturePublish(publishDate, message), EasyNetQ wraps your messa
 
 2. Get the source code for EasyNetQ
 
+
     git clone git@github.com:mikehadlow/EasyNetQ.git
 
 3. Open the EasyNetQ.2012 solution in Visual Studio. In the folder DatabaseScripts -> EasyNetQ.Scheduler you will find a number of SQL scripts. Open and run them in the EasyNetQ.Scheduler database. You will need to run CreateWorkTables.sql first, the others are stored procedure scripts and can be run in any order.
@@ -34,6 +35,7 @@ When you call bus.FuturePublish(publishDate, message), EasyNetQ wraps your messa
 7. Open a console window and change the path to the folder where you deployed EasyNetQ.Scheduler.
 
 8. Run the following command to install EasyNetQ.Scheduler as a windows service:
+
 
     EasyNetQ.Scheduler.exe install
 
