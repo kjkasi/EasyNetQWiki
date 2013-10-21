@@ -27,4 +27,4 @@ Now, if you want to match on multiple topics ("X.\*" OR "\*.B") you can use anot
 
 There are topic overloads for the SubscribeAsync method that work in exactly the same way.
 
-For some more cautionary tales on topics, please see this blog post [Topic Confusion](http://mikehadlow.blogspot.co.uk/2013/09/easynetq-topic-confusion.html)
+For some more cautionary tales on topics, please see this blog post [Topic Confusion](http://mikehadlow.blogspot.co.uk/2013/09/easynetq-topic-confusion.html), although note that the example uses an older version of the API where you had to open a publish channel before calling Publish.
