@@ -7,7 +7,7 @@ To publish with EasyNetQ (assuming you've already created an IBus instance):
 
 Here's the code...
 
-    var message = new MyMessage { Text = “Hello Rabbit” };
+    var message = new MyMessage { Text = "Hello Rabbit" };
     bus.Publish(message);    try 
 
 For guaranteed message delivery use [[Publisher Confirms]].
