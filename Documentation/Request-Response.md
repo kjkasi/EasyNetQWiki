@@ -7,13 +7,10 @@ Also, unlike traditional RPC mechanisms, including most web service toolkits, Ea
 To make a request with EasyNetQ, simply do the following:
 
     var myRequest = new MyRequest { Text = “Hello Server” };
-    using (var publishChannel = bus.OpenPublishChannel())
-    {
-        publishChannel.Request<MyRequest, MyResponse>(myRequest, response => 
-            Console.WriteLine(“Got response: {0}”, response.Text));
-    }
+    bus.Request<MyRequest, MyResponse>(myRequest, response => 
+        Console.WriteLine(“Got response: {0}”, response.Text));
 
-Here we create a new request of type MyMessage and then create a new IPublishChannel and call the Request method with the message as the first argument. When the response returns, at some later time, on some later thread, the response message’s Text property is output to the console.
+Here we create a new request of type MyMessage and then call the Request method with the message as the first argument. When the response returns, at some later time, on some later thread, the response message’s Text property is output to the console.
 
 ## Beware of closures!
 
@@ -22,12 +19,9 @@ It’s a common pattern to subscribe to some message, and then during the proces
     bus.Subscribe<MyInitialMessage>(“myid”,  msg => 
     {
         var myRequest = new MyRequest { Text = “blah” };
-        using (var publishChannel = bus.OpenPublishChannel())
+        bus.Request<MyRequest, MyResponse>(myRequest, response => 
         {
-            publishChannel.Request<MyRequest, MyResponse>(myRequest, response => 
-            {
-                DoSomeProcessing(response, msg);
-            }
+            DoSomeProcessing(response, msg);
         }
     }
 
