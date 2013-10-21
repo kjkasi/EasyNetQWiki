@@ -135,21 +135,15 @@ The [Message<T>](https://github.com/mikehadlow/EasyNetQ/blob/master/Source/EasyN
     message.Properties.AppId = "my_app_id";
     message.Properties.ReplyTo = "my_reply_queue";
 
-Finally, open a new channel and publish your message. Here we are publishing to the default exchange:
+Finally publish your message using the Publish method. Here we are publishing to the default exchange:
 
-    using (var channel = advancedBus.OpenPublishChannel())
-    {
-        channel.Publish(Exchange.GetDefault, queueName, message);
-    }
+    bus.Publish(Exchange.GetDefault, queueName, message);
 
 An overload of Publish allows you to bypass EasyNetQ's message serialization and create your own byte array messages:
 
-    using (var channel = advancedBus.OpenPublishChannel())
-    {
-        var properties = new MessageProperties();
-        var body = Encoding.UTF8.GetBytes("Hello World!");
-        channel.Publish(Exchange.GetDefault, queueName, properties, body);
-    }
+    var properties = new MessageProperties();
+    var body = Encoding.UTF8.GetBytes("Hello World!");
+    bus.Publish(Exchange.GetDefault, queueName, properties, body);
 
 ## Consuming
 
