@@ -1,11 +1,8 @@
 RabbitMQ has a very cool feature, [topic based routing](http://www.rabbitmq.com/tutorials/tutorial-five-python.html), that allows a subscriber to filter messages based on multiple criteria. A topic is a list of words delimited by dots that are published along with the message. Examples would be, "stock.usd.nyse" or "book.uk.london" or "a.b.c", the words can be anything you like, but would usually be some attributes of the message. The topic string has a limit of 255 characters.
 
-To publish with a topic, simply use the overloaded Publish method with configuration:
+To publish with a topic, simply use the overloaded Publish method with a topic:
 
-    using (var publishChannel = bus.OpenPublishChannel())
-    {
-        publishChannel.Publish(message, x => x.WithTopic("X.A"));
-    }
+    bus.Publish(message, "X.A");
   
 Subscribers can filter messages by specifying a topic to match to. These can include the wildcard characters:
 
@@ -29,3 +26,5 @@ Now, if you want to match on multiple topics ("X.\*" OR "\*.B") you can use anot
     bus.Subscribe("my_id", handler, x => x.WithTopic("X.*").WithTopic("*.B"));
 
 There are topic overloads for the SubscribeAsync method that work in exactly the same way.
+
+For some more cautionary tales on topics, please see this blog post [Topic Confusion](http://mikehadlow.blogspot.co.uk/2013/09/easynetq-topic-confusion.html)
