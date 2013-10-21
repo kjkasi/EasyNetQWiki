@@ -16,6 +16,7 @@ The connection string is made up of key/value pairs in the format key=value, eac
 * **password** (e.g. password=mysecret) default is 'guest'
 * **requestedHeartbeat** (e.g. requestedHeartbeat=10) default is zero for no heartbeat.
 * **prefetchcount** (e.g. prefetchcount=1) default is 50. This is the number of messages that will be delivered by RabbitMQ before an ack is sent by EasyNetQ. Set to 0 for infinite prefetch (not recommended). Set to 1 for fair work balancing among a farm of consumers.
+* **publisherConfirms** (e.g. publisherConfirms=true) default is false. This turns on [[Publisher Confirms]].
 
 To close the connection, simply dispose the bus like this:
 
