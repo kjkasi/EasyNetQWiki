@@ -1,44 +1,45 @@
 The EasyNetQ queue management utility. Use it to grab messages from queues and re-publish them. Also use it to inspect error queue messages and retry them.
 
-Usage:
+===Usage:
 
     EasyNetQ.Hosepipe.exe <command> [<option:value> ..]
 
-Commands
+===Commands
 
-dump	Dump all the messages in a queue to the given directory
-		Note: this creates three files for each message:
+	dump	Dump all the messages in a queue to the given directory
+			Note: this creates three files for each message:
 
-		The message body:
-		<queue_name>.n.message.txt
+			The message body:
+			<queue_name>.n.message.txt
 
-		The basic properties for the message:
-		<queue_name>.n.properties.txt
+			The basic properties for the message:
+			<queue_name>.n.properties.txt
 
-		The infomation needed to republish the message, including the exchange name
-		and routing key:
-		<queue_name>.n.info.txt
+			The infomation needed to republish the message, including the exchange name
+			and routing key:
+			<queue_name>.n.info.txt
 
-insert	Republish all the messages in a given directory
+	insert	Republish all the messages in a given directory
 
-err		Dump all the EasyNetQ error messages to the given directory
+	err		Dump all the EasyNetQ error messages to the given directory
 
-retry	Retry any EasyNetQ error messages in the given directory
-		Note this ignores the *.message.txt and *.info.txt files
-		because the properties and info are contained in the error message
-		itself
+	retry	Retry any EasyNetQ error messages in the given directory
+			Note this ignores the *.message.txt and *.info.txt files
+			because the properties and info are contained in the error message
+			itself
 
-?	Output this usage message
+	?	Output this usage message
 
-Options
-s	the RabbitMQ broker (server) to connect to. Default is 'localhost'
-v	the virtual host. Default is '/'
-u	the username to connect with. Default is 'guest'
-p	the password to connect with. Default is 'guest'
-q	the queue name to take messages from, or publish them to.
-o	the directory to output messages to. Default is current directory.
+===Options
 
-Examples
+	s	the RabbitMQ broker (server) to connect to. Default is 'localhost'
+	v	the virtual host. Default is '/'
+	u	the username to connect with. Default is 'guest'
+	p	the password to connect with. Default is 'guest'
+	q	the queue name to take messages from, or publish them to.
+	o	the directory to output messages to. Default is current directory.
+
+===Examples
 	
 1. To output all the messages in a queue called 'my_queue' as text files 
    to a directory 'C:\temp\messages':
@@ -58,7 +59,7 @@ Examples
 
 	EasyNetQ.Hosepipe.exe retry s:localhost u:guest p:guest o:C:\temp\messages
 
-Notes
+===Notes
 
 Neither of the commands 'dump' and 'err' remove messages from queues, they simply
 iterate the queue and copy the messages to the given directory, leaving the original 
