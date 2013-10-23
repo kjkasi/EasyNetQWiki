@@ -21,14 +21,14 @@ The EasyNetQ queue management utility. Use it to grab messages from queues and r
 
 	insert	Republish all the messages in a given directory
 
-	err		Dump all the EasyNetQ error messages to the given directory
+	err	Dump all the EasyNetQ error messages to the given directory
 
-	retry	Retry any EasyNetQ error messages in the given directory
+	retry   Retry any EasyNetQ error messages in the given directory
 			Note this ignores the *.message.txt and *.info.txt files
 			because the properties and info are contained in the error message
 			itself
 
-	?	Output this usage message
+	?        Output this usage message
 
 ### Options
 
