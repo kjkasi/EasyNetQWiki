@@ -98,3 +98,9 @@ Now we can reference IBus in our IVaultService implementation:
 Here we are simply subscribing to MyMessage in the Start method of VaultService. I would probably also have an IMyMessageHandler service referenced by IVaultService to do the message handling itself.
 
 So there you have it, a simple recipe for using these three excellent OSS projects together.
+
+ ##Example application
+
+EasyNetQ example showing Request Response and Autosubcriber, wired up using Windsor IOC
+
+https://bitbucket.org/philipogorman/createrequestservice/src
