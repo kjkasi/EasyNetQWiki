@@ -1,17 +1,19 @@
-From v0.7.1.30 EasyNetQ comes with a simple `AutoSubscriber`. You can use it to easily scan a specific assembly for classes that implements the interface `IConsume<T>`, and then let the auto subscriber subscribe these consumers to your bus. You can of course let your consumers handle multiple messages. Lets have a look at some samples.
+From v0.7.1.30 EasyNetQ comes with a simple `AutoSubscriber`. You can use it to easily scan a specific assembly for classes that implement either of the interfaces `IConsume<T>` or `IConsumeAsync<T>`, and then let the auto subscriber subscribe these consumers to your bus. An implementation of `IConsume<T>` will use the buses Subscribe method whilst implementations of `IConsumeAsync<T>` will use the buses SubscribeAsync method, see [[Subscribe]] for details. You can of course let your consumers handle multiple messages. Lets have a look at some samples.
 
 **Note**: From version 0.13.0 all the AutoSubscriber classes are in the EasyNetQ.AutoSubscribe namespace, so please add the following using statement:
 
     using EasyNetQ.AutoSubscribe;
 
-Lets define a simple consumer, handling two messages: `MessageA` and `MessageB`.
+Lets define a simple consumer, handling three messages: `MessageA`, `MessageB` and `MessageC`.
 
 ```c#
-public class MyConsumer : IConsume<MessageA>, IConsume<MessageB>
+public class MyConsumer : IConsume<MessageA>, IConsume<MessageB>, IConsumeAsync<MessageC>
 {
-    public void Consume(MessageA message) { }
+    public void Consume(MessageA message) {...}
 
-    public void Consume(MessageB message) { }
+    public void Consume(MessageB message) {...}
+
+    public Task Consume(MessageC message) {...}
 }
 ```
 
@@ -52,10 +54,10 @@ subscriber.Subscribe(Assembly.GetExecutingAssembly());
 
 AutoSubscriber has a property, MessageDispatcher, which allows you to plug in your own message dispatching code. This allows you to resolve your consumers from an IoC container or do other custom dispatch time tasks.
 
-Let's write a custom IMessageDispatcher to resolve consumers from the [Windsor IoC container](http://docs.castleproject.org/Windsor.MainPage.ashx)
+Let's write a custom IAutoSubscriberMessageDispatcher to resolve consumers from the [Windsor IoC container](http://docs.castleproject.org/Windsor.MainPage.ashx)
 
 ```C#
-public class WindsorMessageDispatcher : IMessageDispatcher
+public class WindsorMessageDispatcher : IAutoSubscriberMessageDispatcher
 {
     private readonly IWindsorContainer container;
 
@@ -66,7 +68,7 @@ public class WindsorMessageDispatcher : IMessageDispatcher
 
     public void Dispatch<TMessage, TConsumer>(TMessage message) where TMessage : class where TConsumer : IConsume<TMessage>
     {
-        var consumer = (IConsume<TMessage>)container.Resolve<TConsumer>();
+        var consumer = container.Resolve<TConsumer>();
         try
         {
             consumer.Consume(message);
@@ -75,6 +77,12 @@ public class WindsorMessageDispatcher : IMessageDispatcher
         {
             container.Release(consumer);
         }
+    }
+
+    public Task DispatchAsync<TMessage, TConsumer>(TMessage message) where TMessage: class where TConsumer: IConsumeAsync<TMessage>
+    {
+        var consumer = _container.Resolve<TConsumer>();           
+        return consumer.Consume(message).ContinueWith(t=>_container.Release(consumer));            
     }
 }
 ```
@@ -99,6 +107,7 @@ var autoSubscriber = new AutoSubscriber(bus, "My_subscription_id_prefix")
     MessageDispatcher = new WindsorMessageDispatcher(container)
 };
 autoSubscriber.Subscribe(GetType().Assembly);
+autoSubscriber.SubscribeAsync(GetType().Assembly);
 ```
 
 Now each time a message arrives a new instance of our consumer will be resolved from our container.
