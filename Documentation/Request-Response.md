@@ -67,3 +67,8 @@ EasyNetQ also provides a RespondAsync method that takes a `Func<TRequest, Task<T
             {
             }
         }
+
+## Example application
+EasyNetQ example showing Request Response and Autosubcriber, wired up using Windsor IOC
+
+https://bitbucket.org/philipogorman/createrequestservice/src
