@@ -99,8 +99,8 @@ Here we are simply subscribing to MyMessage in the Start method of VaultService.
 
 So there you have it, a simple recipe for using these three excellent OSS projects together.
 
- ## Example application
+## Example application
 
 EasyNetQ example showing Request Response and Autosubcriber, wired up using Windsor IOC
 
-https://bitbucket.org/philipogorman/createrequestservice/src
+[https://bitbucket.org/philipogorman/createrequestservice/src](https://bitbucket.org/philipogorman/createrequestservice/src)
