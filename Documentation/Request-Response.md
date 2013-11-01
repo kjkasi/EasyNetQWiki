@@ -7,25 +7,19 @@ Also, unlike traditional RPC mechanisms, including most web service toolkits, Ea
 To make a request with EasyNetQ, simply do the following:
 
     var myRequest = new MyRequest { Text = “Hello Server” };
-    bus.Request<MyRequest, MyResponse>(myRequest, response => 
-        Console.WriteLine(“Got response: {0}”, response.Text));
+    var response = bus.Request<MyRequest, MyResponse>(myRequest);
+    Console.WriteLine(response.Text);
 
-Here we create a new request of type MyMessage and then call the Request method with the message as the first argument. When the response returns, at some later time, on some later thread, the response message’s Text property is output to the console.
+Here we create a new request of type MyMessage and then call the Request method with the message as the argument. When the response returns, at some later time, on some later thread, the response message’s Text property is output to the console.
 
-## Beware of closures!
+## Asynchronous request
 
-It’s a common pattern to subscribe to some message, and then during the processing of that message make a request/response call.
+Messaging is by nature asynchronous. You send a message, then allow your program to continue with its other tasks. At some point in the future, you receive the response. With the synchronous Request method shown above, your thread will block until the response is returned. It is usually a better choice to use the RequestAsync method that returns a task:
 
-    bus.Subscribe<MyInitialMessage>(“myid”,  msg => 
-    {
-        var myRequest = new MyRequest { Text = “blah” };
-        bus.Request<MyRequest, MyResponse>(myRequest, response => 
-        {
-            DoSomeProcessing(response, msg);
-        }
-    }
-
-Note that the method DoSomeProcessing takes msg (in bold) from the outer scope; it ‘closes over’ msg. This will not work as expected. You will notice that the msg variable used inside the response callback is always the first msg that arrives. The reason for this is that EasyNetQ does not create a new response subscription every time Request is called. Instead it caches a single instance of response callback and uses it to handle every response.
+    var task = bus.RequestAsync<TestRequestMessage, TestResponseMessage>(request)
+    task.ContinueWith(response => {
+        Console.WriteLine("Got response: '{0}'", response.Result.Text);
+    });
 
 ## Responding to requests
 
