@@ -42,8 +42,6 @@ I can subscribe to IAnimal and receive both Cat and Dog classes:
             }
         });
 
-    Thread.Sleep(500);
-
 Let's publish a cat and a dog:
 
     var cat = new Cat
