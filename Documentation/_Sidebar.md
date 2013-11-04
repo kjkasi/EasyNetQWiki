@@ -12,6 +12,8 @@
 
 [[Topic Based Routing]]
 
+[[Polymorphic Publish and Subscribe]]
+
 [[Publisher Confirms]]
 
 [[Scheduling Events with Future Publish]]
