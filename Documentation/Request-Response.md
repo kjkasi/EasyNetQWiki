@@ -4,13 +4,13 @@ Also, unlike traditional RPC mechanisms, including most web service toolkits, Ea
 
 ## Making a request, and handling the response
 
-To make a request with EasyNetQ, simply do the following:
+To make a request with EasyNetQ, call the Request method on IBus:
 
     var myRequest = new MyRequest { Text = “Hello Server” };
     var response = bus.Request<MyRequest, MyResponse>(myRequest);
     Console.WriteLine(response.Text);
 
-Here we create a new request of type MyMessage and then call the Request method with the message as the argument. When the response returns, at some later time, on some later thread, the response message’s Text property is output to the console.
+Here we create a new request of type MyMessage and then call the Request method with the message as the argument. When the response returns the response message’s Text property is output to the console.
 
 ## Asynchronous request
 
@@ -57,9 +57,8 @@ EasyNetQ also provides a RespondAsync method that takes a `Func<TRequest, Task<T
                         workers.Add(worker);
                     }
                 }));
-            while (true)
-            {
-            }
+            Console.ReadLine();
+            bus.Dispose();
         }
 
 ## Example application
