@@ -23,6 +23,18 @@ SubscribeAsync allows your subscriber delegate to return a Task immediately and 
                     message.Text, 
                     task.Result)));
 
+## Cancelling subscriptions
+
+All the subscribe methods return an IDisposable. You can cancel a subscriber at any time by calling Dispose on the IDisposable instance:
+
+    var consumer = bus.Subscribe<MyMessage>("sub_id", MyHandler);
+
+    ...
+
+    consumer.Dispose();
+
+This will stop EasyNetQ consuming from the queue and close the consumer's channel.
+
 ## Distributed processing out-of-the-box
 
 EasyNetQ and RabbitMQ provide distributed processing out-of-the-box. Say we have written a windows service with a single call to subscribe just like the one above. We deploy it on a server and start it up. When the Subscribe call is run EasyNetQ creates a queue called something like 'someNamespace_myMessage:someAssembly_mySubscriptionId' on the RabbitMQ broker. As instances of MyMessage are published they are routed to this queue and our windows service gets a copy of every message. This is exactly what we want.
