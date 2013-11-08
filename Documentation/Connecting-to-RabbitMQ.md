@@ -22,21 +22,4 @@ To close the connection, simply dispose the bus like this:
 
     bus.Dispose();
 
-## Logging
-
-EasyNetQ provides a logger interface IEasyNetQLogger:
-
-    public interface IEasyNetQLogger
-    {
-       void DebugWrite(string format, params object[] args);
-       void InfoWrite(string format, params object[] args);
-       void ErrorWrite(string format, params object[] args);
-       void ErrorWrite(Exception exception);
-    }
-
-By default EasyNetQ logs to the console, which is probably not what you want in a production system. You should provide your own implementation of IEasyNetQLogger. The RabbitHutch.CreateBus method provides overloads that allow you to replace any of the EasyNetQ components. You can use this to provide your custom logger to the bus. For example:
-
-    var logger = new MyLogger() // implements IEasyNetQLogger
-    var bus = RabbitHutch.CreateBus(“my connection string”, x => x.Register<IEasyNetQLogger>(_ => logger));
-
-For more detail on replacing EasyNetQ components with your own versions, see [[Replacing EasyNetQ Components]].
+This will close the connection, channels, consumers and all other resources used by EasyNetQ.
