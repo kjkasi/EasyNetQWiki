@@ -4,6 +4,8 @@
 
 [[Connecting to RabbitMQ]]
 
+[[Logging]]
+
 [[Publish]]
 
 [[Subscribe]]
