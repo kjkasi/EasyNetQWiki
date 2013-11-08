@@ -1,4 +1,4 @@
-EasyNetQ provides a logger interface IEasyNetQLogger:
+EasyNetQ provides a logger interface [IEasyNetQLogger](https://github.com/mikehadlow/EasyNetQ/blob/master/Source/EasyNetQ/IEasyNetQLogger.cs):
 
     public interface IEasyNetQLogger
     {
@@ -12,4 +12,3 @@ By default EasyNetQ logs to the console, which is probably not what you want in 
 
     var logger = new MyLogger() // implements IEasyNetQLogger
     var bus = RabbitHutch.CreateBus(“my connection string”, x => x.Register<IEasyNetQLogger>(_ => logger));
-
