@@ -149,7 +149,7 @@ An overload of Publish allows you to bypass EasyNetQ's message serialization and
 
 Use the IAdvancedBus's Consume method to consume messages from a queue.
 
-    void Consume<T>(IQueue queue, Func<IMessage<T>, MessageReceivedInfo, Task> onMessage);
+    IDisposable Consume<T>(IQueue queue, Func<IMessage<T>, MessageReceivedInfo, Task> onMessage) where T : class;
 
 The onMessage delegate is the handler you provide for message delivery. Its parameters are as follows:
 
@@ -165,6 +165,10 @@ As described in the publish section above, IMessage<T> gives you access to the m
     }
 
 You return a Task which allows you to write a non-blocking asynchronous handler.
+
+If you only need a synchronous handler you can use the synchronous overload:
+
+    IDisposable Consume<T>(IQueue queue, Action<IMessage<T>, MessageReceivedInfo> onMessage) where T : class;
 
 To bypass EasyNetQ's message serializer, use the consume overload that provides the raw byte array message:
 
