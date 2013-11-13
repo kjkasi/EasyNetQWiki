@@ -166,6 +166,8 @@ As described in the publish section above, IMessage<T> gives you access to the m
 
 You return a Task which allows you to write a non-blocking asynchronous handler.
 
+The consume method returns an IDisposable. Call its Dispose method to cancel the consumer.
+
 If you only need a synchronous handler you can use the synchronous overload:
 
     IDisposable Consume<T>(IQueue queue, Action<IMessage<T>, MessageReceivedInfo> onMessage) where T : class;
