@@ -183,6 +183,59 @@ In this example we are consuming the raw message bytes from the queue 'my_queue'
             Console.WriteLine("Got message: '{0}'", message);
         }));
 
+You can optionally register multiple handlers with a single consumer using this overload of the Consume method:
+
+    IDisposable Consume(IQueue queue, Action<IHandlerRegistration> addHandlers);
+
+The IHandlerRegistration interface looks like this:
+
+    public interface IHandlerRegistration
+    {
+        /// <summary>
+        /// Add an asynchronous handler
+        /// </summary>
+        /// <typeparam name="T">The message type</typeparam>
+        /// <param name="handler">The handler</param>
+        /// <returns></returns>
+        IHandlerRegistration Add<T>(Func<IMessage<T>, MessageReceivedInfo, Task> handler)
+            where T : class;
+
+        /// <summary>
+        /// Add a synchronous handler
+        /// </summary>
+        /// <typeparam name="T">The message type</typeparam>
+        /// <param name="handler">The handler</param>
+        /// <returns></returns>
+        IHandlerRegistration Add<T>(Action<IMessage<T>, MessageReceivedInfo> handler)
+            where T : class;
+
+        /// <summary>
+        /// Set to true if the handler collection should throw an EasyNetQException when no
+        /// matching handler is found, or false if it should return a noop handler.
+        /// Default is true.
+        /// </summary>
+        bool ThrowOnNoMatchingHandler { get; set; }
+    }
+
+In this example we are registering two different handlers, one that handles messages of type MyMessage, and the other which handles messages of type MyOtherMessage:
+
+    bus.Advanced.Consume(queue, x => x
+            .Add<MyMessage>((message, info) => 
+                { 
+                    Console.WriteLine("Got MyMessage {0}", message.Body.Text);
+                    countdownEvent.Signal();
+                })
+            .Add<MyOtherMessage>((message, info) =>
+                {
+                    Console.WriteLine("Got MyOtherMessage {0}", message.Body.Text);
+                    countdownEvent.Signal();
+                })
+        );
+
+See this blog post for more information: 
+
+http://mikehadlow.blogspot.co.uk/2013/11/easynetq-multiple-handlers-per-consumer.html
+
 ## Message types must match
 
 The EasyNetQ advanced API expects subscribers to only receive messages of the type provided by the generic type parameter. In the example above, only messages of type MyMessage should be received. However, EasyNetQ does not protect you from publishing messages of the wrong type to a subscriber. I could easily set up an exchange-binding-queue topology to publish messages of type NotMyMessage that would be received by the handler above. If a message of the wrong type is received, EasyNetQ will throw an **EasyNetQInvalidMessageTypeException** something like this:
