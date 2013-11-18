@@ -12,6 +12,8 @@
 
 [[Request Response]]
 
+[[Send Receive]]
+
 [[Topic Based Routing]]
 
 [[Polymorphic Publish and Subscribe]]
