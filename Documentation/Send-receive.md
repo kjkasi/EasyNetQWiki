@@ -14,4 +14,4 @@ You can set up multiple receivers for different message types on the same queue,
 
     bus.Receive<MyOtherMessage>(queue, message => Console.WriteLine("MyOtherMessage: {0}", message.Text));
 
-If a message arrives on a receive queue that doesn't have a matching receiver, EasyNetQ will write the message to the EasyNetQ error queue with an exception saying 'No handler found for message type <message type>'.
+If a message arrives on a receive queue that doesn't have a matching receiver, EasyNetQ will write the message to the EasyNetQ error queue with an exception saying 'No handler found for message type &lt;message type&gt;'.
