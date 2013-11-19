@@ -8,10 +8,14 @@ To send a message, use the Send method on IBus, specifying the name of the queue
 
 To setup a message receiver for a particular message type, use the Receive method on IBus:
 
-    bus.Receive<MyMessage>(queue, message => Console.WriteLine("MyMessage: {0}", message.Text));
+    bus.Receive<MyMessage>("my.queue", message => Console.WriteLine("MyMessage: {0}", message.Text));
 
-You can set up multiple receivers for different message types on the same queue, for example:
+You can set up multiple receivers for different message types on the same queue by using the Receive overload that takes an Action&lt;IReceiveRegistration&gt;, for example:
 
-    bus.Receive<MyOtherMessage>(queue, message => Console.WriteLine("MyOtherMessage: {0}", message.Text));
+    bus.Receive("my.queue", x => x
+        .Add<MyMessage>(message => deliveredMyMessage = message)
+        .Add<MyOtherMessage>(message => deliveredMyOtherMessage = message));
 
 If a message arrives on a receive queue that doesn't have a matching receiver, EasyNetQ will write the message to the EasyNetQ error queue with an exception saying 'No handler found for message type &lt;message type&gt;'.
+
+_Note: You probably do not want to call bus.Receive more than once for the same queue. This will create a new consumer on the queue and RabbitMQ will round-robin between them. If you are consuming different types on different Receive calls (and thus different consumers), some of your messages will end up on the error queue because EasyNetQ will not find a handler for your message type associated with the consumer on which it is consumed._
