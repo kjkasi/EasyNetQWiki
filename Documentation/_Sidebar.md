@@ -24,6 +24,8 @@
 
 [[Auto Subscriber]]
 
+[[Non-Generic Subscription Extension Methods]]
+
 [[Error Conditions]]
 
 [[Re Submitting Error Messages With EasyNetQ.Hosepipe]]
