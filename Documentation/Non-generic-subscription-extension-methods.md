@@ -6,7 +6,7 @@ But what do you do if you are discovering the message type at runtime? For examp
 
 Just add the this using statement:
 
-using EasyNetQ.NonGeneric;
+    using EasyNetQ.NonGeneric;
 
 Which provides you with these extension methods:
 
