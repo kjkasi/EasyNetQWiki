@@ -93,10 +93,6 @@ To declare an 'unnamed' exclusive queue, where RabbitMQ provides the queue name,
 
 Note that EasyNetQ's automatic consumer reconnection logic is turned off for exclusive queues.
 
-Queues can be set as single use. This is an EasyNetQ feature that deletes the queue and closes the queue's channel once the first message has been consumed. Set a queue to single use by calling:
-
-    queue.SetAsSingleUse();
-
 ##Bindings
 
 You bind a queue to an exchange like this:
