@@ -4,7 +4,7 @@ Since it’s very first version, EasyNetQ has allowed you to subscribe to a mess
 
 But what do you do if you are discovering the message type at runtime? For example, you might have some system which loads add-ins and wants to subscribe to message types on their behalf. EasyNetQ provides you with non-generic subscription methods just for this purpose.
 
-Just add the this using statement:
+Just add this using statement:
 
     using EasyNetQ.NonGeneric;
 
