@@ -29,7 +29,7 @@ Which provides you with these extension methods:
         Func<object, Task> onMessage,     
         Action<ISubscriptionConfiguration> configure)
 
-They are just like the Subscribe methods on IBus except that you provide a Type argument instead of the generic argument, and the message handler is an Action<object> instead of an Action<T>.
+They are just like the Subscribe methods on IBus except that you provide a Type argument instead of the generic argument, and the message handler is an Action&lt;object&gt; instead of an Action&lt;T&gt;.
 
 Here’s an example of the non-generic subscribe in use:
 
