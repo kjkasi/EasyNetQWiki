@@ -37,7 +37,7 @@ In this example we are using the Castle Windsor IoC container:
     // windsor, rather than EasyNetQ's default service provider.
     var bus = RabbitHutch.CreateBus("host=localhost");
 
-Here is how I implemented WindsorContainerWrapper:
+Here is WindsorContainerWrapper:
 
     public class WindsorContainerWrapper : IContainer, IDisposable
     {
