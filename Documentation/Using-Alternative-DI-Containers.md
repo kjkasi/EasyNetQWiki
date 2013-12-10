@@ -1,6 +1,6 @@
 EasyNetQ is made up of a collection of independent components. Internally it uses a tiny internal DI (IoC) container called DefaultServiceProvider. If you look at the code for the static RabbitHutch class that you use to create instances of the core IBus interface, you will see that it simply creates a new DefaultServiceProvider, registers all of EasyNetQ’s components, and then calls container.Resolve<IBus>() creating a new instance of IBus with its tree of dependencies supplied by the container:
 
-public static IBus CreateBus(IConnectionConfiguration connectionConfiguration, Action<IServiceRegister> registerServices)
+    public static IBus CreateBus(IConnectionConfiguration connectionConfiguration, Action<IServiceRegister> registerServices)
     {
         Preconditions.CheckNotNull(connectionConfiguration, "connectionConfiguration");
         Preconditions.CheckNotNull(registerServices, "registerServices");
