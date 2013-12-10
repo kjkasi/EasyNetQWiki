@@ -33,4 +33,9 @@ This allows you to access other services that EasyNetQ provides. If for example 
 
 To see the complete list of components that make up the IBus instance, and how they are assembled, take a look at the [ComponentRegistration](../blob/master/Source/EasyNetQ/ComponentRegistration.cs) class.
 
+You can access the container via the IAdvancedBus's Container property. This allows you to access internal components:
+
+    var serializer = bus.Advanced.Container.Resolve<ISerializer>();
+
+To replace the internal container with your own choice of IoC container, see [[Replacing]]
     
