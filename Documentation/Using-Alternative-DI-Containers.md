@@ -21,6 +21,8 @@ EasyNetQ is made up of a collection of independent components. Internally it use
 
 But what if you want EasyNetQ to use your container of choice? From version 0.25 the RabbitHutch class provides a static method, SetContainerFactory, that allows you to register an alternative container factory method that provides whatever implementation of EasyNetQ.IContainer that you care to supply.
 
+Jeff Doolittle has created container wrappers for both Windsor and Structure Map here: https://github.com/jeffdoolittle/EasyNetQ.DI
+
 In this example we are using the Castle Windsor IoC container:
 
     // register our alternative container factory
