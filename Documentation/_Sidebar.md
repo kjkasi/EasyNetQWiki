@@ -1,7 +1,6 @@
 **[[Home]]**
 
 1. [[Introduction]]
-
 1. [[A Note on Versioning]]
 
 1. [[Installing EasyNetQ]]
