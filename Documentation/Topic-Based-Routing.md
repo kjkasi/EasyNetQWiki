@@ -14,12 +14,12 @@ So a message that is published with the topic "X.A.2" would match "\#", "X.\#", 
 
     bus.Subscribe("my_id", handler, x => x.WithTopic("X.*"));
   
-**A warning**. Two separate subscriptions with the same subscriberId but different topic strings probably will not have the effect you are expecting. A subscriberId effectively identifies an individual AMQP queue. Two subscribers with the same subscriptionId will both connect to the same queue and both will add their own topic. So, for example, if you do this:
+**A warning**. Two separate subscriptions with the same subscriberId but different topic strings probably will not have the effect you are expecting. A subscriberId effectively identifies an individual AMQP queue. Two subscribers with the same subscriptionId will both connect to the same queue and both will add their own topic binding. So, for example, if you do this:
 
     bus.Subscribe("my_id", handlerOfXDotStar, x => x.WithTopic("X.*"));
     bus.Subscribe("my_id", handlerOfStarDotB, x => x.WithTopic("*.B"));
   
-All messages that match "x.\*" or "\*.B" be delivered to the 'XXX_my_id' queue. RabbitMQ will then deliver the messages round-robbined to the two consumers, with handlerOfXDotStar and handlerOfStarDotB getting each message in turn.
+All messages that match "x.\*" or "\*.B" will be delivered to the 'XXX_my_id' queue. RabbitMQ will then deliver the messages round-robbined to the two consumers, with handlerOfXDotStar and handlerOfStarDotB getting each message in turn.
 
 Now, if you want to match on multiple topics ("X.\*" OR "\*.B") you can use another overload of the Subscribe method that takes multiple topics, like this:
 
