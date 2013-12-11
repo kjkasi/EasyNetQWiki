@@ -1,45 +1,45 @@
 **[[Home]]**
 
-[[Introduction]]
+1. [[Introduction]]
 
-[[A Note on Versioning]]
+1. [[A Note on Versioning]]
 
-[[Installing EasyNetQ]]
+1. [[Installing EasyNetQ]]
 
-[[Connecting to RabbitMQ]]
+1. [[Connecting to RabbitMQ]]
 
-[[Logging]]
+1. [[Logging]]
 
-[[Publish]]
+1. [[Publish]]
 
-[[Subscribe]]
+1. [[Subscribe]]
 
-[[Request Response]]
+1. [[Request Response]]
 
-[[Send Receive]]
+1. [[Send Receive]]
 
-[[Topic Based Routing]]
+1. [[Topic Based Routing]]
 
-[[Polymorphic Publish and Subscribe]]
+1. [[Polymorphic Publish and Subscribe]]
 
-[[Publisher Confirms]]
+1. [[Publisher Confirms]]
 
-[[Scheduling Events with Future Publish]]
+1. [[Scheduling Events with Future Publish]]
 
-[[Auto Subscriber]]
+1. [[Auto Subscriber]]
 
-[[Non-Generic Subscription Extension Methods]]
+1. [[Non-Generic Subscription Extension Methods]]
 
-[[Error Conditions]]
+1. [[Error Conditions]]
 
-[[Re Submitting Error Messages With EasyNetQ.Hosepipe]]
+1. [[Re Submitting Error Messages With EasyNetQ.Hosepipe]]
 
-[[The Advanced API]]
+1. [[The Advanced API]]
 
-[[Cluster Support]]
+1. [[Cluster Support]]
 
-[[Wiring up EasyNetQ with TopShelf and Windsor]]
+1. [[Wiring up EasyNetQ with TopShelf and Windsor]]
 
-[[Replacing EasyNetQ Components]]
+1. [[Replacing EasyNetQ Components]]
 
-[[Using Alternative DI Containers]]
+1. [[Using Alternative DI Containers]]
