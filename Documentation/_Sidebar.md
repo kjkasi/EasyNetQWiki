@@ -1,4 +1,6 @@
-[[Home]] > [[Introduction]]
+**[[Home]]**
+
+[[Introduction]]
 
 [[A Note on Versioning]]
 
