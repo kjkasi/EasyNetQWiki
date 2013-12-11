@@ -1,4 +1,4 @@
-EasyNetQ is alpha software. It is under heavy development with frequent changes both to the internals and to the public API. The developers follow the following versioning scheme:
+**EasyNetQ is alpha software**. It is under heavy development with frequent changes both to the internals and to the public API. The developers follow the following versioning scheme:
 
 &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;.&lt;build-number&gt;
 
