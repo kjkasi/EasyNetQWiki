@@ -2,43 +2,23 @@
 
 1. [[Introduction]]
 1. [[A Note on Versioning]]
-
 1. [[Installing EasyNetQ]]
-
 1. [[Connecting to RabbitMQ]]
-
 1. [[Logging]]
-
 1. [[Publish]]
-
 1. [[Subscribe]]
-
 1. [[Request Response]]
-
 1. [[Send Receive]]
-
 1. [[Topic Based Routing]]
-
 1. [[Polymorphic Publish and Subscribe]]
-
 1. [[Publisher Confirms]]
-
 1. [[Scheduling Events with Future Publish]]
-
 1. [[Auto Subscriber]]
-
 1. [[Non-Generic Subscription Extension Methods]]
-
 1. [[Error Conditions]]
-
 1. [[Re Submitting Error Messages With EasyNetQ.Hosepipe]]
-
 1. [[The Advanced API]]
-
 1. [[Cluster Support]]
-
 1. [[Wiring up EasyNetQ with TopShelf and Windsor]]
-
 1. [[Replacing EasyNetQ Components]]
-
 1. [[Using Alternative DI Containers]]
