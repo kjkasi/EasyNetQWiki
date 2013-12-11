@@ -1,6 +1,6 @@
 EasyNetQ is alpha software. It is under heavy development with frequent changes both to the internals and to the public API. The developers follow the following versioning scheme:
 
-<major>.<minor>.<patch>.<build-number>
+&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;.&lt;build-number&gt;
 
 So for example, the version at the time this was written was:
 
