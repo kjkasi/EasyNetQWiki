@@ -13,4 +13,6 @@ We use the following, somewhat semantic, versioning policy:
     patch           - indicates a bug fix or some internal change.
     build-number    - increments on each build on the CI server.
 
-We use the code better (http://teamcity.codebetter.com/) CI server for our builds. Each change in the master repository triggers a build. Each is build is automatically published to NuGet. There is no development version, or stabilization process, so you should regression test your software when upgrading your NuGet EasyNetQ package.
+We use the code better (http://teamcity.codebetter.com/) CI server for our builds. Each change in the master repository triggers a build. Each is build is automatically published to NuGet. 
+
+_There is no development version, or stabilization process, so you should regression test your software when upgrading your NuGet EasyNetQ package._
