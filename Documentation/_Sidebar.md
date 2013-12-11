@@ -1,5 +1,7 @@
 [[Home]] > [[Introduction]]
 
+[[A Note on Versioning]]
+
 [[Installing EasyNetQ]]
 
 [[Connecting to RabbitMQ]]
