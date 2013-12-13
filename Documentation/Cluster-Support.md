@@ -22,3 +22,10 @@ If the node that EasyNetQ is connected to fails, EasyNetQ will attempt to connec
 You get automatic fail-over out of the box.
 
 If you have multiple services using EasyNetQ to connect to a RabbitMQ cluster, they will all initially connect to the first listed node in their respective connection strings. For this reason the EasyNetQ cluster support is not really suitable for load balancing high throughput systems. We recommend that you use a dedicated hardware or software load balancer instead.
+
+### Random Hosts Selection
+If you are planning to use load balancing feature, you should do a bit of configuration:
+
+    var bus = RabbitHutch.CreateBus("host=ubuntu:5672,ubuntu:5673", x => x.Register<IClusterHostSelectionStrategy<ConnectionFactoryInfo>, RandomClusterHostSelectionStrategy<ConnectionFactoryInfo>>());
+
+In this snippet we have a replacement of default IClusterHostSelectionStrategy for another strategy, which will select hosts randomly. You can find more information about replacement EasyNetQ's components [here](https://github.com/mikehadlow/EasyNetQ/wiki/Replacing-EasyNetQ-Components).
