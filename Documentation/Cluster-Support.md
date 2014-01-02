@@ -19,8 +19,6 @@ If the node that EasyNetQ is connected to fails, EasyNetQ will attempt to connec
     DEBUG: Re-creating subscribers
     INFO: Connected to RabbitMQ. Broker: 'ubuntu', Port: 5674, VHost: '/'
 
-You get automatic fail-over out of the box.
-
 ### Random Hosts Selection
 If you have multiple services using EasyNetQ to connect to a RabbitMQ cluster, they will all initially connect to the first listed node in their respective connection strings. If you are planning to use the load balancing feature, you should consider switching to the RandomClusterHostSelectionStrategy. Configure it like this:
 
