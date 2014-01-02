@@ -1,4 +1,4 @@
-EasyNetQ supports RabbitMQ clusters without any need to deploy a load balancer.
+EasyNetQ supports RabbitMQ clusters without the need to deploy a load balancer.
 
 Simply list the nodes of the cluster in the connection string ...
 
