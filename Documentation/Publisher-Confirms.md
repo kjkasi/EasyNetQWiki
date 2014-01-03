@@ -8,4 +8,27 @@ What does 'successfully received' mean? It depends ...
 
 For more information on publisher confirms, [please read the announcement on the RabbitMQ blog](http://www.rabbitmq.com/blog/2011/02/10/introducing-publisher-confirms/)
 
-TODO: EasyNetQ example.
+Enable publisher confirms by setting publisherConfirms=true on the connection string:
+
+    bus = RabbitHutch.CreateBus("host=localhost;publisherConfirms=true;timeout=10");
+
+The synchronous bus.Publish(..) method will wait for the confirm before returning. A failure to confirm before the timeout period (also configured in the connection string) will cause an exception to be thrown. With publisher confirms on the synchronous publish method will slow down significantly. If performance is a concern, you should consider using the PublishAsync method:
+
+    bus.PublishAsync(new MyMessage
+        {
+            Text = "Hello World"
+        }).ContinueWith(task =>
+            {
+                if (task.IsCompleted)
+                {
+                    //Console.Out.WriteLine("{0} Completed", count);
+                }
+                if (task.IsFaulted)
+                {
+                    Console.Out.WriteLine("\n\n");
+                    Console.Out.WriteLine(task.Exception);
+                    Console.Out.WriteLine("\n\n");
+                }
+            });
+
+This will return before the confirmation is received. The task will complete in a faulted state if no confirmation or a NACK confirmation is received.
