@@ -26,6 +26,31 @@ var subscriber = new AutoSubscriber(bus, "my_applications_subscriptionId_prefix"
 subscriber.Subscribe(Assembly.GetExecutingAssembly());
 ```
 
+## Subscribe by topic(s)
+By default the `AutoSubscriber` will bind without topics. In the example below MessageA is registered with two topics.
+
+**Note!** If you run the code without ForTopic attribute it will have a routing key of "#" which will pick up any subscribe for the message type. Assuming default ports and admin plugin installed, simply visit http://localhost:15672/#/queues and unbind routing if needed.
+
+```c#
+public class MyConsumer : IConsume<MessageA>, IConsume<MessageB>, IConsumeAsync<MessageC>
+{
+    [ForTopic("Topic.Foo")]
+    [ForTopic("Topic.Foo.Bar")]
+    public void Consume(MessageA message) {...}
+
+    public void Consume(MessageB message) {...}
+
+    public Task Consume(MessageC message) {...}
+}
+
+//To publish by topic
+var bus = RabbitHutch.CreateBus("host=localhost");
+
+var msg1 = new MessageA(msg1, "Topic.Foo");   //picked up
+var msg2 = new MessageA(msg2, "Topic.Bar");   //picked up
+var msg3 = new MessageA(msg3);                //not picked up
+```
+
 ## Specify A Specific SubscriptionId
 By default the `AutoSubscriber` will generate a unique `SubscriptionId`. If you would like it to be fixed, you can decorate the `Consume` method with the `ConsumerAttribute`. Why you would make it fixed, is something you can [read up about here](subscribe).
 
