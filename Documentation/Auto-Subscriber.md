@@ -35,7 +35,7 @@ By default the `AutoSubscriber` will bind without topics. In the example below M
 public class MyConsumer : IConsume<MessageA>, IConsume<MessageB>, IConsumeAsync<MessageC>
 {
     [ForTopic("Topic.Foo")]
-    [ForTopic("Topic.Foo.Bar")]
+    [ForTopic("Topic.Bar")]
     public void Consume(MessageA message) {...}
 
     public void Consume(MessageB message) {...}
