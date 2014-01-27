@@ -12,6 +12,8 @@ Now you should be able to navigate to the RabbitMQ management URL:
 
     http://localhost:15672/
 
+![RabbitMQ management UI](Documentation/RabbitMQ_Management.png)
+
 Next open Visual Studio and create a new solution named EasyNetQTest with three C# projects:
 
     Messages   (Class Library)
