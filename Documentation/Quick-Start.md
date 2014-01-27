@@ -102,3 +102,7 @@ Open the other Program.cs class in the Subscriber project and type this code:
 Now right click on the Subscriber project and select 'Set As StartUp project', then hit ctrl-F5 (start without debugging) to launch the Subscriber console application. Repeat the same steps with the Publish project.
 
 You should now have two console applications running with a lot of debugging information showing that EasyNetQ has successfully connected to your RabbitMQ server. Now type some messages into the publisher console application. You should see the Subscriber application report that it has received them.
+
+![](images/Quick-start-publisher.png)
+
+![](images/Quick-start-subscriber.png)
