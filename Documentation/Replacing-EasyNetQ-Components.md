@@ -37,5 +37,5 @@ You can access the container via the IAdvancedBus's Container property. This all
 
     var serializer = bus.Advanced.Container.Resolve<ISerializer>();
 
-To replace the internal container with your own choice of IoC container, see [[Replacing EasyNetQ Components]]
+To replace the internal container with your own choice of IoC container, see [[Using Alternative DI Containers]]
     
