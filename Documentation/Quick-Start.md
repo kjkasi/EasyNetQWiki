@@ -60,3 +60,35 @@ Open the Program.cs class in the Publisher project and type in the following cod
             }
         }
     }
+
+Open the other Program.cs class in the Subscriber project and type this code:
+
+    using System;
+    using EasyNetQ;
+    using Messages;
+    
+    namespace Subscriber
+    {
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                using (var bus = RabbitHutch.CreateBus("host=localhost"))
+                {
+                    bus.Subscribe<TextMessage>("test", HandleTextMessage);
+    
+                    Console.WriteLine("Listening for messages. Hit <return> to quit.");
+                    Console.ReadLine();
+                }
+            }
+    
+            static void HandleTextMessage(TextMessage textMessage)
+            {
+                Console.WriteLine("Got message: {0}", textMessage);
+            }
+        }
+    }
+
+Now right click on the Subscriber project and select 'Set As StartUp project', then hit ctrl-F5 (start without debugging) to launch the Subscriber console application. Repeat the same steps with the Publish project.
+
+You should now have two console applications running with a lot of debugging information showing that EasyNetQ has successfully connected to your RabbitMQ server. Now type some messages into the publisher console application. You should see the Subscriber application report that it has received them.
