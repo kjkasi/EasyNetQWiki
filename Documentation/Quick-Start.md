@@ -1,6 +1,6 @@
 Welcome to EasyNetQ. This guide shows you how to get up and running with EasyNetQ in about 10 minutes.
 
-You can find the code for this Quic Start in GitHub here: https://github.com/mikehadlow/EasyNetQTest
+You can find the code for this Quick Start in GitHub here: https://github.com/mikehadlow/EasyNetQTest
 
 EasyNetQ is a simple to use client API for RabbitMQ. So first install RabbitMQ:
 
