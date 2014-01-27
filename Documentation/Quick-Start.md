@@ -86,7 +86,9 @@ Open the other Program.cs class in the Subscriber project and type this code:
     
             static void HandleTextMessage(TextMessage textMessage)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Got message: {0}", textMessage.Text);
+                Console.ResetColor();
             }
         }
     }
