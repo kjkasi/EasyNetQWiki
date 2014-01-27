@@ -1,0 +1,1 @@
+Welcome to EasyNetQ. This guide shows you how to get up and running with EasyNetQ in about 10 minutes.
