@@ -12,7 +12,7 @@ Now you should be able to navigate to the RabbitMQ management URL:
 
     http://localhost:15672/
 
-![RabbitMQ management UI](Documentation/RabbitMQ_Management.png)
+![RabbitMQ management UI](images/RabbitMQ_Management.png)
 
 Next open Visual Studio and create a new solution named EasyNetQTest with three C# projects:
 
@@ -36,6 +36,10 @@ In the Messages project create a new class TextMessage.cs:
     }
 
 Add a reference to the Messages project to both the Publisher and Subscriber projects.
+
+Your solution should look like this:
+
+![Solution explorer](images/Quick-start-solution-explorer.png)
 
 Open the Program.cs class in the Publisher project and type in the following code:
 
