@@ -24,6 +24,16 @@ By default, EasyNetQ serializes .NET types as JSON using the Newtonsoft.Json lib
 
 ![API Design](images/EasyNetQ_API.png)
 
+EasyNetQ is a collection of components that provide services on top of the RabbitMQ.Client library. These do things like serialization, error handling, thread marshalling, connection management, etc. They are composed by a mini-IoC container. You can replace any component with your own implementation quite easily. So if you’d like XML serialization instead of the built in JSON, just write an implementation of ISerializer and register it with the container.
+
+These components are fronted by the IAdvancedBus API. This looks a lot like the AMQP specification, and indeed you can run most AMQP methods from this API. The only AMQP concept that this API hides from you is channels. This is because channels are a confusing low-level concept that should never have been part of the AMQP specification in the first place. ‘Advanced’ is not a very good name for this API to be honest, ‘Iamqp’ would be much better.
+
+Layered on top of the advanced API are a set of messaging patterns: Publish/Subscribe, Request/Response, and Send/Receive. This is the ‘opinionated’ part of EasyNetQ. It is our take on how such patterns should be implemented. There is very little flexibility; either you accept our way of doing things, or you don’t use it. The intention is that you, the user, don’t have to expend mental bandwidth re-inventing the same patterns; you don’t have to make choices every time you simply want to publish a message and subscribe to it. It’s designed to achieve EasyNetQ’s core goal of making working with RabbitMQ as easy as possible.
+
+The patterns sit behind the IBus API. Once again, this is a poor name, it’s got very little to do with the concept of a message bus. A better name would be IPackagedMessagePatterns.
+
+IBus is intended to work for 80% of users, 80% of the time. It’s not exhaustive. If the pattern you want to implement is not provided by IBus, then you should use IAdvancedBus. There’s no problem with doing this, and it’s how EasyNetQ is designed to be used.
+
 ##Why do I need EasyNetQ?
 
 Doesn’t RabbitMQ already have a .NET client? 
