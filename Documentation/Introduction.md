@@ -2,7 +2,7 @@
 
 EasyNetQ is a simple to use, opinionated, .NET API for [[RabbitMQ|http://www.rabbitmq.com/]].
 
-If you just want to get up and running as quickly as possible, go to the [[Quick Start]] guide.
+If you just want to get up and running as quickly as possible, go to the **[[Quick Start]]** guide.
 
 The goal of EasyNetQ is to provide a library that makes working with RabbitMQ in .NET as simple as possible. In order to do this, it has to take an opinionated view of how you should use RabbitMQ with .NET. It trades flexibility for simplicity by enforcing some simple conventions. These include:
 
