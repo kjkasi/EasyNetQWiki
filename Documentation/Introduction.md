@@ -1,3 +1,5 @@
+![EasyNetQ logo](images/logo_design_150.png)
+
 EasyNetQ is a simple to use, opinionated, .NET API for [[RabbitMQ|http://www.rabbitmq.com/]].
 
 If you just want to get up and running as quickly as possible, go to the [[Quick Start]] guide.
