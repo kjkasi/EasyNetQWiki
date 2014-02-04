@@ -18,6 +18,10 @@ EasyNetQ routes messages by their type. When you publish a message, EasyNetQ exa
 
 By default, EasyNetQ serializes .NET types as JSON using the Newtonsoft.Json library. This has the advantage that messages are human readable, so you can use tools such as the RabbitMQ management application to debug message problems.
 
+##API Design
+
+![API Design](images/EasyNetQ_API.png)
+
 ##Why do I need EasyNetQ?
 
 Doesn’t RabbitMQ already have a .NET client? 
