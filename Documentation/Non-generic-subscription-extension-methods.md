@@ -2,7 +2,7 @@ Since it’s very first version, EasyNetQ has allowed you to subscribe to, and p
 
     bus.Subscribe<MyMessage>("subscriptionId", x => Console.WriteLine(x.Text));
 		
-		and
+and
 
 	bus.Publish<MyMessage>(theMessage);
 
