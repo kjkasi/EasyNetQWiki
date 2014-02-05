@@ -54,5 +54,5 @@ Here’s an example of the non-generic subscribe in use:
 
 Here's an example of the non-generic publish in use:
 
-	var messageType = typeof(myMessage);
-	bus.Publish(messageType, myMessage);
+	var messageType = typeof(MyMessage);
+	bus.Publish(messageType, theMessage);
