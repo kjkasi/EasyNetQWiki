@@ -38,6 +38,7 @@ The EasyNetQ queue management utility. Use it to grab messages from queues and r
 	p	the password to connect with. Default is 'guest'
 	q	the queue name to take messages from, or publish them to.
 	o	the directory to output messages to. Default is current directory.
+	n	the maximum number of messages to retrieve. Default is 1000.
 
 ###Examples
 	
