@@ -15,7 +15,7 @@
 1. [[Publisher Confirms]]
 1. [[Scheduling Events with Future Publish]]
 1. [[Auto Subscriber]]
-1. [[Non-Generic Subscription Extension Methods]]
+1. [[Non Generic Publish & Subscription Extension Methods]]
 1. [[Error Conditions]]
 1. [[Re Submitting Error Messages With EasyNetQ.Hosepipe]]
 1. [[The Advanced API]]
