@@ -18,6 +18,8 @@ The connection string is made up of key/value pairs in the format key=value, eac
 * **prefetchcount** (e.g. prefetchcount=1) default is 50. This is the number of messages that will be delivered by RabbitMQ before an ack is sent by EasyNetQ. Set to 0 for infinite prefetch (not recommended). Set to 1 for fair work balancing among a farm of consumers.
 * **publisherConfirms** (e.g. publisherConfirms=true) default is false. This turns on [[Publisher Confirms]].
 * **persistentMessages** (e.g. persistentMessages=false) default is true. This determines how the delivery_mode in basic.properties is set when a message is published. false=1, true=2. When set to true, messages will be persisted to disk by RabbitMQ and survive a server restart. Performance gains can be expected when set to false.
+* **product** (e.g. product=My really important service) was introduced in EasyNetQ 0.27.3. default value is the name of the executable which instantiates the bus. The value entered here will show up in the administrative interface for RabbitMQ. 
+* **platform** (e.g. platform=my.fully.qualified.domain.name) was introduced in EasyNetQ 0.27.3. default value is the hostname of the machine running the client process instantiating the bus. The value entered here will show up in the administrative interface for RabbitMQ. 
 
 To close the connection, simply dispose the bus like this:
 
