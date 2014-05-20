@@ -11,6 +11,7 @@
 1. [[Request Response]]
 1. [[Send Receive]]
 1. [[Topic Based Routing]]
+1. [[Controlling Queue names]]
 1. [[Polymorphic Publish and Subscribe]]
 1. [[Publisher Confirms]]
 1. [[Scheduling Events with Future Publish]]
