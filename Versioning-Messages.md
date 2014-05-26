@@ -41,4 +41,5 @@ of a message, so long as it has a version, it can be deserialized and handled.
 
 ## Here Be Dragons
 
-Versioned message support has been developed and tested in publish-subscribe scenarios. It has not be tested in either send-receive or request-response scenarios; use it outside of publish-subscribe at your own risk!
+1. Versioned message support has been developed and tested in publish-subscribe scenarios. It has not be tested in either send-receive or request-response scenarios; use it outside of publish-subscribe at your own risk!
+1. Versioned message support has not been extended to future publish scenarios at this time, additional work is planned to enable this, however due to the potential for breaking changes, some discussion with the project owner and community is required.
