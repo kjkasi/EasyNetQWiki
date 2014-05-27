@@ -13,6 +13,7 @@
 1. [[Topic Based Routing]]
 1. [[Controlling Queue names]]
 1. [[Polymorphic Publish and Subscribe]]
+1. [[Versioning Messages]]
 1. [[Publisher Confirms]]
 1. [[Scheduling Events with Future Publish]]
 1. [[Auto Subscriber]]
