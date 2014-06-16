@@ -19,7 +19,10 @@ The synchronous bus.Publish(..) method will wait for the confirm before returnin
             Text = "Hello World"
         }).ContinueWith(task =>
             {
-                if (task.IsCompleted)
+                // this only checks that the task finished
+                // IsCompleted will be true even for tasks in a faulted state
+                // we use if (task.IsCompleted && !task.IsFaulted) to check for success
+                if (task.IsCompleted) 
                 {
                     //Console.Out.WriteLine("{0} Completed", count);
                 }
