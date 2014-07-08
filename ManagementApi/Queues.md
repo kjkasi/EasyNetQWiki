@@ -57,5 +57,5 @@ For example:
 
     foreach (var message in messages)
     {
-        Console.Out.WriteLine("message.payload = {0}", message.payload);
+        Console.Out.WriteLine("message.payload = {0}", message.Payload);
     }
