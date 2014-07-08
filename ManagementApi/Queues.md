@@ -4,7 +4,7 @@
 
     foreach (Queue queue in queues)
     {
-        Console.Out.WriteLine("queue.name = {0}", queue.name);
+        Console.Out.WriteLine("queue.name = {0}", queue.Name);
     }
 
 Will output:
