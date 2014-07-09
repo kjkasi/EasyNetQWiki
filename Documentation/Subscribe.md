@@ -35,6 +35,8 @@ All the subscribe methods return an IDisposable. You can cancel a subscriber at 
 
 This will stop EasyNetQ consuming from the queue and close the consumer's channel.
 
+Do _not_ call consumer.Dispose() inside a message handler. This will create a race condition between EasyNetQ ACK'ing the message on the consumer's channel and the consumer.Dispose() call to close that channel. Because of EasyNetQ's internal architecture these calls will be invoked on different threads and the timing is not deterministic.  
+
 ## Distributed processing out-of-the-box
 
 EasyNetQ and RabbitMQ provide distributed processing out-of-the-box. Say we have written a windows service with a single call to subscribe just like the one above. We deploy it on a server and start it up. When the Subscribe call is run EasyNetQ creates a queue called something like 'someNamespace_myMessage:someAssembly_mySubscriptionId' on the RabbitMQ broker. As instances of MyMessage are published they are routed to this queue and our windows service gets a copy of every message. This is exactly what we want.
