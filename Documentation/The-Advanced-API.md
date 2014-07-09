@@ -270,7 +270,7 @@ An example:
 
     var queue = advancedBus.QueueDeclare("get_test");
     advancedBus.Publish(Exchange.GetDefault(), "get_test", false, false,
-    new Message<MyMessage>(new MyMessage{ Text = "Oh! Hello!" }));
+        new Message<MyMessage>(new MyMessage{ Text = "Oh! Hello!" }));
 
     var getResult = advancedBus.Get<MyMessage>(queue);
 
