@@ -234,6 +234,68 @@ See this blog post for more information:
 
 http://mikehadlow.blogspot.co.uk/2013/11/easynetq-multiple-handlers-per-consumer.html
 
+## Get a single message from a queue
+
+To get a single message from a queue, use the IAdvancedBus.Get method:
+
+    IBasicGetResult<T> Get<T>(IQueue queue) where T : class;
+
+From the AMQP documentation: "This method provides a direct access to the messages in a queue using a synchronous dialogue that is designed for specific types of application where synchronous functionality is more important than performance." Do not use Get to poll for messages. In a typical application scenario, you should always favour Consume.
+
+The IBasicGetResult<T> has this signature:
+
+    /// <summary>
+    /// The result of the AdvancedBus Get method
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IBasicGetResult<T> where T : class
+    {
+        /// <summary>
+        /// True if a message is availabe, false if not.
+        /// </summary>
+        bool MessageAvailable { get; }
+
+        /// <summary>
+        /// The message retreived from the queue. 
+        /// This property will throw a MessageNotAvailableException if no message
+        /// was available. You should check the MessageAvailable property before
+        /// attempting to access it.
+        /// </summary>
+        IMessage<T> Message { get; }
+    }
+
+Always check the MessageAvailable method before accessing the Message property.
+
+An example:
+
+    var queue = advancedBus.QueueDeclare("get_test");
+    advancedBus.Publish(Exchange.GetDefault(), "get_test", false, false,
+    new Message<MyMessage>(new MyMessage{ Text = "Oh! Hello!" }));
+
+    var getResult = advancedBus.Get<MyMessage>(queue);
+
+    if (getResult.MessageAvailable)
+    {
+        Console.Out.WriteLine("Got message: {0}", getResult.Message.Body.Text);
+    }
+    else
+    {
+        Console.Out.WriteLine("Failed to get message!");
+    }
+
+For access to the raw binary message, use the non-generic Get method:
+
+    IBasicGetResult Get(IQueue queue);
+
+The non-generic IBasicGetResult has this definition:
+
+    public interface IBasicGetResult
+    {
+        byte[] Body { get; }
+        MessageProperties Properties { get; }
+        MessageReceivedInfo Info { get; }
+    }
+
 ## Message types must match
 
 The EasyNetQ advanced API expects subscribers to only receive messages of the type provided by the generic type parameter. In the example above, only messages of type MyMessage should be received. However, EasyNetQ does not protect you from publishing messages of the wrong type to a subscriber. I could easily set up an exchange-binding-queue topology to publish messages of type NotMyMessage that would be received by the handler above. If a message of the wrong type is received, EasyNetQ will throw an **EasyNetQInvalidMessageTypeException** something like this:
