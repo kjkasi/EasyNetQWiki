@@ -28,8 +28,11 @@ The Register method's argument, Func&lt;IServiceProvider, TService&gt;, is a fun
 
 This allows you to access other services that EasyNetQ provides. If for example you wanted to replace the default serializer with your own implementation of ISerializer, and you wanted to construct it with a reference to the logger, you could do this:
 
-    var bus = RabbitHutch.CreateBus(connectionString, serviceRegister => serviceRegister.Register(
+    var bus = RabbitHutch.CreateBus(connectionString, serviceRegister => 
+        serviceRegister.Register<ISerializer>(
         serviceProvider => new MySerializer(serviceProvider.Resolve<IEasyNetQLogger>())));
+
+Note that we have to use an explicit type parameter on the Register method so that the internal IoC container knows which service we are replacing.
 
 To see the complete list of components that make up the IBus instance, and how they are assembled, take a look at the [ComponentRegistration](../blob/master/Source/EasyNetQ/ComponentRegistration.cs) class.
 
