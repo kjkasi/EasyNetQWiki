@@ -68,3 +68,9 @@ messages on the queue. Take care when retrying error messages that you purge the
 queue first (using the RabbitMQ management interface), because if the messages fail 
 again, they too will result in new error messages being published to the error queue 
 and it is possible that	duplicate messages could be created.
+
+###Installing
+
+Currently Hosepipe is only available as source code. You can find the project here:
+
+https://github.com/mikehadlow/EasyNetQ/tree/master/Source/EasyNetQ.Hosepipe
