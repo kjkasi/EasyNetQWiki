@@ -23,6 +23,28 @@ SubscribeAsync allows your subscriber delegate to return a Task immediately and 
                     message.Text, 
                     task.Result)));
 
+Another example that will result in a exception been thrown if there is a fault which will then result in the message being placed on the default error queue
+
+    _bus.SubscribeAsync<MessageType>("Queue_Identifier",
+                message => Task.Factory.StartNew(() =>
+                {
+                    // Perform some actions here
+                    // If there is a exception it will result in a task complete but task faulted which
+                    // is dealt with below in the continuation
+                }).ContinueWith(task =>
+                {
+                    if (task.IsCompleted && !task.IsFaulted)
+                    {
+                        // Everything worked out ok
+                    }
+                    else
+                    {                        
+                        // Dont catch this, it is caught further up the heirarchy and results in being sent to the default error queue
+                        // on the broker
+                        throw new EasyNetQException("Message processing exception - look in the default error queue (broker)");
+                    }
+                }));
+
 ## Cancelling subscriptions
 
 All the subscribe methods return an IDisposable. You can cancel a subscriber at any time by calling Dispose on the IDisposable instance:
