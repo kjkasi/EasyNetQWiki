@@ -5,6 +5,7 @@ Firstly, you have to follow the steps at https://www.rabbitmq.com/ssl.html caref
 Even once you get EasyNetQ working with SSL, having that little bit of DotNet example code they show on that page available for testing is a big help. I have a simple console app which contains both Rabbit and the EasyNetQ code below. Also use the Rabbit logs. They’re sometimes a bit more specific than what gets emitted at the client when something’s wrong.
 
 When you do get connected, the management screen shows a small SSL under the protocol label on the connection screen. You should also see port 443 (assuming that’s what you bind to) in the listening ports table on the Overview tab.
+
 ![ssl](https://cloud.githubusercontent.com/assets/8321491/3799065/8d6ac506-1bea-11e4-84ac-9a9d71830b2e.png)
 
 The sample code to make this work is as follows:
