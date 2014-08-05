@@ -1,4 +1,4 @@
-Connecting via SSL is already possible with EasyNetQ.
+Connecting via SSL is possible with EasyNetQ. This guide, by Gordon Coulter was originally written in reply to a raised issue.
 
 Firstly, you have to follow the steps at https://www.rabbitmq.com/ssl.html carefully. I spent a lot of time trying to get the openssl part working and then a lot more time getting it working the way I needed it and not just the canned demo.
 
