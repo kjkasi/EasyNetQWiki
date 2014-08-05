@@ -75,6 +75,29 @@ subscriber.Subscribe(Assembly.GetExecutingAssembly());
 
 **Note!** Just a sample implementation. Ensure you have [read and understood](subscribe) the importance of the `SubscriptionId` value.
 
+## Taking Control Of The Consumer Configuration Setting
+When using the autosubscriber to subscribe to queues you can set ISubscriptionConfiguration values, such as AutoDelete, Priority etc.
+
+Either by setting an action when you create the AutoSubscriber.
+```c#
+var subscriber = new AutoSubscriber(bus)
+{    
+    ConfigureSubscriptionConfiguration = c => c.WithAutoDelete()
+                                               .WithPriority(10)
+};
+subscriber.Subscribe(Assembly.GetExecutingAssembly());
+```
+
+Or alternatively you can apply an attribute to the consume method which would take precedence over any configuration values set by a ConfigureSubscriptionConfiguration action.
+
+```c#
+public class MyConsumer : IConsume<MessageA>
+{
+    [SubscriptionConfiguration(CancelOnHaFailover = true, PrefetchCount = 10)]
+    public void Consume(MessageA message) {...}
+}
+```
+
 ##Using an IoC container with AutoSubscriber
 
 AutoSubscriber has a property, MessageDispatcher, which allows you to plug in your own message dispatching code. This allows you to resolve your consumers from an IoC container or do other custom dispatch time tasks.
