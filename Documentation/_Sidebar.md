@@ -5,6 +5,7 @@
 1. [[A Note on Versioning]]
 1. [[Installing EasyNetQ]]
 1. [[Connecting to RabbitMQ]]
+1. [[Connecting with SSL]]
 1. [[Logging]]
 1. [[Publish]]
 1. [[Subscribe]]
