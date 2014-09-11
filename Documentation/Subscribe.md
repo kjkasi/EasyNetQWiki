@@ -6,7 +6,11 @@ To subscribe to a message we need to give EasyNetQ an action to perform whenever
 
 Now every time that an instance of MyMessage is published, EasyNetQ will call our delegate and print the message’s Text property to the console.
 
-The subscription id that you pass to Subscribe is important. EasyNetQ will create a unique queue on the RabbitMQ broker for each unique combination of message type and subscription id. The general rule you should follow is that each call to subscribe should have its own id. Indeed, this is a case where you shouldn’t follow normal good practice and where a hard-coded string is probably the best option.
+**The subscription id that you pass to Subscribe is important.** EasyNetQ will create a unique queue on the RabbitMQ broker for each unique combination of message type and subscription id.
+
+Each call to Subscribe creates a new queue consumer. If you call Subscribe two times with the same message type and subscription id, you will create two consumers consuming from the same queue. RabbitMQ will then round-robin successive messages to each consumer in turn. This is great for scaling and work-sharing. Say you've created a service that processes a particular message, but it's getting overloaded with work. Simply start a new instance of that service (on the same machine, or a different one) and without having to configure anything, you get automatic scaling.
+
+If you call Subscribe two times with different subscription ids but the same message type, you will create two queues, each with its own consumer. A copy of each message of the given type will be routed to each queue, so each consumer will get all the messages (of that type). This is great if you've got several different services that all care about the same message type.
 
 ## Considerations when writing the subscribe callback delegate
 
@@ -57,10 +61,4 @@ All the subscribe methods return an IDisposable. You can cancel a subscriber at 
 
 This will stop EasyNetQ consuming from the queue and close the consumer's channel.
 
-Do _not_ call consumer.Dispose() inside a message handler. This will create a race condition between EasyNetQ ACK'ing the message on the consumer's channel and the consumer.Dispose() call to close that channel. Because of EasyNetQ's internal architecture these calls will be invoked on different threads and the timing is not deterministic.  
-
-## Distributed processing out-of-the-box
-
-EasyNetQ and RabbitMQ provide distributed processing out-of-the-box. Say we have written a windows service with a single call to subscribe just like the one above. We deploy it on a server and start it up. When the Subscribe call is run EasyNetQ creates a queue called something like 'someNamespace_myMessage:someAssembly_mySubscriptionId' on the RabbitMQ broker. As instances of MyMessage are published they are routed to this queue and our windows service gets a copy of every message. This is exactly what we want.
-
-Now, what if we deploy a second instance of our windows service on a second server and start it up? When the Subscribe call runs, EasyNetQ will find that there’s already a queue that matches the subscriber id / message type combination, so instead of creating a new queue it will simply start consuming from the existing queue created by the first instance. When RabbitMQ has two consumers consuming from the same queue, it sends messages to the consumers, round-robin style, in turn. So the first message will be sent the the first instance, the second to the second instance and then the third to the first instance, and so on. We get distributed processing out-of-the-box, with no need for any special programming techniques when writing our subscribers, or special software or hardware load balancers.
+Do _not_ call consumer.Dispose() inside a message handler. This will create a race condition between EasyNetQ ACK'ing the message on the consumer's channel and the consumer.Dispose() call to close that channel. Because of EasyNetQ's internal architecture these calls will be invoked on different threads and the timing is not deterministic.
