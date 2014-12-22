@@ -6,7 +6,7 @@ You’ve written a windows service that subscribes to my NewCustomerMessage. Wha
 
 ## My Subscriber Consumes Messages Slower Than They Are Published
 
-EasyNetQ uses RabbitMQ’s quality of service settings to set the prefectch-count to some reasonable setting (currently 1000). This means that there will never be more than 1000 messages in the subscriber’s in-memory queue. This prevents out-of-memory exceptions occurring in your subscribing application. Once the count of un-acked messages gets to this level, RabbitMQ will stop sending them and simply leave them on its internal queue. Of course, eventually this queue will eat all your disk space on your RabbitMQ server machine. You should have some monitoring in place to make sure you are alerted before this happens.
+EasyNetQ uses RabbitMQ’s quality of service settings to set the prefectch-count to some reasonable setting (currently 50). This means that there will never be more than 50 messages in the subscriber’s in-memory queue. This prevents out-of-memory exceptions occurring in your subscribing application. Once the count of un-acked messages gets to this level, RabbitMQ will stop sending them and simply leave them on its internal queue. Of course, eventually this queue will eat all your disk space on your RabbitMQ server machine. You should have some monitoring in place to make sure you are alerted before this happens.
 
 ## There Is a Network Failure Between My Subscriber And The RabbitMQ Broker
 
