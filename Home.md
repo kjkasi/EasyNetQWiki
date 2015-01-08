@@ -15,3 +15,7 @@ Welcome to the EasyNetQ wiki
 ***
 
 **Roadmap: [[Roadmap]]**
+
+***
+
+**[[Governance principles]]**
