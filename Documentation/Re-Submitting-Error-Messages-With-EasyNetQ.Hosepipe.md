@@ -24,7 +24,7 @@ The EasyNetQ queue management utility. Use it to grab messages from queues and r
 	err		Dump all the EasyNetQ error messages to the given directory
 
 	retry	Retry any EasyNetQ error messages in the given directory
-			Note this ignores the *.message.txt and *.info.txt files
+			Note this ignores the *.properties.txt and *.info.txt files
 			because the properties and info are contained in the error message
 			itself
 
@@ -45,20 +45,28 @@ The EasyNetQ queue management utility. Use it to grab messages from queues and r
 1. To output all the messages in a queue called 'my_queue' as text files 
    to a directory 'C:\temp\messages':
 
-	EasyNetQ.Hosepipe.exe dump s:localhost u:guest p:guest q:my_queue o:C:\temp\messages
+```
+EasyNetQ.Hosepipe.exe dump s:localhost u:guest p:guest q:my_queue o:C:\temp\messages
+```
 
 2. To insert (re-publish) all the messages in directory 'C:\temp\messages':
 
-	EasyNetQ.Hosepipe.exe insert s:localhost u:guest p:guest o:C:\temp\messages
+```
+EasyNetQ.Hosepipe.exe insert s:localhost u:guest p:guest o:C:\temp\messages
+```
 
 3. Dump all the EasyNetQ messages queued in the broker localhost to a directory
    'C:\temp\messages'
 
-	EasyNetQ.Hosepipe.exe err s:localhost o:C:\temp\messages
+```
+EasyNetQ.Hosepipe.exe err s:localhost o:C:\temp\messages
+```
 
 4. To re-publish all error messages in directory 'C:\temp\messages':
 
-	EasyNetQ.Hosepipe.exe retry s:localhost u:guest p:guest o:C:\temp\messages
+```
+EasyNetQ.Hosepipe.exe retry s:localhost u:guest p:guest o:C:\temp\messages
+```
 
 ###Notes
 
