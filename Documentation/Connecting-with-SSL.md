@@ -17,27 +17,23 @@ connection.UserName = "user";
 connection.Password = "pass";
 connection.Product = "SSLTest";
 
-connection.Hosts = new List<HostConfiguration>
-{
-    new HostConfiguration 
-    {
-        Host = "rmq1.contoso.com", 
-        Port = 443,
-        Ssl.Enabled = true,
-        Ssl.ServerName = "rmq1.contoso.com",
-        Ssl.CertPath = "c:\\tmp\\myclient.p12",
-        Ssl.CertPassphrase = "secret",
-    }, 
-    new HostConfiguration 
-    {
-        Host = "rmq2.contoso.com", 
-        Port = 443,
-        Ssl.Enabled = true,
-        Ssl.ServerName = "rmq2.contoso.com",
-        Ssl.CertPath = "c:\\tmp\\myclient.p12",
-        Ssl.CertPassphrase = "secret",
-    }, 
-};
+var host1 = new HostConfiguration();
+host1.Host = "rmq1.contoso.com";
+host1.Port = 443;
+host1.Ssl.Enabled = true;
+host1.Ssl.ServerName = "rmq1.contoso.com";
+host1.Ssl.CertPath = "c:\\tmp\\myclient.p12";
+host1.Ssl.CertPassphrase = "secret";
+
+var host2 = new HostConfiguration();
+host2.Host = "rmq2.contoso.com";
+host2.Port = 443;
+host2.Ssl.Enabled = true;
+host2.Ssl.ServerName = "rmq2.contoso.com";
+host2.Ssl.CertPath = "c:\\tmp\\myclient.p12";
+host2.Ssl.CertPassphrase = "secret";
+
+connection.Hosts = new System.Collections.Generic.List<HostConfiguration> { host1, host2 };
 
 connection.Validate();        //VERY IMPORTANT - DOES CONFIG AS WELL AS VALIDATION!
 
