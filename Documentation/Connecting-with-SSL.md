@@ -33,7 +33,7 @@ host2.Ssl.ServerName = "rmq2.contoso.com";
 host2.Ssl.CertPath = "c:\\tmp\\myclient.p12";
 host2.Ssl.CertPassphrase = "secret";
 
-connection.Hosts = new System.Collections.Generic.List<HostConfiguration> { host1, host2 };
+connection.Hosts = new List<HostConfiguration> { host1, host2 };
 
 connection.Validate();        //VERY IMPORTANT - DOES CONFIG AS WELL AS VALIDATION!
 
