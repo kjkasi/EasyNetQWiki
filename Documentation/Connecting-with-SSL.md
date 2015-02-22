@@ -10,39 +10,41 @@ When you do get connected, the management screen shows a small SSL under the pro
 
 The sample code to make this work is as follows:
 ```C#
-string serverName = "q1.domain.com";
-
-HostConfiguration host = new HostConfiguration();
-host.Host = serverName;
-
-ConnectionConfiguration connection = new ConnectionConfiguration();
-connection.Hosts = new List<IHostConfiguration>
-{
-    new HostConfiguration {Host=serverName, Port=443}
-};
+var connection = new ConnectionConfiguration();
 
 connection.Port = 443;
 connection.UserName = "user";
 connection.Password = "pass";
 connection.Product = "SSLTest";
 
-connection.Ssl.Enabled = true;
-connection.Ssl.ServerName = serverName;
+connection.Hosts = new List<HostConfiguration>
+{
+    new HostConfiguration 
+    {
+        Host = "rmq1.contoso.com", 
+        Port = 443,
+        Ssl.Enabled = true,
+        Ssl.ServerName = "rmq1.contoso.com",
+        Ssl.CertPath = "c:\\tmp\\myclient.p12",
+        Ssl.CertPassphrase = "secret",
+    }, 
+    new HostConfiguration 
+    {
+        Host = "rmq2.contoso.com", 
+        Port = 443,
+        Ssl.Enabled = true,
+        Ssl.ServerName = "rmq2.contoso.com",
+        Ssl.CertPath = "c:\\tmp\\myclient.p12",
+        Ssl.CertPassphrase = "secret",
+    }, 
+};
 
+connection.Validate();        //VERY IMPORTANT - DOES CONFIG AS WELL AS VALIDATION!
 
-connection.Port = 443;
-connection.Ssl.CertPath = "c:\\tmp\\myclient.p12";
-connection.Ssl.CertPassphrase = "secret";
-connection.Ssl.Enabled = true;
-connection.Ssl.ServerName = serverName;
-
-connectionConfig.Validate();        //VERY IMPORTANT - DOES CONFIG AS WELL AS VALIDATION!
-
-var logger = new LogNothingLogger();
-IAdvancedBus Bus = RabbitHutch.CreateBus(connectionConfig, reg => reg.Register<IEasyNetQLogger>(log => logger)).Advanced;
+var Bus = RabbitHutch.CreateBus(connection, services => services.Register<IEasyNetQLogger>(logger => new DoNothingLogger()));
 ```
-There’s some duplication in that you have to pass the server name and port into the main ConnectionConfiguration and then again on the SSL settings.
+The appropriate place to set the SslOption properties is on the HostConfiguration object even though there is an SslOption property on the ConnectionConfiguration. Setting the SSL options on the HostConfiguration object enables support for clustering scenarios. Note in the above example we specified two HostConfiguration objects. If one becomes unavailable, EasyNetQ's PersistentConnection feature will automatically connect to the next available host. Having SSL settings configured on the host will allow it to connect without any errors.
 
-The SSL settings (which are exposed from the underlying Rabbit code) don’t allow for multiple servers. From what I can see, that’s an EasyNetQ feature. I’m guessing that it would be a case of having to wrap the SSL options into each of the HostConfiguration objects.
+If you only specify one host then you can choose to set the SslOptions on the HostConfiguration object or the ConnectionConfiguration object directly.
 
 Don’t forget the call to Validate(). I initially skipped that (on the basis I was hard coding everything, so there could be nothing wrong which required validation). However, that method call actually applies various settings that are required to make the connection work.
