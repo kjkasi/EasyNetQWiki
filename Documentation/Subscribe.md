@@ -64,6 +64,6 @@ You can cancel a subscriber at any time by calling Dispose on the `ISubscription
 
 This will stop EasyNetQ consuming from the queue and close the consumer's channel.
 
-Note that disposing of the `IBus or `IAdvancedBus` instance will also cancel all consumers and close the connection to RabbitMQ.
+Note that disposing of the `IBus` or `IAdvancedBus` instance will also cancel all consumers and close the connection to RabbitMQ.
 
 Do _not_ call `subscriptionResult.Dispose()` inside a message handler. This will create a race condition between EasyNetQ ACK'ing the message on the consumer's channel and the `subscriptionResult.Dispose()` call to close that channel. Because of EasyNetQ's internal architecture these calls will be invoked on different threads and the timing is not deterministic.
