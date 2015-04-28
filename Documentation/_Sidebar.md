@@ -17,6 +17,7 @@
 1. [[Versioning Messages]]
 1. [[Publisher Confirms]]
 1. [[Scheduling Events with Future Publish]]
+   1. [[Support for Delayed Messages Plugin]]
 1. [[Auto Subscriber]]
 1. [[Non Generic Publish & Subscription Extension Methods]]
 1. [[Error Conditions]]
