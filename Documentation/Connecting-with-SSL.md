@@ -45,6 +45,6 @@ If you only specify one host then you can choose to set the SslOptions on the Ho
 
 Don’t forget the call to Validate(). I initially skipped that (on the basis I was hard coding everything, so there could be nothing wrong which required validation). However, that method call actually applies various settings that are required to make the connection work.
 
-You can refer SslOption documentation here [SSL Option Class](https://www.rabbitmq.com/releases/rabbitmq-dotnet-client/v3.5.2/rabbitmq-dotnet-client-3.5.2-client-htmldoc/html/type-RabbitMQ.Client.SslOption.html)
+You can refer SslOption documentation here [SslOption Class](https://www.rabbitmq.com/releases/rabbitmq-dotnet-client/v3.5.2/rabbitmq-dotnet-client-3.5.2-client-htmldoc/html/type-RabbitMQ.Client.SslOption.html)
 
 You can try to configure and test with official RabbitMQ .NET client and try to run sample first to clarify that all settings are correct as described here [Official RabbitMQ SSL documentation for .NET](https://www.rabbitmq.com/ssl.html#configuring-dotnet) before to put any changes to your project. 
