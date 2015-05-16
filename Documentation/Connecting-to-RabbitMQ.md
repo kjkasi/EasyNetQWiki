@@ -20,7 +20,7 @@ The connection string is made up of key/value pairs in the format key=value, eac
 * **persistentMessages** (e.g. persistentMessages=false) default is true. This determines how the delivery_mode in basic.properties is set when a message is published. false=1, true=2. When set to true, messages will be persisted to disk by RabbitMQ and survive a server restart. Performance gains can be expected when set to false.
 * **product** (e.g. product=My really important service) was introduced in EasyNetQ 0.27.3. default value is the name of the executable which instantiates the bus. The value entered here will show up in the administrative interface for RabbitMQ. 
 * **platform** (e.g. platform=my.fully.qualified.domain.name) was introduced in EasyNetQ 0.27.3. default value is the hostname of the machine running the client process instantiating the bus. The value entered here will show up in the administrative interface for RabbitMQ. 
-* **timeout** (e.g timeout=60) was introduced in EasyNetQ 0.17. Parsed to type System.UInt16. Range from 0 to 65535. Format is in seconds. For infinite timeout please use 0. Throws System.TimeoutException when value exceeded.
+* **timeout** (e.g timeout=60) default is 10. Was introduced in EasyNetQ 0.17. Parsed to type System.UInt16. Range from 0 to 65535. Format is in seconds. For infinite timeout please use 0. Throws System.TimeoutException when value exceeded.
 
 To close the connection, simply dispose the bus like this:
 
