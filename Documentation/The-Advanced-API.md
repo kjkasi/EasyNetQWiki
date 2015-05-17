@@ -16,23 +16,23 @@ To declare an exchange use the IAdvancedBus's ExchangeDeclare method:
         bool passive = false, 
         bool durable = true, 
         bool autoDelete = false, 
-        bool @internal = false);
+        bool @internal = false, 
+        string alternateExchange = null, 
+        bool delayed = false);
 
 What the parameters mean:
 
-    name: The name of the exchange you want to create
-    type: The type of the exchange. It must be a valid AMQP exchange type. Use the static
+    name:		The name of the exchange you want to create
+    type:		The type of the exchange. It must be a valid AMQP exchange type. Use the static
         properties of the ExchangeType class to safely declare exchanges.
-    passive: Do not create an exchange. If the named exchange doesn't exist, throw an exception.
-        (default false)
-    durable: Survive server restarts. If this parameter is false, the exchange will be removed
-        when the server restarts.
-        (default true)
-    autoDelete: Delete this exchange when the last queue is unbound.
-        (default false)
-    internal: This exchange can not be directly used by publishers, but only used by exchange to
-        exchange bindings.
-        (default false)
+    passive:		Do not create an exchange. If the named exchange doesn't exist, throw an exception. (default false)
+    durable:		Survive server restarts. If this parameter is false, the exchange will be removed
+        when the server restarts. (default true)
+    autoDelete:		Delete this exchange when the last queue is unbound. (default false)
+    internal:		This exchange can not be directly used by publishers, but only used by exchange to
+        exchange bindings. (default false)
+    alternateExchange:		Route messages to this exchange if they cannot be routed.
+    delayed:		If set, declars x-delayed-type exchange for routing delayed messages.
 
 Some examples:
 
@@ -54,30 +54,30 @@ To get the RabbitMQ default exchange do this:
 To declare a queue use the IAdvancedBus's QueueDeclare method:
 
     IQueue QueueDeclare(
-        string name,
-        bool passive = false,
-        bool durable = true,
-        bool exclusive = false,
+        string name, 
+        bool passive = false, 
+        bool durable = true, 
+        bool exclusive = false, 
         bool autoDelete = false,
-        uint perQueueTtl = uint.MaxValue,
-        uint expires = uint.MaxValue);
+        int? perQueueMessageTtl  = null, 
+        int? expires = null,
+        byte? maxPriority = null,
+        string deadLetterExchange = null, 
+        string deadLetterRoutingKey = null);
 
 What the parameters mean:
 
     name:		The name of the queue	
-    passive:	Do not create the queue if it doesn't exist, instead, throw an exception.
+    passive:		Do not create the queue if it doesn't exist, instead, throw an exception.
     	(default false)
-    durable:	Can survive a server restart. If this is false the queue will be deleted when
-    			the server restarts.
-		(default true)
-    exclusive:	Can only be accessed by the current connection.
-    	(default false)
-    autoDelete:	Delete the queue once all consumers have disconnected.
-    	(default false)
-    perQueueTtl: How long in milliseconds a message should remain on the queue before it is discarded.
-    	(default not set)
-    expires:	How long in milliseconds the queue should remain unused before it is automatically deleted.
-    	(default not set)
+    durable:		Can survive a server restart. If this is false the queue will be deleted when the server restarts. (default true)
+    exclusive:		Can only be accessed by the current connection. (default false)
+    autoDelete:		Delete the queue once all consumers have disconnected. (default false)
+    perQueueMessageTtl:		How long in milliseconds a message should remain on the queue before it is discarded. (default not set)
+    expires:		How long in milliseconds the queue should remain unused before it is automatically deleted. (default not set)
+    maxPriority:		Determines the maximum message priority that the queue should support.
+    deadLetterExchange:		Determines an exchange's name can remain unused before it is automatically deleted by the server.
+    deadLetterRoutingKey:		If set, will route message with the routing key specified, if not set, message will be routed with the same routing keys they were originally published with.
 
 Some examples:
 
