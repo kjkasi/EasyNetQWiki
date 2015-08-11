@@ -83,7 +83,7 @@ What the parameters mean:
     maxLength:		  The maximum number of ready messages that may exist on the queue.  Messages will be dropped or dead-lettered from the front of the queue to make room for new messages once the limit is reached.
     maxLengthBytes:	  The maximum size of the queue in bytes.  Messages will be dropped or dead-lettered from the front of the queue to make room for new messages once the limit is reached
 
-Note that behaviour of RabbitMQ if the the maxLength, and maxLengthBytes properties is not as one might have expected.
+Please note the behaviour of RabbitMQ if either of the maxLength, and/or maxLengthBytes properties are defined is perhaps not as one might have expected. One might expect for messages to be rejected by the broker, rather than other messages dropped from the front of the queue.
     
 Some examples:
 
