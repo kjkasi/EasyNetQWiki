@@ -63,22 +63,28 @@ To declare a queue use the IAdvancedBus's QueueDeclare method:
         int? expires = null,
         byte? maxPriority = null,
         string deadLetterExchange = null, 
-        string deadLetterRoutingKey = null);
+        string deadLetterRoutingKey = null,
+        int? maxLength = null,
+        int? maxLengthBytes = null);
 
 What the parameters mean:
 
-    name:		The name of the queue	
-    passive:		Do not create the queue if it doesn't exist, instead, throw an exception.
+    name:		  The name of the queue	
+    passive:		  Do not create the queue if it doesn't exist, instead, throw an exception.
     	(default false)
-    durable:		Can survive a server restart. If this is false the queue will be deleted when the server restarts. (default true)
-    exclusive:		Can only be accessed by the current connection. (default false)
-    autoDelete:		Delete the queue once all consumers have disconnected. (default false)
-    perQueueMessageTtl:		How long in milliseconds a message should remain on the queue before it is discarded. (default not set)
-    expires:		How long in milliseconds the queue should remain unused before it is automatically deleted. (default not set)
-    maxPriority:		Determines the maximum message priority that the queue should support.
-    deadLetterExchange:		Determines an exchange's name can remain unused before it is automatically deleted by the server.
-    deadLetterRoutingKey:		If set, will route message with the routing key specified, if not set, message will be routed with the same routing keys they were originally published with.
+    durable:		  Can survive a server restart. If this is false the queue will be deleted when the server restarts. (default true)
+    exclusive:		  Can only be accessed by the current connection. (default false)
+    autoDelete:		  Delete the queue once all consumers have disconnected. (default false)
+    perQueueMessageTtl:   How long in milliseconds a message should remain on the queue before it is discarded. (default not set)
+    expires:	          How long in milliseconds the queue should remain unused before it is automatically deleted. (default not set)
+    maxPriority:	  Determines the maximum message priority that the queue should support.
+    deadLetterExchange:	  Determines an exchange's name can remain unused before it is automatically deleted by the server.
+    deadLetterRoutingKey: If set, will route message with the routing key specified, if not set, message will be routed with the same routing keys they were originally published with.
+    maxLength:		  The maximum number of ready messages that may exist on the queue.  Messages will be dropped or dead-lettered from the front of the queue to make room for new messages once the limit is reached.
+    maxLengthBytes:	  The maximum size of the queue in bytes.  Messages will be dropped or dead-lettered from the front of the queue to make room for new messages once the limit is reached
 
+Note that behaviour of RabbitMQ if the the maxLength, and maxLengthBytes properties is not as one might have expected.
+    
 Some examples:
 
     // declare a durable queue
