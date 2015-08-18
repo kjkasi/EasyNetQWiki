@@ -139,13 +139,13 @@ The [Message<T>](https://github.com/mikehadlow/EasyNetQ/blob/master/Source/EasyN
 
 Finally publish your message using the Publish method. Here we are publishing to the default exchange:
 
-    bus.Publish(Exchange.GetDefault, queueName, message);
+    bus.Publish(Exchange.GetDefault(), queueName, false, false, message);
 
 An overload of Publish allows you to bypass EasyNetQ's message serialization and create your own byte array messages:
 
     var properties = new MessageProperties();
     var body = Encoding.UTF8.GetBytes("Hello World!");
-    bus.Publish(Exchange.GetDefault, queueName, properties, body);
+    bus.Publish(Exchange.GetDefault, queueName, false, false, properties, body);
 
 ## Consuming
 
