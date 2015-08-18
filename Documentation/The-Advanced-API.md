@@ -145,7 +145,7 @@ An overload of Publish allows you to bypass EasyNetQ's message serialization and
 
     var properties = new MessageProperties();
     var body = Encoding.UTF8.GetBytes("Hello World!");
-    bus.Publish(Exchange.GetDefault, queueName, false, false, properties, body);
+    bus.Publish(Exchange.GetDefault(), queueName, false, false, properties, body);
 
 ## Consuming
 
