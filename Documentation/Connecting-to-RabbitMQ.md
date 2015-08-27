@@ -12,7 +12,7 @@ The connection string is made up of key/value pairs in the format key=value, eac
 
 * **host** (e.g. host=localhost or host=192.168.2.56 or host=myhost.mydomain.com) this field is required. To specify the port you want to connect to, you can use the standard format host:port (e.g. host=myhost.com:5673). If you omit the port number, the default AMQP port is used (5672). To connect to a RabbitMQ cluster, specify each cluster node separated by commas (e.g. host=myhost1.com,myhost2.com,myhost3.com). See [[Cluster Support]] for more details.
 * **virtualHost** (e.g. virtualHost=myVirtualHost) default is the default virtual host '/'
-* **username** (e.g. username=mike) default is 'guest'
+* **username** (e.g. username=mike) default is 'guest' (for non 'localhost' host you need other user than 'guest')
 * **password** (e.g. password=mysecret) default is 'guest'
 * **requestedHeartbeat** (e.g. requestedHeartbeat=10) default is 10 seconds. Set to zero for no heartbeat.
 * **prefetchcount** (e.g. prefetchcount=1) default is 50. This is the number of messages that will be delivered by RabbitMQ before an ack is sent by EasyNetQ. Set to 0 for infinite prefetch (not recommended). Set to 1 for fair work balancing among a farm of consumers.
