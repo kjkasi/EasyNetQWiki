@@ -1,4 +1,4 @@
-**EasyNetQ is alpha software**. It is under heavy development with frequent changes both to the internals and to the public API. The developers follow the following versioning scheme:
+**EasyNetQ is beta software**. It has been used successfully in production by many companies, but be aware that it is under development with frequent changes both to the internals and to the public API. You should regression test each update. The developers follow the following versioning scheme:
 
 &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;.&lt;build-number&gt;
 
