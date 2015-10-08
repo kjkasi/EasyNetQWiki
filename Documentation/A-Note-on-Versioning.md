@@ -8,7 +8,7 @@ So for example, the version at the time this was written was:
 
 We use the following, somewhat semantic, versioning policy:
 
-    major           - 0 to indicate that this is alpha software.
+    major           - 0 to indicate that this is beta software.
     minor           - increments when there is a breaking change to the API.
     patch           - indicates a bug fix or some internal change.
     build-number    - increments on each build on the CI server.
