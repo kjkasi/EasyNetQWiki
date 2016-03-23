@@ -57,7 +57,7 @@ By default the `AutoSubscriber` will generate a unique `SubscriptionId`. If you 
 Lets say, the consumer above should have a fixed `SubscriptionId` for the consumer method of `MessageB`. Just decorated it and define a value for `SubscriptionId`.
 
 ```c#
-[Consumer(SubscriptionId = "MyExplicitId")]
+[AutoSubscriberConsumer(SubscriptionId = "MyExplicitId")]
 public void Consume(MessageB message) { }
 ```
 
