@@ -52,7 +52,7 @@ var msg3 = new MessageA(msg3);                //not picked up
 ```
 
 ## Specify A Specific SubscriptionId
-By default the `AutoSubscriber` will generate a unique `SubscriptionId`. If you would like it to be fixed, you can decorate the `Consume` method with the `ConsumerAttribute`. Why you would make it fixed, is something you can [read up about here](subscribe).
+By default the `AutoSubscriber` will generate a unique `SubscriptionId`. If you would like it to be fixed, you can decorate the `Consume` method with the `AutoSubscriberConsumerAttribute`. Why you would make it fixed, is something you can [read up about here](subscribe).
 
 Lets say, the consumer above should have a fixed `SubscriptionId` for the consumer method of `MessageB`. Just decorated it and define a value for `SubscriptionId`.
 
