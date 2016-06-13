@@ -35,7 +35,7 @@ of a message, so long as it has a version, it can be deserialized and handled.
 
 1. If the change cannot be implemented by extending the original message type then it is not a new version of the message, it is a new message type.
 1. If you are unsure, prefer to create a new message type rather than version an existing message.
-1. Versioned messges should not be used with request / response as the message types are part of the request / response contract and `Request<V1,Response>` is not the same as `Request<V2,Response>` even if `V2` extends `V1` (i.e. `public class V2 : V1 {}`)
+1. Versioned messages should not be used with request / response as the message types are part of the request / response contract and `Request<V1,Response>` is not the same as `Request<V2,Response>` even if `V2` extends `V1` (i.e. `public class V2 : V1 {}`)
 1. Versioned messages should not be used with send / receive as this is targeted sending and therefore there is a declared dependency between the sender and the receiver.
 
 
