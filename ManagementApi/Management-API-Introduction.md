@@ -24,7 +24,7 @@ To give an overview of the sort of things you can do with **EasyNetQ.Client.Mana
     initial.CreatePermission(new PermissionInfo(user, vhost));
 
     // now log in again as the new user
-    var management = new ManagementClient("http://localhost", user.name, "topSecret");
+    var management = new ManagementClient("http://localhost", user.Name, "topSecret");
 
     // test that everything's OK
     management.IsAlive(vhost);
