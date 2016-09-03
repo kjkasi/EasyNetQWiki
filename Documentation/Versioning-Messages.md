@@ -1,4 +1,4 @@
-To enable support for versioned messages you need to ensure the requried components are configured. The simplest way to achieve this is:
+To enable support for versioned messages you need to ensure the required components are configured. The simplest way to achieve this is:
 
 ```csharp
 var bus = RabbitHutch.CreateBus( "host=localhost", services => services.EnableMessageVersioning() )
