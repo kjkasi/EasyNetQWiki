@@ -1,4 +1,4 @@
-From v0.7.1.30 EasyNetQ comes with a simple `AutoSubscriber`. You can use it to easily scan a specific assembly for classes that implement either of the interfaces `IConsume<T>` or `IConsumeAsync<T>`, and then let the auto subscriber subscribe these consumers to your bus. An implementation of `IConsume<T>` will use the buses Subscribe method whilst implementations of `IConsumeAsync<T>` will use the buses SubscribeAsync method, see [[Subscribe]] for details. You can of course let your consumers handle multiple messages. Lets have a look at some samples.
+From v0.7.1.30 EasyNetQ comes with a simple `AutoSubscriber`. You can use it to easily scan a specific assembly for classes that implement either of the interfaces `IConsume<T>` or `IConsumeAsync<T>`, and then let the auto subscriber subscribe these consumers to your bus. An implementation of `IConsume<T>` will use the buses Subscribe method whilst implementations of `IConsumeAsync<T>` will use the buses SubscribeAsync method, see [[Subscribe]] for details. You can of course let your consumers handle multiple messages. Let's have a look at some samples.
 
 **Note**: From version 0.13.0 all the AutoSubscriber classes are in the EasyNetQ.AutoSubscribe namespace, so please add the following using statement:
 
@@ -52,7 +52,9 @@ var msg3 = new MessageA(msg3);                //not picked up
 ```
 
 ## Specify A Specific SubscriptionId
-By default the `AutoSubscriber` will generate a unique `SubscriptionId`. If you would like it to be fixed, you can decorate the `Consume` method with the `AutoSubscriberConsumerAttribute`. Why you would make it fixed, is something you can [read up about here](subscribe).
+By default the `AutoSubscriber` will generate a unique `SubscriptionId` per each Message/Consumer combination. This means that you you start multiple instances of the same consumer they will read from the same queues in a round-robin fashion (worker pattern). 
+
+If you would like subscription id's to be fixed, you can decorate the `Consume` method with the `AutoSubscriberConsumerAttribute`. Why you would make it fixed, is something you can [read up about here](subscribe).
 
 Lets say, the consumer above should have a fixed `SubscriptionId` for the consumer method of `MessageB`. Just decorated it and define a value for `SubscriptionId`.
 
