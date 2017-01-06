@@ -52,7 +52,7 @@ var msg3 = new MessageA(msg3);                //not picked up
 ```
 
 ## Specify A Specific SubscriptionId
-By default the `AutoSubscriber` will generate a unique `SubscriptionId` per each Message/Consumer combination. This means that you you start multiple instances of the same consumer they will read from the same queues in a round-robin fashion (worker pattern). 
+By default the `AutoSubscriber` will generate a unique `SubscriptionId` per each Message/Consumer combination. This means that you will start multiple instances of the same consumer and they will read from the same queues in a round-robin fashion (worker pattern). 
 
 If you would like subscription id's to be fixed, you can decorate the `Consume` method with the `AutoSubscriberConsumerAttribute`. Why you would make it fixed, is something you can [read up about here](subscribe).
 
