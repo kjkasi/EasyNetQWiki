@@ -27,7 +27,7 @@ SubscribeAsync allows your subscriber delegate to return a Task immediately and 
                     message.Text, 
                     task.Result)));
 
-Another example that will result in an exception been thrown if there is a fault which will then result in the message being placed on the default error queue
+Another example that will result in an exception been thrown if there is a fault which will then result in the message being placed on the default error queue:
 
     _bus.SubscribeAsync<MessageType>("Queue_Identifier",
                 message => Task.Factory.StartNew(() =>
