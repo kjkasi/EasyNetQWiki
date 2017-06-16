@@ -1,6 +1,6 @@
 **[[Home]]**
 
-1. [[Quick Start]]
+10. [[Quick Start]]
 1. [[Introduction]]
 1. [[A Note on Versioning]]
 1. [[Installing EasyNetQ]]
