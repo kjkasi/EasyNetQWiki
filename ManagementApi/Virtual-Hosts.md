@@ -4,7 +4,7 @@
 
     foreach (var vhost in vhosts)
     {
-        Console.Out.WriteLine("vhost.name = {0}", vhost.name);
+        Console.Out.WriteLine("vhost.name = {0}", vhost.Name);
     }
 
 Outputs something like this:
