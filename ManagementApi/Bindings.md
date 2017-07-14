@@ -4,20 +4,20 @@
 
     foreach (var binding in bindings)
     {
-        Console.Out.WriteLine("binding.destination = {0}", binding.destination);
-        Console.Out.WriteLine("binding.source = {0}", binding.source);
-        Console.Out.WriteLine("binding.properties_key = {0}", binding.properties_key);
+        Console.Out.WriteLine("binding.Destination = {0}", binding.Destination);
+        Console.Out.WriteLine("binding.Source = {0}", binding.Source);
+        Console.Out.WriteLine("binding.Properties_key = {0}", binding.PropertiesKey);
     }
 
 Outputs something like this:
 
-    binding.destination = EasyNetQ_Tests_MyMessage:EasyNetQ_Tests_test
-    binding.source = EasyNetQ_Tests_MyMessage:EasyNetQ_Tests
-    binding.properties_key = %23
-    binding.destination = EasyNetQ_Tests_TestPerformanceMessage:EasyNetQ_Tests_Messages_consumer
-    binding.source = EasyNetQ_Tests_TestPerformanceMessage:EasyNetQ_Tests_Messages
-    binding.properties_key = %23
-    binding.destination = EasyNetQ_Default_Error_Queue
+    binding.Destination = EasyNetQ_Tests_MyMessage:EasyNetQ_Tests_test
+    binding.Source = EasyNetQ_Tests_MyMessage:EasyNetQ_Tests
+    binding.PropertiesKey = %23
+    binding.Destination = EasyNetQ_Tests_TestPerformanceMessage:EasyNetQ_Tests_Messages_consumer
+    binding.Source = EasyNetQ_Tests_TestPerformanceMessage:EasyNetQ_Tests_Messages
+    binding.PropertiesKey = %23
+    binding.Destination = EasyNetQ_Default_Error_Queue
 
 ***
 
