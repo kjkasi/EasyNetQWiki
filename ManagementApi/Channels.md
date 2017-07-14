@@ -4,9 +4,9 @@
 
     foreach (var channel in channels)
     {
-        Console.Out.WriteLine("channel.name = {0}", channel.name);
-        Console.Out.WriteLine("channel.user = {0}", channel.user);
-        Console.Out.WriteLine("channel.prefetch_count = {0}", channel.prefetch_count);
+        Console.Out.WriteLine("channel.name = {0}", channel.Name);
+        Console.Out.WriteLine("channel.user = {0}", channel.User);
+        Console.Out.WriteLine("channel.prefetch_count = {0}", channel.PrefetchCount);
     }
 
 Will output:
