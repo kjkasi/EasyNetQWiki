@@ -4,7 +4,7 @@
 
     foreach (var user in users)
     {
-        Console.Out.WriteLine("user.name = {0}", user.name);
+        Console.Out.WriteLine("user.name = {0}", user.Name);
     }
 
 Will output something like:
