@@ -4,7 +4,7 @@
 
     foreach (Exchange exchange in exchanges)
     {
-        Console.Out.WriteLine("exchange.name = {0}", exchange.name);
+        Console.Out.WriteLine("exchange.Name = {0}", exchange.Name);
     }
 
 Will output:
