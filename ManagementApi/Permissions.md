@@ -4,11 +4,11 @@
 
     foreach (var permission in permissions)
     {
-        Console.Out.WriteLine("permission.user = {0}", permission.user);
-        Console.Out.WriteLine("permission.vhost = {0}", permission.vhost);
-        Console.Out.WriteLine("permission.configure = {0}", permission.configure);
-        Console.Out.WriteLine("permission.read = {0}", permission.read);
-        Console.Out.WriteLine("permission.write = {0}", permission.write);
+        Console.Out.WriteLine("permission.user = {0}", permission.User);
+        Console.Out.WriteLine("permission.vhost = {0}", permission.Vhost);
+        Console.Out.WriteLine("permission.configure = {0}", permission.Configure);
+        Console.Out.WriteLine("permission.read = {0}", permission.Read);
+        Console.Out.WriteLine("permission.write = {0}", permission.Write);
     }
 
 Will output something like this:
@@ -39,8 +39,8 @@ For more information on access control, see [the RabbitMQ documentation](http://
 
 The **PermissionInfo** class represents a single permission. The default permission gives access to everything:
 
-    user = new User {name = "mikey"};
-    vhost = new Vhost {name = "theVHostName"};
+    user = new User {Name = "mikey"};
+    vhost = new Vhost {Name = "theVHostName"};
     var permissionInfo = new PermissionInfo(user, vhost);
 
 Use the **DenyAllConfigure**, **DenyAllRead** and **DenyAllWrite** methods to remove all permissions for these operations:
@@ -54,8 +54,8 @@ To deny user configure permissions on all objects, but read and write on any the
 
     var permissionInfo = new PermissionInfo(user, vhost)
         .DenyAllConfigure()
-        .Read(@"mike\..*")
-        .Write(@"mike\..*");
+        .SetRead(@""mike\..*")
+        .SetWrite(@"mike\..*");
 
 Once you've created a **PermissionInfo** object, you can create the permission like this:
 
