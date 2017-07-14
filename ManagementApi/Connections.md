@@ -4,14 +4,14 @@
 
     foreach (var connection in connections)
     {
-        Console.Out.WriteLine("connection.name = {0}", connection.name);
-        Console.WriteLine("user:\t{0}", connection.client_properties.user);
-        Console.WriteLine("application:\t{0}", connection.client_properties.application);
-        Console.WriteLine("client_api:\t{0}", connection.client_properties.client_api);
-        Console.WriteLine("application_location:\t{0}", connection.client_properties.application_location);
-        Console.WriteLine("connected:\t{0}", connection.client_properties.connected);
-        Console.WriteLine("easynetq_version:\t{0}", connection.client_properties.easynetq_version);
-        Console.WriteLine("machine_name:\t{0}", connection.client_properties.machine_name);
+       Console.Out.WriteLine("connection.name = {0}", connection.Name);
+       Console.WriteLine("user:\t{0}", connection.ClientProperties.User);
+       Console.WriteLine("application:\t{0}", connection.ClientProperties.Application);
+       Console.WriteLine("client_api:\t{0}", connection.ClientProperties.Application);
+       Console.WriteLine("application_location:\t{0}", connection.ClientProperties.ApplicationLocation);
+       Console.WriteLine("connected:\t{0}", connection.ClientProperties.Connected);
+       Console.WriteLine("easynetq_version:\t{0}", connection.ClientProperties.EasynetqVersion);
+       Console.WriteLine("machine_name:\t{0}", connection.ClientProperties.MachineName);
     }
 
 Outputs the following on a system with a single consumer:
