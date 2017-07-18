@@ -1,10 +1,10 @@
 The EasyNetQ queue management utility. Use it to grab messages from queues and re-publish them. Also use it to inspect error queue messages and retry them.
 
-###Usage:
+### Usage:
 
     EasyNetQ.Hosepipe.exe <command> [<option:value> ..]
 
-###Commands
+### Commands
 
 	dump	Dump all the messages in a queue to the given directory
 			Note: this creates three files for each message:
@@ -30,7 +30,7 @@ The EasyNetQ queue management utility. Use it to grab messages from queues and r
 
 	?		Output this usage message
 
-###Options
+### Options
 
 	s	the RabbitMQ broker (server) to connect to. Default is 'localhost'
 	v	the virtual host. Default is '/'
@@ -40,7 +40,7 @@ The EasyNetQ queue management utility. Use it to grab messages from queues and r
 	o	the directory to output messages to. Default is current directory.
 	n	the maximum number of messages to retrieve. Default is 1000.
 
-###Examples
+### Examples
 	
 1. To output all the messages in a queue called 'my_queue' as text files 
    to a directory 'C:\temp\messages':
@@ -60,7 +60,7 @@ The EasyNetQ queue management utility. Use it to grab messages from queues and r
 
     `EasyNetQ.Hosepipe.exe retry s:localhost u:guest p:guest o:C:\temp\messages`
 
-###Notes
+### Notes
 
 Neither of the commands 'dump' and 'err' remove messages from queues, they simply
 iterate the queue and copy the messages to the given directory, leaving the original 
@@ -69,7 +69,7 @@ queue first (using the RabbitMQ management interface), because if the messages f
 again, they too will result in new error messages being published to the error queue 
 and it is possible that	duplicate messages could be created.
 
-###Installing
+### Installing
 
 Currently Hosepipe is only available as source code. You can find the project here:
 
