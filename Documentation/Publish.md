@@ -12,6 +12,6 @@ Here's the code...
 
 For guaranteed message delivery use [[Publisher Confirms]].
 
-###A warning
+### A warning
 
 The actors in the Publish / Subscribe pattern are ignorant of each other. a publisher is simply saying to the world 'this has happened', a subscriber is telling the world 'I care about this'. In this model it's fine for no one to care about a particular event. There might be one subscriber for a message, there might be 200, or there might be none. The publisher shouldn't care. EasyNetQ implements this pattern. **If you start publishing and no subscribers have ever been started then your messages simply disappear.** This is by design.
