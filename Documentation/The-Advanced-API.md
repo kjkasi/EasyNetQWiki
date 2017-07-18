@@ -49,7 +49,7 @@ To get the RabbitMQ default exchange do this:
 
     var exchange = Exchange.GetDefault();
 
-##Declaring Queues
+## Declaring Queues
 
 To declare a queue use the IAdvancedBus's QueueDeclare method:
 
@@ -99,7 +99,7 @@ To declare an 'unnamed' exclusive queue, where RabbitMQ provides the queue name,
 
 Note that EasyNetQ's automatic consumer reconnection logic is turned off for exclusive queues.
 
-##Bindings
+## Bindings
 
 You bind a queue to an exchange like this:
 
