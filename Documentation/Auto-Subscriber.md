@@ -100,7 +100,7 @@ public class MyConsumer : IConsume<MessageA>
 }
 ```
 
-##Using an IoC container with AutoSubscriber
+## Using an IoC container with AutoSubscriber
 
 AutoSubscriber has a property, MessageDispatcher, which allows you to plug in your own message dispatching code. This allows you to resolve your consumers from an IoC container or do other custom dispatch time tasks.
 
