@@ -155,7 +155,7 @@ Use the IAdvancedBus's Consume method to consume messages from a queue.
 
 The onMessage delegate is the handler you provide for message delivery. Its parameters are as follows:
 
-As described in the publish section above, IMessage<T> gives you access to the message and its MessageProperties. MessageRecivedInfo gives you extra information about the context in which the message was consumed:
+As described in the publish section above, IMessage<T> gives you access to the message and its MessageProperties. MessageReceivedInfo gives you extra information about the context in which the message was consumed:
 
     public class MessageReceivedInfo
     {
