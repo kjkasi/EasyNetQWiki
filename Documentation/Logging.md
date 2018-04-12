@@ -1,18 +1,9 @@
-EasyNetQ provides a logger interface [IEasyNetQLogger](https://github.com/mikehadlow/EasyNetQ/blob/master/Source/EasyNetQ/IEasyNetQLogger.cs):
+EasyNetQ provides a logger interface using [LibLog](https://github.com/damianh/LibLog). 
 
-    public interface IEasyNetQLogger
-    {
-       void DebugWrite(string format, params object[] args);
-       void InfoWrite(string format, params object[] args);
-       void ErrorWrite(string format, params object[] args);
-       void ErrorWrite(Exception exception);
-    }
+It contains transparent built-in support for NLog, Log4Net, EntLib Logging, Serilog and Loupe, but you should to configure appropriate logging library first. For example, if you are using [Serilog](https://github.com/serilog/serilog) you should configure `Log.Logger` and LibLog will use it.
 
-Logging is disabled by default, [NullLogger](https://github.com/EasyNetQ/EasyNetQ/blob/master/Source/EasyNetQ/Loggers/NullLogger.cs) is registered as the concrete implementation of `IeasyNetQLogger`.
+If you need basic console logging for testing or debugging purposes you can use build in [ConsoleLogProvider](https://github.com/Pliner/EasyNetQ/blob/8b58d9163741af2cdb092ce51ca27537c7f8b05d/Source/EasyNetQ/Logging/ConsoleLoggingProvider.cs) in following way:
 
-A logger that logs to the console ([ConsoleLogger](https://github.com/EasyNetQ/EasyNetQ/blob/master/Source/EasyNetQ/Loggers/ConsoleLogger.cs)) exists and can be used for testing or debugging purposes. However, this is probably not what you want in a production system. The debug level logging is _very_ verbose and logging all this information may have a performance impact on your application. Also, it will not make much sense to someone without an intimate knowledge of AMQP and EasyNetQ.
+`LogProvider.SetCurrentLogProvider(ConsoleLogProvider.Instance);            `
 
-You should provide your own implementation of IEasyNetQLogger that logs info and error messages to your application's log. The RabbitHutch.CreateBus method provides overloads that allow you to replace any of the EasyNetQ components. See [[Replacing EasyNetQ Components]]. You can use this to register your custom logger with the bus. For example:
-
-    var logger = new MyLogger() // implements IEasyNetQLogger
-    var bus = RabbitHutch.CreateBus(“my connection string”, x => x.Register<IEasyNetQLogger>(_ => logger));
+However, this is probably not what you want in a production system. The debug level logging is _very_ verbose and logging all this information may have a performance impact on your application. Also, it will not make much sense to someone without an intimate knowledge of AMQP and EasyNetQ.
