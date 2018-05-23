@@ -19,4 +19,4 @@ containerBuilder.RegisterEasyNetQ("host=localhost", c => {/* override services h
 var container = containerBuilder.Build();
 ```
 
-After calling `RegisterEasyNetQ`, all components will be registered in `ContainerBuilder`.
+After calling `RegisterEasyNetQ` all components will be registered in `ContainerBuilder`.
