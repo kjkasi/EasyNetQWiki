@@ -1,11 +1,12 @@
 EasyNetQ is made up of a collection of independent components. Internally it uses LightInject container internally, which is wrapped by DefaultServiceProvider. If you look at the code for the static RabbitHutch class that you use to create instances of the core IBus interface, you will see that it simply creates a new DefaultServiceProvider, registers all of EasyNetQ’s components, and then calls container.Resolve<IBus>() creating a new instance of IBus with its tree of dependencies supplied by the container:
+
 ```
-  public static IBus CreateBus(Func<IServiceResolver, ConnectionConfiguration> connectionConfigurationFactory, Action<IServiceRegister> registerServices)
-        {
-            var container = new DefaultServiceContainer();
-            RegisterBus(container, connectionConfigurationFactory, registerServices);
-            return container.Resolve<IBus>();
-        }
+public static IBus CreateBus(Func<IServiceResolver, ConnectionConfiguration> connectionConfigurationFactory, Action<IServiceRegister> registerServices)
+{
+    var container = new DefaultServiceContainer();
+    RegisterBus(container, connectionConfigurationFactory, registerServices);
+    return container.Resolve<IBus>();
+}
 ```
 
 But what if you want EasyNetQ to use your container of choice? From version 3 the RabbitHutch class provides a static method, RegisterBus, that allows you to register EasyNetQ components in `IServiceRegister`,  which you can implement for any container you want. There are several ready adapters for [Castle Windsor](https://www.nuget.org/packages/EasyNetQ.DI.Windsor), [Autofac](https://www.nuget.org/packages/EasyNetQ.DI.Autofac), [LightInject](https://www.nuget.org/packages/EasyNetQ.DI.LightInject), [NInject](https://www.nuget.org/packages/EasyNetQ.DI.NInject), [StructureMap](https://www.nuget.org/packages/EasyNetQ.DI.StructureMap), [SimpleInjector](https://www.nuget.org/packages/EasyNetQ.DI.SimpleInjector).
