@@ -11,66 +11,12 @@ public static IBus CreateBus(Func<IServiceResolver, ConnectionConfiguration> con
 
 But what if you want EasyNetQ to use your container of choice? From version 3 the RabbitHutch class provides a static method, RegisterBus, that allows you to register EasyNetQ components in `IServiceRegister`,  which you can implement for any container you want. There are several already implemented adapters for [Castle Windsor](https://www.nuget.org/packages/EasyNetQ.DI.Windsor), [Autofac](https://www.nuget.org/packages/EasyNetQ.DI.Autofac), [LightInject](https://www.nuget.org/packages/EasyNetQ.DI.LightInject), [NInject](https://www.nuget.org/packages/EasyNetQ.DI.NInject), [StructureMap](https://www.nuget.org/packages/EasyNetQ.DI.StructureMap), [SimpleInjector](https://www.nuget.org/packages/EasyNetQ.DI.SimpleInjector).
 
-In this example we are using the Autofac IoC container:
+In this example we are using Autofac and EasyNetQ.DI.Autofac package. It provides `RegisterEasyNetQ` extension method on top of `ContainerBuilder`.  
 
-    // register our alternative container factory
-    RabbitHutch.SetContainerFactory(() =>
-        {
-            // create an instance of Windsor
-            var windsorContainer = new WindsorContainer();
+```
+var containerBuilder = new ContainerBuilder();
+containerBuilder.RegisterEasyNetQ("host=localhost", c => {/* override services here */});
+var container = containerBuilder.Build();
+```
 
-            // wrap it in our implementation of EasyNetQ.IContainer
-            return new WindsorContainerWrapper(windsorContainer);
-        });
-
-    // now we can create an IBus instance, but it's resolved from
-    // windsor, rather than EasyNetQ's default service provider.
-    var bus = RabbitHutch.CreateBus("host=localhost");
-
-Here is WindsorContainerWrapper:
-
-    public class WindsorContainerWrapper : IContainer, IDisposable
-    {
-        private readonly IWindsorContainer windsorContainer;
-
-        public WindsorContainerWrapper(IWindsorContainer windsorContainer)
-        {
-            this.windsorContainer = windsorContainer;
-        }
-
-        public TService Resolve<TService>() where TService : class
-        {
-            return windsorContainer.Resolve<TService>();
-        }
-
-        public IServiceRegister Register<TService>(System.Func<IServiceProvider, TService> serviceCreator) 
-            where TService : class
-        {
-            windsorContainer.Register(
-                Component.For<TService>().UsingFactoryMethod(() => serviceCreator(this)).LifeStyle.Singleton
-                );
-            return this;
-        }
-
-        public IServiceRegister Register<TService, TImplementation>() 
-            where TService : class 
-            where TImplementation : class, TService
-        {
-            windsorContainer.Register(
-                Component.For<TService>().ImplementedBy<TImplementation>().LifeStyle.Singleton
-                );
-            return this;
-        }
-
-        public void Dispose()
-        {
-            windsorContainer.Dispose();
-        }
-    }
-
-Note that all EasyNetQ services should be registered as singletons.
-
-It’s important that you dispose of Windsor correctly. EasyNetQ doesn’t provide a Dispose method on IContainer, but you can access the container via the advanced bus (yes, this is new too), and dispose of windsor that way:
-
-    ((WindsorContainerWrapper)bus.Advanced.Container).Dispose();
-    bus.Dispose();
+After calling `RegisterEasyNetQ`, all components will be registered in `ContainerBuilder`.
