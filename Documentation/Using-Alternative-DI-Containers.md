@@ -19,4 +19,4 @@ containerBuilder.RegisterEasyNetQ("host=localhost", c => {/* override services h
 var container = containerBuilder.Build();
 ```
 
-After calling `RegisterEasyNetQ` all components will be registered in `ContainerBuilder` and after building container you will be able to resolve `IBus` from it by calling `container.Resolve<IBus>()`.
+After calling `RegisterEasyNetQ` all components will be registered in `ContainerBuilder` and after building container you will be able to resolve `IBus` by calling `container.Resolve<IBus>()`.
