@@ -9,7 +9,7 @@ public static IBus CreateBus(Func<IServiceResolver, ConnectionConfiguration> con
 }
 ```
 
-But what if you want EasyNetQ to use your container of choice? From version 3 the RabbitHutch class provides a static method, RegisterBus, that allows you to register EasyNetQ components in `IServiceRegister`,  which you can implement for any container you want. There are several ready adapters for [Castle Windsor](https://www.nuget.org/packages/EasyNetQ.DI.Windsor), [Autofac](https://www.nuget.org/packages/EasyNetQ.DI.Autofac), [LightInject](https://www.nuget.org/packages/EasyNetQ.DI.LightInject), [NInject](https://www.nuget.org/packages/EasyNetQ.DI.NInject), [StructureMap](https://www.nuget.org/packages/EasyNetQ.DI.StructureMap), [SimpleInjector](https://www.nuget.org/packages/EasyNetQ.DI.SimpleInjector).
+But what if you want EasyNetQ to use your container of choice? From version 3 the RabbitHutch class provides a static method, RegisterBus, that allows you to register EasyNetQ components in `IServiceRegister`,  which you can implement for any container you want. There are several already implemented adapters for [Castle Windsor](https://www.nuget.org/packages/EasyNetQ.DI.Windsor), [Autofac](https://www.nuget.org/packages/EasyNetQ.DI.Autofac), [LightInject](https://www.nuget.org/packages/EasyNetQ.DI.LightInject), [NInject](https://www.nuget.org/packages/EasyNetQ.DI.NInject), [StructureMap](https://www.nuget.org/packages/EasyNetQ.DI.StructureMap), [SimpleInjector](https://www.nuget.org/packages/EasyNetQ.DI.SimpleInjector).
 
 In this example we are using the Castle Windsor IoC container:
 
