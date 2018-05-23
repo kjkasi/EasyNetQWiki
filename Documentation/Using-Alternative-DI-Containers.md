@@ -1,4 +1,4 @@
-EasyNetQ is made up of a collection of independent components. Internally it uses LightInject container internally, which is wrapped by DefaultServiceContainer. If you look at the code for the static RabbitHutch class that you use to create instances of the core IBus interface, you will see that it simply creates a new DefaultServiceContainer, registers all of EasyNetQ’s components, and then calls container.Resolve<IBus>() creating a new instance of IBus with its tree of dependencies supplied by the container:
+EasyNetQ is made up of a collection of independent components. Internally it uses LightInject container, which is wrapped by DefaultServiceContainer. If you look at the code for the static RabbitHutch class that you use to create instances of the core IBus interface, you will see that it simply creates a new DefaultServiceContainer, registers all of EasyNetQ’s components, and then calls container.Resolve<IBus>() creating a new instance of IBus with its tree of dependencies supplied by the container:
 
 ```
 public static IBus CreateBus(Func<IServiceResolver, ConnectionConfiguration> connectionConfigurationFactory, Action<IServiceRegister> registerServices)
