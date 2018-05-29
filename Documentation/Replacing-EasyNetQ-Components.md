@@ -34,7 +34,7 @@ This allows you to access other services that EasyNetQ provides. If for example 
 
 Note that we have to use an explicit type parameter on the Register method so that the internal IoC container knows which service we are replacing.
 
-To see the complete list of components that make up the IBus instance, and how they are assembled, take a look at the [ComponentRegistration](../blob/master/Source/EasyNetQ/ComponentRegistration.cs) class.
+To see the complete list of components that make up the IBus instance, and how they are assembled, take a look at the [ComponentRegistration](../blob/master/Source/EasyNetQ/DI/DefaultServicesRegistration.cs) class.
 
 You can access the container via the IAdvancedBus's Container property. This allows you to access internal components:
 
