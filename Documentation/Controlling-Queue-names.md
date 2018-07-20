@@ -1,8 +1,25 @@
-The default behaviour of EasyNetQ, when generating names for queues, is to use message type name and append it with subscription Id. For example the `PartyInvitation` message type from namespace `EasyNetQ.Tests.Integration` will use queue name **EasyNetQ.Tests.Integration.PartyInvitation:EasyNetQ.Tests_schedulingTest1**, assuming that subscription Id is `schedulingTest1`.
+The default behaviour of EasyNetQ, when generating names for queues, is to use message type name and append it with subscription Id. For example the `PartyInvitation` message type from namespace `EasyNetQ.Tests.Integration` will use queue name **EasyNetQ.Tests.Integration.PartyInvitation:EasyNetQ.Tests_schedulingTest1**, assuming that subscription Id is 
+`schedulingTest1`.
+
+## Naming conventions
+You can create your own customized naming conventions, by implementing IConventions or inheriting from the default Conventions, and registering this implementation in the services container:
+public class MyConventions : Conventions
+{
+   public MyConventions(ITypeNameSerializer typeNameSerializer) : base(typeNameSerializer)
+   {
+      ErrorQueueNamingConvention = messageInfo => "MyErrorQueue" ;
+   }
+}
+
+var bus = RabbitHutch.CreateBus(connectionString, services => services.Register(c => new MyConventions()));
+
+See also:
+https://github.com/EasyNetQ/EasyNetQ/wiki/Replacing-EasyNetQ-Components
+
 
 ## Controlling queue name
 
-To control the name of the queue, annotate the message class with `Queue` attribute:
+To control the name of a single queue, annotate the message class with `Queue` attribute:
 
 	[Queue("TestMessagesQueue", ExchangeName = "MyTestExchange")]
     public class TestMessage
@@ -15,6 +32,7 @@ To control the name of the queue, annotate the message class with `Queue` attrib
 	bus.Subscribe<TestMessage>(string.Empty, msg => Console.WriteLine(msg.Text));
 
 Here we tell EasyNetQ to use TestMessagesQueue as a queue name, and MyTestExchange as an exchange name. Notice that subscriptionId passed to Subscribe method is empty. If you specify subscriptionId then it will be appended to the end and used as queue name.
+
 
 ## Working with messages not published by EasyNetQ
 
