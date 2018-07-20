@@ -3,15 +3,16 @@ The default behaviour of EasyNetQ, when generating names for queues, is to use m
 
 ## Naming conventions
 You can create your own customized naming conventions, by implementing IConventions or inheriting from the default Conventions, and registering this implementation in the services container:
-public class MyConventions : Conventions
-{
-   public MyConventions(ITypeNameSerializer typeNameSerializer) : base(typeNameSerializer)
-   {
-      ErrorQueueNamingConvention = messageInfo => "MyErrorQueue" ;
-   }
-}
 
-var bus = RabbitHutch.CreateBus(connectionString, services => services.Register(c => new MyConventions()));
+    public class MyConventions : Conventions
+    {
+      public MyConventions(ITypeNameSerializer typeNameSerializer) : base(typeNameSerializer)
+      {
+        ErrorQueueNamingConvention = messageInfo => "MyErrorQueue" ;
+      }
+    }
+
+`var bus = RabbitHutch.CreateBus(connectionString, services => services.Register(c => new MyConventions()));`
 
 See also:
 https://github.com/EasyNetQ/EasyNetQ/wiki/Replacing-EasyNetQ-Components
@@ -21,7 +22,7 @@ https://github.com/EasyNetQ/EasyNetQ/wiki/Replacing-EasyNetQ-Components
 
 To control the name of a single queue, annotate the message class with `Queue` attribute:
 
-	[Queue("TestMessagesQueue", ExchangeName = "MyTestExchange")]
+    [Queue("TestMessagesQueue", ExchangeName = "MyTestExchange")]
     public class TestMessage
     {
 	   public string Text { get; set; }
