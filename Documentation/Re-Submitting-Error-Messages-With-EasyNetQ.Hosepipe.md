@@ -73,4 +73,4 @@ and it is possible that	duplicate messages could be created.
 
 Currently Hosepipe is only available as source code. You can find the project here:
 
-https://github.com/mikehadlow/EasyNetQ/tree/master/Source/EasyNetQ.Hosepipe
+https://github.com/EasyNetQ/EasyNetQ/tree/master/Source/EasyNetQ.Hosepipe
