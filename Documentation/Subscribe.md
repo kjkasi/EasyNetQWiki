@@ -43,7 +43,7 @@ Another example that will result in an exception being thrown if there is a faul
                     }
                     else
                     {                        
-                        // Dont catch this, it is caught further up the heirarchy and results in being sent to the default error queue
+                        // Don't catch this, it is caught further up the hierarchy and results in being sent to the default error queue
                         // on the broker
                         throw new EasyNetQException("Message processing exception - look in the default error queue (broker)");
                     }
