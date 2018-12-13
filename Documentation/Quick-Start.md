@@ -7,6 +7,7 @@ EasyNetQ is a simple to use client API for RabbitMQ. So first install RabbitMQ:
 1. Install Erlang: http://www.erlang.org/download.html
 2. Install the RabbitMQ server: http://www.rabbitmq.com/download.html
 3. You'll probably want to enable the RabbitMQ management API too: http://www.rabbitmq.com/management.html
+  Note: This requires System Restart here sometimes
 
 Now you should be able to navigate to the RabbitMQ management URL:
 
