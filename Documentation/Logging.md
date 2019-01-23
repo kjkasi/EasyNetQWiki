@@ -1,6 +1,7 @@
 EasyNetQ provides a logger interface using [LibLog](https://github.com/damianh/LibLog). 
 
-It contains transparent built-in support for NLog, Log4Net, EntLib Logging, Serilog and Loupe, but you should to configure appropriate logging library first. For example, if you are using [Serilog](https://github.com/serilog/serilog) you should configure `Log.Logger` and LibLog will use it.
+It contains transparent built-in support for NLog, Log4Net, EntLib Logging, Serilog and Loupe, but you should to configure appropriate logging library first. For example, if you are using [Serilog](https://github.com/serilog/serilog) you should configure `Log.Logger` and LibLog will use it. 
+Also you can disable logging by setting `LogProvider.IsDisabled` to `true`.
 
 If you need basic console logging for testing or debugging purposes you can use build in [ConsoleLogProvider](https://github.com/Pliner/EasyNetQ/blob/8b58d9163741af2cdb092ce51ca27537c7f8b05d/Source/EasyNetQ/Logging/ConsoleLoggingProvider.cs) in following way:
 
