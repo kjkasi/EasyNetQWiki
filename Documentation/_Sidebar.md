@@ -19,7 +19,7 @@
 1. [[Scheduling Events with Future Publish]]
    1. [[Support for Delayed Messages Plugin]]
 1. [[Auto Subscriber]]
-1. [[Non Generic Publish & Subscription Extension Methods]]
+1. [Non Generic Publish & Subscription Extension Methods](https://github.com/EasyNetQ/EasyNetQ/wiki/Non-generic-publish-&-subscription-extension-methods)
 1. [[Error Conditions]]
 1. [[Re Submitting Error Messages With EasyNetQ.Hosepipe]]
 1. [[The Advanced API]]
