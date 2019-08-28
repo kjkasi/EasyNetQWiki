@@ -1,18 +1,21 @@
-**EasyNetQ is beta software**. It has been used successfully in production by many companies, but be aware that it is under development with frequent changes both to the internals and to the public API. You should regression test each update. The developers follow the following versioning scheme:
+EasyNetQ is Open Source Software. It has been used successfully in production by many companies, but be aware that it is under development with frequent changes both to the internals and to the public API. 
 
-&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;.&lt;build-number&gt;
+**EasyNetQ comes with absolutely no warranty.**
 
-So for example, the version at the time this was written was:
+It is your responsibility to regression test each update. 
 
-0.25.2.174
+EasyNetQ follows [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html)
 
-We use the following, somewhat semantic, versioning policy:
+> Given a version number MAJOR.MINOR.PATCH, increment the:
 
-    major           - 0 to indicate that this is beta software.
-    minor           - increments when there is a breaking change to the API.
-    patch           - indicates a bug fix or some internal change.
-    build-number    - increments on each build on the CI server.
+> MAJOR version when you make incompatible API changes,
+> MINOR version when you add functionality in a backwards compatible manner, and
+> PATCH version when you make backwards compatible bug fixes.
 
-We use the code better (http://teamcity.codebetter.com/) CI server for our builds. Each change in the master repository triggers a build. Each build is automatically published to NuGet. 
+> Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 
-_There is no development version, or stabilization process, so you should regression test your software when upgrading your NuGet EasyNetQ package._
+Every commit pushed to the develop branch is built and released to NuGet with the -alphaNNNN postfix, where NNNN is the build number. For example, the current development release (at time of writing) is 3.7.0-alpha0038.
+
+When the development team deem that develop is ready for release, a GitHub release is created (https://github.com/EasyNetQ/EasyNetQ/releases), and published to NuGet.
+
+To browse the code version for a particular release, simple find the release on [the releases page](https://github.com/EasyNetQ/EasyNetQ/releases), and click the commit number. You can then browse the code as desired.
