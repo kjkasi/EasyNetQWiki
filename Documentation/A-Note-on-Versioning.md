@@ -18,4 +18,4 @@ Every commit pushed to the develop branch is built and released to NuGet with th
 
 When the development team deem that develop is ready for release, a GitHub release is created (https://github.com/EasyNetQ/EasyNetQ/releases), and published to NuGet.
 
-To browse the code version for a particular release, simple find the release on [the releases page](https://github.com/EasyNetQ/EasyNetQ/releases), and click the commit number. You can then browse the code as desired.
+To browse the code version for a particular release, simply find the release on [the releases page](https://github.com/EasyNetQ/EasyNetQ/releases), and click the commit number. You can then browse the code as desired.
