@@ -10,7 +10,7 @@ To make a request with EasyNetQ, call the Request method on IBus:
     var response = bus.Request<MyRequest, MyResponse>(myRequest);
     Console.WriteLine(response.Text);
 
-Here we create a new request of type MyMessage and then call the Request method with the message as the argument. When the response returns the response message’s Text property is output to the console.
+Here we create a new request of type MyRequest and then call the Request method with the message as the argument. When the response returns the response message’s Text property is output to the console.
 
 ## Asynchronous request
 
