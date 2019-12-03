@@ -6,6 +6,18 @@ To enable the legacy type naming convention simply create the bus with `EnableLe
 var bus = RabbitHutch.CreateBus("host=localhost", x => x.EnableLegacyTypeNaming());
 ```
 
+To enable the legacy RPC convention simply create the bus with `EnableLegacyRpcConventions()` option:
+
+```csharp
+var bus = RabbitHutch.CreateBus("host=localhost", x => x.EnableLegacyRpcConventions());
+```
+
+To enable both the legacy type naming convention and the legacy RPC convention simply create the bus with `EnableLegacyConventions()` option:
+
+```csharp
+var bus = RabbitHutch.CreateBus("host=localhost", x => x.EnableLegacyRpcConventions());
+```
+
 **Long story**
 
 Before v3 the queue and exchange name were something like this:
