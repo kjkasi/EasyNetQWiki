@@ -27,4 +27,4 @@
 1. [[Wiring up EasyNetQ with TopShelf and Windsor]]
 1. [[Replacing EasyNetQ Components]]
 1. [[Using Alternative DI Containers]]
-1. [[Enable Legacy Type Naming]]
+1. [[Enable Legacy Conventions]]
