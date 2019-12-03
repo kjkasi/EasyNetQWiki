@@ -15,7 +15,7 @@ var bus = RabbitHutch.CreateBus("host=localhost", x => x.EnableLegacyRpcConventi
 To enable both the legacy type naming convention and the legacy RPC convention simply create the bus with `EnableLegacyConventions()` option:
 
 ```csharp
-var bus = RabbitHutch.CreateBus("host=localhost", x => x.EnableLegacyRpcConventions());
+var bus = RabbitHutch.CreateBus("host=localhost", x => x.EnableLegacyConventions());
 ```
 
 **Long story**
