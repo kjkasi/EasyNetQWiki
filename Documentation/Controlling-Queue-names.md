@@ -12,7 +12,7 @@ You can create your own customized naming conventions, by implementing IConventi
       }
     }
 
-`var bus = RabbitHutch.CreateBus(connectionString, services => services.Register(c => new MyConventions()));`
+`var bus = RabbitHutch.CreateBus(connectionString, services => services.Register<IConventions>(c => new MyConventions()));`
 
 See also:
 https://github.com/EasyNetQ/EasyNetQ/wiki/Replacing-EasyNetQ-Components
