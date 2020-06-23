@@ -4,7 +4,7 @@ To subscribe to a message we need to give EasyNetQ an action to perform whenever
 
     bus.Subscribe<MyMessage>("my_subscription_id", msg => Console.WriteLine(msg.Text));
 
-Now every time that an instance of MyMessage is published, EasyNetQ will call our delegate and print the message’s Text property to the console.
+Now every time that an instance of MyMessage is published, RabbitMQ will deliver the message to EasyNetQ, which will call our delegate and print the message’s Text property to the console. Note that the message delivery is only 'acked' once your delegate completes, if it's a long running operation, you will notice that it is marked unacked in the RabbitMQ management UI while the operation is in process. If there is some interruption, such as a power failure or a network interruption the unacked message will remain at the head of the queue. For this reason you should be prepared for multiple copies of the same message to be delivered in some circumstances.
 
 **The subscription id that you pass to Subscribe is important.** EasyNetQ will create a unique queue on the RabbitMQ broker for each unique combination of message type and subscription id.
 
@@ -26,6 +26,8 @@ SubscribeAsync allows your subscriber delegate to return a Task immediately and 
                 Console.WriteLine("Received: '{0}', Downloaded: '{1}'", 
                     message.Text, 
                     task.Result)));
+
+**Note that SubscribeAsync will ack the message once the Task completes. Not when the Task is returned from your handler.**
 
 Another example that will result in an exception being thrown if there is a fault which will then result in the message being placed on the default error queue:
 
