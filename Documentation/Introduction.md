@@ -1,4 +1,4 @@
-![EasyNetQ logo](/images/logo_design_150.png)
+[[/images/logo_design_150.png|EasyNetQ logo]]
 
 EasyNetQ is a simple to use, opinionated, .NET API for [[RabbitMQ|http://www.rabbitmq.com/]].
 
