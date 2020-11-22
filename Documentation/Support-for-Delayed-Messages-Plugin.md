@@ -6,15 +6,13 @@ The [RabbitMQ Delayed Message Plugin](https://github.com/rabbitmq/rabbitmq-delay
 
 EasyNetQ provides support for using that exchange by defining new scheduler type: `DelayedExchangeScheduler`. 
 
-This allows you to use the same Future Publish interface as before, with the exception of cancelling future messages. Because Delayed Message Plugin doesn't support messages cancellation, whenever you call `FuturePublish` specifying `cancellationKey`, or when you call `CancelFuturePublish` the scheduler will throw `NotImplementedException`.
-
-Below example shows how to publish a message which will get delivered in three months from now:
-```
-bus = RabbitHutch.CreateBus("host=localhost", x => x.Register<IScheduler, DelayedExchangeScheduler>());
+This allows you to use the same Future Publish interface as before. Below example shows how to publish a message which will get delivered in three months from now:
+```c#
+bus = RabbitHutch.CreateBus("host=localhost", x => x.EnableDelayedExchangeScheduler());
 
 var followUpCallMessage = new FollowUpCallMessage( .. );
 
-bus.FuturePublish(DateTime.UtcNow.AddMonths(3), followUpCallMessage);
+bus.Scheduler.FuturePublish(DateTime.UtcNow.AddMonths(3), followUpCallMessage);
 ```
 
 First line instructs EasyNetQ to use new scheduler which supports Delayed Message Exchanges. Next the message is created and published with delivery time set to three months. Note that FuturePublish uses UTC time.
@@ -36,9 +34,3 @@ When you call bus.FuturePublish(...), EasyNetQ automatically creates new `x-dela
 When you call Publish(...) method, the messages are published to normal exchange which prevents any performance degradation related to using new `x-delayed-message` exchange.
 
 The delayed exchange persists messages using Mnesia. That prevents messages loss in case of server downtime. Once the server restores, all eligible messages will be delivered on schedule.
-
-# Cancelling Future messages
-
-As mentioned earlier, the Delayed Message Plugin doesn't support messages cancellation, hence this functionality is not supported. Any call to `FuturePublish` specifying `cancellationKey`, or to `CancelFuturePublish` will throw `NotImplementedException`.
-
-If you require that functionality, please use Scheduler Service as described in [Scheduling Events with Future Publish](https://github.com/EasyNetQ/EasyNetQ/wiki/Scheduling-Events-with-Future-Publish).
