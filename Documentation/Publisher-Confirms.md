@@ -14,7 +14,7 @@ Enable publisher confirms by setting publisherConfirms=true on the connection st
 
 The synchronous bus.Publish(..) method will wait for the confirm before returning. A failure to confirm before the timeout period (also configured in the connection string) will cause an exception to be thrown. With publisher confirms on the synchronous publish method will slow down significantly. If performance is a concern, you should consider using the PublishAsync method:
 
-    bus.PublishAsync(new MyMessage
+    bus.PubSub.PublishAsync(new MyMessage
         {
             Text = "Hello World"
         }).ContinueWith(task =>
