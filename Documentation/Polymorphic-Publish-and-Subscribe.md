@@ -1,7 +1,7 @@
 You can subscribe to an interface, then publish implementations of that interface.
 
 Let's look at an example. I have an interface IAnimal and two implementations Cat and Dog:
-
+```c#
     public interface IAnimal
     {
         string Name { get; set; }
@@ -18,10 +18,10 @@ Let's look at an example. I have an interface IAnimal and two implementations Ca
         public string Name { get; set; }
         public string Bark { get; set; }
     }
-
+```
 I can subscribe to IAnimal and receive both Cat and Dog classes:
-
-    bus.Subscribe<IAnimal>("polymorphic_test", @interface =>
+```c#
+    bus.PubSub.Subscribe<IAnimal>("polymorphic_test", @interface =>
         {
             var cat = @interface as Cat;
             var dog = @interface as Dog;
@@ -41,9 +41,9 @@ I can subscribe to IAnimal and receive both Cat and Dog classes:
                 Console.Out.WriteLine("message was not a dog or a cat");
             }
         });
-
+```
 Let's publish a cat and a dog:
-
+```c#
     var cat = new Cat
     {
         Name = "Gobbolino",
@@ -56,7 +56,7 @@ Let's publish a cat and a dog:
         Bark = "Woof"
     };
 
-    bus.Publish<IAnimal>(cat);
-    bus.Publish<IAnimal>(dog);
-
+    bus.PubSub.Publish<IAnimal>(cat);
+    bus.PubSub.Publish<IAnimal>(dog);
+```
 Note that I have to explicitly specify that I am publishing IAnimal. EasyNetQ uses the generic type specified in the Publish and Subscribe methods to route the publications to the subscriptions.
