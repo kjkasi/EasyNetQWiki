@@ -29,7 +29,7 @@ The plugin requires RabbitMQ version 3.4 or newer.
 
 # How it works
 
-When you call bus.FuturePublish(...), EasyNetQ automatically creates new `x-delayed-message` exchange along with normal exchange and binds them together. The message is published on the delayed exchange which will store the message until the time comes to deliver it. At that point, the message is routed to normal exchange and from there to bound queue(s).
+When you call bus.Scheduler.FuturePublish(...), EasyNetQ automatically creates new `x-delayed-message` exchange along with normal exchange and binds them together. The message is published on the delayed exchange which will store the message until the time comes to deliver it. At that point, the message is routed to normal exchange and from there to bound queue(s).
 
 When you call Publish(...) method, the messages are published to normal exchange which prevents any performance degradation related to using new `x-delayed-message` exchange.
 
