@@ -320,7 +320,7 @@ When instantiating an IBus through [RabbitHutch](https://github.com/EasyNetQ/Eas
 It doesn't have to be used as it's still possible to add event handlers once the bus has been created. However, you have to use an [AdvancedBusEventHandlers](https://github.com/EasyNetQ/EasyNetQ/blob/master/Source/EasyNetQ/AdvancedBusEventHandlers.cs) with a `Connected` EventHandler if you want to be able to catch the first `Connected` event of [RabbitAdvancedBus](https://github.com/EasyNetQ/EasyNetQ/blob/master/Source/EasyNetQ/RabbitAdvancedBus.cs). This is due to the fact that the bus will attempt to connect once before its constructor returns, which will raise `RabbitAdvancedBus.OnConnected` if the connection attempt succeeded.
 
 ```
-    RabbitHutch.CreateBus(x => x.Register(c => new AdvancedBusEventHandlers((s, e) =>
+    RabbitHutch.CreateBus(x => x.Register(c => new AdvancedBusEventHandlers(connected: (s, e) =>
     {
           var advancedBus = (IAdvancedBus) s;
           Console.WriteLine(advancedBus.IsConnected); // This will print true.
