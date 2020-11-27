@@ -9,7 +9,7 @@ When you do get connected, the management screen shows a small SSL under the pro
 ![ssl](https://cloud.githubusercontent.com/assets/8321491/3799065/8d6ac506-1bea-11e4-84ac-9a9d71830b2e.png)
 
 The sample code to make this work is as follows:
-```C#
+```c#
 var connection = new ConnectionConfiguration();
 
 connection.Port = 443;
@@ -35,15 +35,11 @@ host2.Ssl.CertPassphrase = "secret";
 
 connection.Hosts = new List<HostConfiguration> { host1, host2 };
 
-connection.Validate();        //VERY IMPORTANT - DOES CONFIG AS WELL AS VALIDATION!
-
-var Bus = RabbitHutch.CreateBus(connection, services => services.Register<IEasyNetQLogger>(logger => new DoNothingLogger()));
+var Bus = RabbitHutch.CreateBus(connection);
 ```
 The appropriate place to set the SslOption properties is on the HostConfiguration object even though there is an SslOption property on the ConnectionConfiguration. Setting the SSL options on the HostConfiguration object enables support for clustering scenarios. Note in the above example we specified two HostConfiguration objects. If one becomes unavailable, EasyNetQ's PersistentConnection feature will automatically connect to the next available host. Having SSL settings configured on the host will allow it to connect without any errors.
 
 If you only specify one host then you can choose to set the SslOptions on the HostConfiguration object or the ConnectionConfiguration object directly.
-
-Don’t forget the call to Validate(). I initially skipped that (on the basis I was hard coding everything, so there could be nothing wrong which required validation). However, that method call actually applies various settings that are required to make the connection work.
 
 You can refer SslOption documentation here [SslOption Class](https://www.rabbitmq.com/releases/rabbitmq-dotnet-client/v3.5.2/rabbitmq-dotnet-client-3.5.2-client-htmldoc/html/type-RabbitMQ.Client.SslOption.html)
 
