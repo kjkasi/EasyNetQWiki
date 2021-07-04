@@ -1,1 +1,1 @@
-[Previous](https://github.com/EasyNetQ/EasyNetQ/wiki/Connecting-with-SSL)| [https://github.com/EasyNetQ/EasyNetQ/wiki/Publish](Next)
+[Previous](https://github.com/EasyNetQ/EasyNetQ/wiki/Connecting-with-SSL)| [Next](https://github.com/EasyNetQ/EasyNetQ/wiki/Publish)
