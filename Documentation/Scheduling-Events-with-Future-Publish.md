@@ -3,7 +3,7 @@ Many business processes require that events be scheduled for some future date. F
     var followUpCallMessage = new FollowUpCallMessage( .. );
     bus.Scheduler.FuturePublish(TimeSpan.FromDays(7), followUpCallMessage);
 ```
-Three months from now the message will be published by EasyNetQ and any subscribers of FollowUpCallMessage will receive a copy of the original message.
+A week from now the message will be published by EasyNetQ and any subscribers of FollowUpCallMessage will receive a copy of the original message.
 
 
 ## How Does It Work?
