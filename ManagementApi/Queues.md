@@ -1,3 +1,5 @@
+## General
+
 **GetQueues()** Will get a list of queues declared on the broker. For example:
 
     var queues = managementClient.GetQueues();
@@ -58,4 +60,14 @@ For example:
     foreach (var message in messages)
     {
         Console.Out.WriteLine("message.payload = {0}", message.Payload);
+    }
+
+## Quorum queues
+
+To use quorum queues just add the parameter QueueType to the message class.
+
+    [Queue("QuorumQueue", QueueType = QueueType.Quorum)]
+    public class QuorumQueueMessage
+    {
+
     }
