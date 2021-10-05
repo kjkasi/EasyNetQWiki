@@ -19,11 +19,11 @@ public class MyConsumer : IConsume<MessageA>, IConsume<MessageB>, IConsumeAsync<
 
 First create a new instance of AutoSubscriber, passing your IBus instance and a subscriptionId prefix to the constructor. The subscriptionId prefix is prefixed to all auto-generated subscriptionIds, but not to custom subscriptionIds (see below).
 
-To register this, _and all other consumers in the same Assembly_, we just need to pass the assembly that contains your consumers to: `AutoSubscriber.Subscribe(assembly)`. **Note!** This is something you only should do **ONCE**, preferably on application start up.
+To register this, _and all other consumers in the same Assembly_, we just need to pass the types from assembly that contains your consumers to: `AutoSubscriber.Subscribe(assembly.types)`. **Note!** This is something you only should do **ONCE**, preferably on application start up.
 
 ```c#
 var subscriber = new AutoSubscriber(bus, "my_applications_subscriptionId_prefix");
-subscriber.Subscribe(Assembly.GetExecutingAssembly());
+subscriber.Subscribe(Assembly.GetExecutingAssembly().GetTypes());
 ```
 
 ## Subscribe by topic(s)
@@ -87,7 +87,7 @@ var subscriber = new AutoSubscriber(bus)
     ConfigureSubscriptionConfiguration = c => c.WithAutoDelete()
                                                .WithPriority(10)
 };
-subscriber.Subscribe(Assembly.GetExecutingAssembly());
+subscriber.Subscribe(Assembly.GetExecutingAssembly().GetTypes());
 ```
 
 Or alternatively you can apply an attribute to the consume method which would take precedence over any configuration values set by a ConfigureSubscriptionConfiguration action.
