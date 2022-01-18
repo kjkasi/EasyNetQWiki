@@ -13,7 +13,7 @@ public class MyConsumer : IConsume<MessageA>, IConsume<MessageB>, IConsumeAsync<
 
     public void Consume(MessageB message) {...}
 
-    public Task Consume(MessageC message) {...}
+    public Task ConsumeAsync(MessageC message, CancellationToken cancellationToken) {...}
 }
 ```
 
