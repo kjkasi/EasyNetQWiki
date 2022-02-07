@@ -2,7 +2,7 @@ An EasyNetQ subscriber subscribes to a message type (the .NET type of the messag
 
 To subscribe to a message we need to give EasyNetQ an action to perform whenever a message arrives. We do this by passing subscribe a delegate:
 
-    bus.Subscribe<MyMessage>("my_subscription_id", msg => Console.WriteLine(msg.Text));
+    bus.PubSub.Subscribe<MyMessage>("my_subscription_id", msg => Console.WriteLine(msg.Text));
 
 Now every time that an instance of MyMessage is published, RabbitMQ will deliver the message to EasyNetQ, which will call our delegate and print the message’s Text property to the console. Note that the message delivery is only 'acked' once your delegate completes, if it's a long running operation, you will notice that it is marked unacked in the RabbitMQ management UI while the operation is in process. If there is some interruption, such as a power failure or a network interruption the unacked message will remain at the head of the queue. For this reason you should be prepared for multiple copies of the same message to be delivered in some circumstances.
 
