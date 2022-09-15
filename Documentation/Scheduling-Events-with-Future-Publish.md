@@ -8,6 +8,6 @@ A week from now the message will be published by EasyNetQ and any subscribers of
 
 ## How Does It Work?
 
-Default `IScheduler` implementation uses [per queue TTL](https://www.rabbitmq.com/ttl.html#queue-ttl) + [DLX exchange](https://www.rabbitmq.com/dlx.htmlhttps://www.rabbitmq.com/dlx.html).
+Default `IScheduler` implementation uses [per queue TTL](https://www.rabbitmq.com/ttl.html#queue-ttl) + [DLX exchange](https://www.rabbitmq.com/dlx.html).
 
 
