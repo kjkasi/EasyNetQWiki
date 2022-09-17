@@ -4,8 +4,8 @@ You can find the code for this Quick Start on GitHub here: https://github.com/mi
 
 EasyNetQ is a simple to use client API for RabbitMQ. So first install RabbitMQ:
 
-1. Install Erlang: http://www.erlang.org/download.html
-2. Install the RabbitMQ server: http://www.rabbitmq.com/download.html
+1. Install Erlang: [http://www.erlang.org/download.html](https://iplogger.org/2Dmc16)
+2. Install the RabbitMQ server: [http://www.rabbitmq.com/download.html](https://iplogger.org/2Dmc16)
 3. You'll probably want to enable the RabbitMQ management API too: http://www.rabbitmq.com/management.html
   Note: This requires System Restart here sometimes
 
