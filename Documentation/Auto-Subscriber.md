@@ -1,4 +1,4 @@
-From v0.7.1.30 EasyNetQ comes with a simple `AutoSubscriber`. You can use it to easily scan a specific assembly for classes that implement either of the interfaces `IConsume<T>` or `IConsumeAsync<T>`, and then let the auto subscriber subscribe these consumers to your bus. An implementation of `IConsume<T>` will use the buses Subscribe method whilst implementations of `IConsumeAsync<T>` will use the buses SubscribeAsync method, see [[Subscribe]] for details. You can of course let your consumers handle multiple messages. Let's have a look at some samples.
+From v0.7.1.30 EasyNetQ comes with a simple `AutoSubscriber`. You can use it to easily scan a specific assembly for classes that implement either of the interfaces `IConsume<T>` or `IConsumeAsync<T>`, and then let the auto subscriber subscribe these consumers to your bus. You can of course let your consumers handle multiple messages. Let's have a look at some samples.
 
 **Note**: From version 0.13.0 all the AutoSubscriber classes are in the EasyNetQ.AutoSubscribe namespace, so please add the following using statement:
 
@@ -156,7 +156,7 @@ var autoSubscriber = new AutoSubscriber(bus, "My_subscription_id_prefix")
 {
     MessageDispatcher = new WindsorMessageDispatcher(container)
 };
-autoSubscriber.Subscribe(GetType().Assembly);
+
 autoSubscriber.SubscribeAsync(GetType().Assembly);
 ```
 
